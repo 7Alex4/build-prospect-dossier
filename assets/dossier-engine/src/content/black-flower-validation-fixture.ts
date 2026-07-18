@@ -32,7 +32,7 @@ const plans: Readonly<Record<string, VisualPlan>> = {
   "09-methode": { family: "editorial-sequence", intent: "image-supported", peak: false, rationale: "Une séquence d'images ancre chaque phase dans une matière réelle." },
   "10-film-hero": { family: "object-overlap", intent: "image-led", peak: true, rationale: "La scène et le cutout rendent le film immédiatement concret." },
   "11-storyboard-hero": { family: "storyboard-grid", intent: "image-led", peak: false, rationale: "Les plans doivent être inspectables comme une continuité visuelle." },
-  "12-film-serie": { family: "editorial-split", intent: "image-led", peak: false, rationale: "Le still principal porte le ton documentaire de la série." },
+  "12-film-serie": { family: "object-overlap", intent: "image-led", peak: false, rationale: "Le still principal occupe le champ filmique avant la lecture éditoriale." },
   "13-storyboard-serie": { family: "storyboard-grid", intent: "image-led", peak: true, rationale: "Le rythme sériel se prouve par une suite d'images lisibles." },
   "14-activation": { family: "image-dominant", intent: "image-supported", peak: false, rationale: "La matière d'activation évite une simple liste de canaux." },
   "15-production": { family: "portrait-profile", intent: "image-led", peak: true, rationale: "Le portrait établit une présence derrière la production." },
@@ -53,9 +53,9 @@ function finalMedia(asset: ImageAsset, mediaRole: MediaRole, mediaNature: MediaN
   };
 }
 
-function requiredMedia(asset: ImageAsset | undefined, mediaRole: MediaRole): ImageAsset {
+function requiredMedia(asset: ImageAsset | undefined, mediaRole: MediaRole, nature: MediaNature): ImageAsset {
   if (!asset) throw new Error(`Média requis pour le rôle ${mediaRole}.`);
-  return finalMedia(asset, mediaRole, "illustration");
+  return finalMedia(asset, mediaRole, nature);
 }
 
 function planned(slide: DossierSlide) {
@@ -77,25 +77,25 @@ function annotateSlide(slide: DossierSlide): DossierSlide {
       relationshipLabel: `Proposition indépendante pour ${slide.client}, par ${canonicalStudio}`,
       ...visual,
     };
-    case "architecture": return { ...slide, image: requiredMedia(slide.image, "evidence"), ...visual };
-    case "proof": return { ...slide, image: requiredMedia(slide.image, "evidence"), ...visual };
-    case "risk": return { ...slide, image: requiredMedia(slide.image, "editorial"), ...visual };
+    case "architecture": return { ...slide, image: requiredMedia(slide.image, "evidence", "document"), ...visual };
+    case "proof": return { ...slide, image: requiredMedia(slide.image, "evidence", "document"), ...visual };
+    case "risk": return { ...slide, image: requiredMedia(slide.image, "editorial", "photograph"), ...visual };
     case "opportunity": return {
       ...slide,
-      image: finalMedia(neutralRiskImage, "editorial", "illustration", false),
+      image: finalMedia(neutralRiskImage, "editorial", "photograph", false),
       ...visual,
     };
     case "timeline": return {
       ...slide,
       steps: slide.steps.map((step) => ({
         ...step,
-        image: finalMedia(neutralProofImage, "editorial", "illustration", false),
+        image: finalMedia(neutralProofImage, "editorial", "screenshot", false),
       })),
       ...visual,
     };
     case "film-concept": return {
       ...slide,
-      image: requiredMedia(slide.image, "film-still"),
+      image: requiredMedia(slide.image, "film-still", "photograph"),
       ...(slide.id === "10-film-hero" ? {
         productCutout: {
           ...finalMedia(neutralPageMarker, "product", "product-cutout", false),
@@ -108,21 +108,21 @@ function annotateSlide(slide: DossierSlide): DossierSlide {
       ...slide,
       frames: slide.frames.map((frame) => ({
         ...frame,
-        image: requiredMedia(frame.image, "storyboard-frame"),
+        image: requiredMedia(frame.image, "storyboard-frame", "storyboard"),
       })),
       ...visual,
     };
     case "activation": return {
       ...slide,
-      image: finalMedia(neutralProofImage, "editorial", "illustration", false),
+      image: finalMedia(neutralProofImage, "editorial", "screenshot", false),
       ...visual,
     };
-    case "production": return { ...slide, image: requiredMedia(slide.image, "portrait"), ...visual };
+    case "production": return { ...slide, image: requiredMedia(slide.image, "portrait", "portrait"), ...visual };
     case "references": return {
       ...slide,
       references: slide.references.map((reference) => ({
         ...reference,
-        image: finalMedia(neutralProofImage, "reference", "illustration", false),
+        image: finalMedia(neutralProofImage, "reference", "document", false),
       })),
       ...visual,
     };
@@ -143,10 +143,22 @@ export const blackFlowerValidationFixture: Dossier = {
     ...structuredClone(exampleDossier.meta),
     frameworkProfile: "black-flower",
     generativeAssets: "authorized",
+    generativeAssetsAuthorization: {
+      status: "explicitly-authorized",
+      authorizedBy: "Fixture validator",
+      reference: "fixture:black-flower-generative-authorization",
+    },
+    campaignMode: "campaign-platform",
+    creativeRouteCount: 2,
     studio: canonicalStudio,
     studioIdentity: { canonicalName: canonicalStudio, signature },
     version: "0.2-test",
   },
+  assets: exampleDossier.assets.map((asset) => ({
+    ...structuredClone(asset),
+    origin: "provided",
+    rightsBasis: "Simulation de métadonnées externes réservée aux tests du validateur Black Flower.",
+  })),
   theme: {
     ...structuredClone(exampleDossier.theme),
     motif: {

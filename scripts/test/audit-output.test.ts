@@ -7,6 +7,7 @@ import test from "node:test";
 import { PDFDocument, PDFName, PDFString } from "pdf-lib";
 import sharp from "sharp";
 import { auditOutput } from "../src/output-audit.js";
+import { writeCompleteRenderReport } from "./render-report-fixture.js";
 
 async function makePage(filePath: string, width = 2000, height = 1414): Promise<void> {
   await sharp({ create: { width, height, channels: 3, background: "#dedbd3" } })
@@ -40,15 +41,12 @@ async function makeLinkedPdf(
   const renderedSlideIds = markerPaths.map((markerPath) =>
     path.basename(markerPath, path.extname(markerPath)).replace(/^\d+(?:[-_ .])/, ""),
   );
-  await writeFile(path.join(path.dirname(filePath), "render-report.json"), `${JSON.stringify({
-    schemaVersion: "1.0",
-    stage: "final",
-    totalSlides: renderedSlideIds.length,
-    renderedCount: renderedSlideIds.length,
-    selectionApplied: false,
-    selection: [],
+  await writeCompleteRenderReport(
+    path.join(path.dirname(filePath), "render-report.json"),
+    filePath,
+    markerPaths,
     renderedSlideIds,
-  }, null, 2)}\n`, "utf8");
+  );
 }
 
 test("output audit validates page dimensions, numbering and PDF count", async (context) => {

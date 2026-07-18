@@ -27,6 +27,32 @@ export type MediaNature =
 
 export type MediaProductionStatus = "final" | "placeholder";
 
+export type FontRole = "display" | "body" | "mono";
+export type FontStyle = "normal" | "italic";
+export type FontWeight = 400 | 500 | 600 | 700 | 800 | 900;
+
+export interface SystemFontSource {
+  kind: "system";
+  allowedResolvedFamilies: readonly string[];
+  license: string;
+}
+
+export interface LocalFontSource {
+  kind: "local";
+  file: string;
+  format: "woff2" | "woff" | "otf" | "ttf";
+  sha256: string;
+  license: string;
+}
+
+export interface FontFaceContract {
+  role: FontRole;
+  family: string;
+  style: FontStyle;
+  weights: readonly FontWeight[];
+  source: SystemFontSource | LocalFontSource;
+}
+
 export interface ImageAsset {
   id: string;
   src: string;
@@ -92,6 +118,7 @@ export interface BrandTheme {
     display: string;
     body: string;
     mono: string;
+    faces?: readonly FontFaceContract[];
   };
   motif: MotifConfig;
   logo: {

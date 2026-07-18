@@ -28,7 +28,7 @@ const hiddenKeys = new Set([
 ]);
 
 const structuralKeys = new Set([
-  "eyebrow", "tag", "footer", "client", "studio", "legal", "phase", "signal",
+  "eyebrow", "tag", "client", "studio", "phase", "signal",
   "relationshipLabel",
   "textMark",
 ]);

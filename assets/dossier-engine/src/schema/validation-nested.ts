@@ -2,6 +2,7 @@ import type { ValidationIssue } from "./validation";
 import { validateContact } from "./contact-validation";
 import { validateImageShape as image } from "./image-shape-validation";
 import { compositionFamilies } from "./profile-types";
+import { validateThemeShape } from "./theme-nested-validation";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -61,108 +62,6 @@ function stringList(value: unknown, path: string, issues: ValidationIssue[]): vo
       add(issues, "nested-text", `${path}[${index}]`, "Texte non vide requis.");
     }
   });
-}
-
-function requiredImage(value: unknown, path: string, issues: ValidationIssue[]): void {
-  if (value === undefined) {
-    add(issues, "image-required", path, "Image requise.");
-    return;
-  }
-  image(value, path, issues);
-}
-
-function numberInRange(
-  value: unknown,
-  path: string,
-  issues: ValidationIssue[],
-  minimum: number,
-  maximum: number,
-): void {
-  if (typeof value !== "number" || !Number.isFinite(value) || value < minimum || value > maximum) {
-    add(issues, "theme-number", path, `Nombre entre ${minimum} et ${maximum} requis.`);
-  }
-}
-
-function theme(value: unknown, issues: ValidationIssue[]): void {
-  if (!isRecord(value)) return;
-  if (isRecord(value.palette)) {
-    strings(value.palette, ["ink", "paper", "accent", "muted", "surface", "signal"], "theme.palette", issues);
-  } else add(issues, "theme-shape", "theme.palette", "Objet palette requis.");
-  if (isRecord(value.typography)) {
-    strings(value.typography, ["display", "body", "mono"], "theme.typography", issues);
-  } else add(issues, "theme-shape", "theme.typography", "Objet typographie requis.");
-  if (isRecord(value.motif)) {
-    allowed(value.motif.kind, ["frame", "orbit", "grid", "signal", "asset", "none"], "theme.motif.kind", issues);
-    if (value.motif.derivation !== undefined) {
-      allowed(
-        value.motif.derivation,
-        ["prospect-derived", "typographic-system", "generic"],
-        "theme.motif.derivation",
-        issues,
-      );
-    }
-    allowed(value.motif.density, ["quiet", "balanced", "bold"], "theme.motif.density", issues);
-    numberInRange(value.motif.strokeWidth, "theme.motif.strokeWidth", issues, 0, 12);
-    numberInRange(value.motif.cornerRadius, "theme.motif.cornerRadius", issues, 0, 240);
-    if (typeof value.motif.showIndex !== "boolean") {
-      add(issues, "theme-boolean", "theme.motif.showIndex", "Booléen requis.");
-    }
-    if (value.motif.kind === "asset") {
-      if (isRecord(value.motif.assets)) {
-        requiredImage(value.motif.assets.full, "theme.motif.assets.full", issues);
-        image(value.motif.assets.quiet, "theme.motif.assets.quiet", issues);
-      } else add(issues, "theme-shape", "theme.motif.assets", "Asset full requis, asset quiet optionnel.");
-    }
-    if (value.motif.placement !== undefined) {
-      if (isRecord(value.motif.placement)) {
-        numberInRange(value.motif.placement.x, "theme.motif.placement.x", issues, -2000, 4000);
-        numberInRange(value.motif.placement.y, "theme.motif.placement.y", issues, -1414, 2828);
-        numberInRange(value.motif.placement.width, "theme.motif.placement.width", issues, 1, 4000);
-        numberInRange(value.motif.placement.height, "theme.motif.placement.height", issues, 1, 2828);
-      } else add(issues, "theme-shape", "theme.motif.placement", "Placement objet requis.");
-    }
-  } else add(issues, "theme-shape", "theme.motif", "Objet motif requis.");
-  if (isRecord(value.logo)) {
-    strings(value.logo, ["textFallback"], "theme.logo", issues);
-    image(value.logo.mark, "theme.logo.mark", issues);
-    image(value.logo.wordmark, "theme.logo.wordmark", issues);
-  } else add(issues, "theme-shape", "theme.logo", "Objet logo requis.");
-  if (value.backgrounds !== undefined) {
-    if (isRecord(value.backgrounds)) {
-      const backgrounds = value.backgrounds;
-      ["paper", "ink", "accent", "surface", "signal"].forEach((tone) =>
-        image(backgrounds[tone], `theme.backgrounds.${tone}`, issues),
-      );
-    } else add(issues, "theme-shape", "theme.backgrounds", "Objet de fonds requis.");
-  }
-  if (value.pageMarker !== undefined) {
-    if (isRecord(value.pageMarker)) {
-      allowed(value.pageMarker.kind, ["number", "rotating-asset", "none"], "theme.pageMarker.kind", issues);
-      if (value.pageMarker.kind === "rotating-asset") {
-        requiredImage(value.pageMarker.asset, "theme.pageMarker.asset", issues);
-      }
-      if (value.pageMarker.startAngle !== undefined) {
-        numberInRange(value.pageMarker.startAngle, "theme.pageMarker.startAngle", issues, -3600, 3600);
-      }
-      if (value.pageMarker.stepAngle !== undefined) {
-        numberInRange(value.pageMarker.stepAngle, "theme.pageMarker.stepAngle", issues, -360, 360);
-      }
-    } else add(issues, "theme-shape", "theme.pageMarker", "Objet marqueur requis.");
-  }
-  if (value.chrome !== undefined) {
-    if (isRecord(value.chrome)) {
-      allowed(value.chrome.footer, ["bordered", "minimal", "hidden"], "theme.chrome.footer", issues);
-      if (value.chrome.runningHeader !== undefined) {
-        if (isRecord(value.chrome.runningHeader)) {
-          strings(value.chrome.runningHeader, ["text"], "theme.chrome.runningHeader", issues);
-          allowed(value.chrome.runningHeader.align, ["left", "center", "right"], "theme.chrome.runningHeader.align", issues);
-          if (typeof value.chrome.runningHeader.showOnCover !== "boolean") {
-            add(issues, "theme-boolean", "theme.chrome.runningHeader.showOnCover", "Booléen requis.");
-          }
-        } else add(issues, "theme-shape", "theme.chrome.runningHeader", "Objet en-tête requis.");
-      }
-    } else add(issues, "theme-shape", "theme.chrome", "Objet chrome requis.");
-  }
 }
 
 function commonSlide(slide: UnknownRecord, path: string, issues: ValidationIssue[]): void {
@@ -287,7 +186,7 @@ function nestedSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
 
 export function validateNestedDossier(value: unknown, issues: ValidationIssue[]): void {
   if (!isRecord(value)) return;
-  theme(value.theme, issues);
+  validateThemeShape(value.theme, issues);
   if (isRecord(value.meta) && value.meta.confidential !== undefined && typeof value.meta.confidential !== "boolean") {
     add(issues, "meta-boolean", "meta.confidential", "Booléen requis.");
   }

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { App } from "../src/App";
 import { SlideFrame } from "../src/components/SlideFrame";
+import { exampleDossier } from "../src/content/example";
 import { imageTestDossier } from "../src/content/image-test";
 import { validateDossier } from "../src/schema/validation";
 
@@ -45,4 +47,30 @@ if (isRecord(nonFiniteTheme) && isRecord(nonFiniteTheme.theme) && isRecord(nonFi
 }
 assert.ok(validateDossier(nonFiniteTheme).filter((entry) => entry.code === "theme-number").length >= 2);
 
-console.log("Tests structure: footer technique, IDs de sortie et nombres finis validés.");
+const longDeliverable: unknown = structuredClone(imageTestDossier);
+if (!isRecord(longDeliverable) || !Array.isArray(longDeliverable.slides)) {
+  throw new Error("Fixture de livrable absente.");
+}
+const production = longDeliverable.slides.find((slide) => isRecord(slide) && slide.type === "production");
+if (!isRecord(production) || !Array.isArray(production.deliverables)) {
+  throw new Error("Slide de production absente.");
+}
+production.deliverables[0] = "L".repeat(1619);
+assert.ok(validateDossier(longDeliverable).some((entry) =>
+  entry.code === "text-limit" && entry.path.endsWith("deliverables[0]"),
+));
+
+const dynamicTextMarkup = renderToStaticMarkup(createElement(App, { dossier: exampleDossier }));
+for (const expected of [
+  '<figcaption data-fit="true">Fixture vectorielle neutre</figcaption>',
+  '<li data-fit="true">Reconnaissance</li>',
+  '<li data-fit="true">Révéler</li>',
+  '<li data-fit="true">1 film manifeste</li>',
+  '<li data-fit="true">Droits validés</li>',
+  '<p data-fit="true">Contact Démo</p>',
+  '<a data-fit="true" href="mailto:bonjour@studio-demo.invalid">bonjour@studio-demo.invalid</a>',
+]) {
+  assert.ok(dynamicTextMarkup.includes(expected), `Texte dynamique sans data-fit: ${expected}`);
+}
+
+console.log("Tests structure: IDs, budgets texte et couverture data-fit validés.");

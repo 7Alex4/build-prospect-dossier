@@ -1,6 +1,6 @@
 ---
 name: build-prospect-dossier
-description: Research, strategize, write, art-direct, render, audit, and quality-check image-led Black Flower prospecting dossiers as 15–20 A4-landscape pages, numbered PNGs, an A4 PDF, and editable strict-TypeScript source. Use when a user asks Black Flower to create a strategic creative dossier, outreach deck, campaign proposal, film proposal, or repeatable prospect-dossier factory for a company, or supplies a Canva, PDF, or PNG prospect dossier to extend, repair, audit, or re-render. Use 21–23 pages only for an explicitly justified full campaign proposal. Do not trigger for generic company research or an unrelated presentation.
+description: Research, strategize, write, art-direct, render, audit, and quality-check image-led Black Flower prospecting dossiers as 15–20 A4-landscape pages, numbered PNGs, an A4 PDF, and editable strict-TypeScript source. Use when a user asks Black Flower to create a strategic creative dossier, outreach deck, campaign proposal, film proposal, or repeatable prospect-dossier factory for a company, or supplies a Canva, PDF, or PNG prospect dossier to extend, repair, audit, or re-render. Do not trigger for generic company research or an unrelated presentation.
 ---
 
 # Build Prospect Dossier
@@ -14,16 +14,17 @@ Default to a complete, client-ready result without asking questions. A company n
 - Work from evidence. Never invent a date, product, founder, capability, client, quote, market fact, award, location, reference, or brand intention.
 - Separate facts, observations, strategic interpretations, and creative proposals in working notes.
 - When exemplars are supplied for a job, use them only to understand structure, never as a source of reusable client-specific colors, motifs, metaphors, copy, or images.
-- Default to real imagery whose provenance, rights basis and distribution scope are documented. `Provided` and `official` describe origin, not permission. Alex's Black Flower profile carries standing authorization for creative generation; every other profile requires explicit authorization.
+- Default to real imagery whose provenance, rights basis and distribution scope are documented. `Provided` and `official` describe origin, not permission. Alex's Black Flower owner brief authorizes creative generation, but every dossier must materialize that permission with an authorizer and durable reference. The profile name alone never authorizes generation.
 - Make every selected image prove, dramatize, or clarify a specific claim. Reject generic atmosphere.
 - Use `Black Flower Creative House` as the canonical studio identity and `BlackFlower` as its visible signature. Nexaia may remain the technical maintainer, but it is never the author visible on a prospect dossier.
-- Default Alex's Black Flower jobs to `frameworkProfile: "black-flower"` and `generativeAssets: "authorized"`. For outside users of the open-source skill, require explicit authorization before generating images.
-- Make 45–65% of pages image-led, with a target of 55%. At least 60% of those visual pages must use real, official, documentary, licensed or supplied assets. A logo, motif, texture or decorative SVG does not count.
+- Default Alex's Black Flower jobs to `frameworkProfile: "black-flower"`. Set `generativeAssets: "authorized"` only with a complete `generativeAssetsAuthorization` block. For outside users of the open-source skill, require their own explicit authorization.
+- Make 45–65% of pages image-led, with a target of 55%. For source mix, count every page that actually renders at least one substantive slide medium, regardless of its declared visual intent. At least 60% of those visual pages must use real, official, documentary, licensed or supplied assets. No more than 40% may contain a generated asset. A logo, motif, texture or decorative SVG does not count.
+- Never register a generated asset as evidence, an exact product, an identified person, a screenshot, a document, an archive or a brand identity. Generate only creative projection, then composite cleared exact assets where needed.
 - Use at most two genuinely necessary diagram pages. After the introduction, never place more than two text-led or system-led pages consecutively.
 - Give every page an explicit visual intent. A missing image is a deliberate typographic decision, never a fallback rendered as cards, nodes, arrows, meters, pills or abstract geometry.
 - Keep one dominant idea per page and normally no more than three content blocks.
 - Produce 2000 × 1414 px PNG pages and an A4-landscape PDF.
-- Preserve an editable source project. Pixel-identical rendering is guaranteed only with the same OS, Chromium build and licensed local font files.
+- Preserve an editable source project. Declare every final font role and 400/700 weight in the hashed font contract. Pixel-identical rendering is guaranteed only with the same OS, Chromium build and licensed local font files.
 - Keep `meta.stage` at `draft` while content is incomplete. Set it to `final` before the final validation, full render, audit and delivery.
 - Give every final substantive visible field an explicit `ClaimRef`. Use a path relative to its slide, such as `title`, `columns[0].body` or `metrics[0]`, never `slides[0].title`. The claim text must resolve to the exact visible target; a metric claim must contain its value and label.
 - Treat a displayed contact website as substantive copy with an exact `ClaimRef`. Keep image alt text, frame numbers, indices and timecodes outside claim coverage, but include them in placeholder and forbidden-term scans.
@@ -85,7 +86,8 @@ Create `brief.yaml` immediately. Record:
 - output language and Black Flower identity, or optional studio identity only for an explicit neutral profile;
 - distribution mode: private prospecting, client-approved work, or public release;
 - relationship status: independent proposal, client-approved, or commissioned;
-- generative assets: `authorized` for Alex's Black Flower framework; otherwise `forbidden` unless the user explicitly authorizes them;
+- generative assets: `authorized` for Alex's Black Flower framework only with `status`, `authorizedBy` and durable `reference`; otherwise `forbidden` unless the user explicitly authorizes them;
+- campaign mode: `focused-opportunity` or `campaign-platform`, plus the exact number of film routes that will receive their own pages;
 - forbidden client-facing terms from active project instructions;
 - assumptions and missing inputs;
 - target outcome: meeting, creative conversation, proposal, or production mandate.
@@ -94,7 +96,7 @@ Classify a specific user-supplied angle as `fixed`, a directional territory as `
 
 ### 2. Create the production workspace
 
-Copy `assets/dossier-engine/` into a new project directory. Keep the skill package unchanged.
+Create the job with the bundled initializer or copy `assets/dossier-engine/` into a new project directory. Keep the skill package unchanged. The public initializer defaults to `neutral`; Alex's jobs must pass `--profile black-flower` explicitly.
 
 Use this job structure:
 
@@ -122,7 +124,9 @@ project/
 ├── output/
 │   ├── slides/
 │   ├── contact-sheet.png
-│   └── dossier.pdf
+│   ├── dossier.pdf
+│   ├── render-report.json
+│   └── render-report.sha256
 └── delivery/
     ├── prospect/
     ├── author/
@@ -196,7 +200,7 @@ Use measured colors and official assets. If brand fonts are unavailable or unlic
 
 ### 7. Choose the dossier profile and map every page
 
-Default to the 18–20-page standard profile. Use 15 pages for a focused opportunity without film execution. Use 21–23 pages only when the user requests or the brief explicitly justifies a full campaign proposal with product variants, distinct routes, storyboard and verified references.
+Default to the 18–20-page standard profile. Use 15 pages for a focused opportunity with compact execution proof and no oversized film chapter. Split a larger campaign into a second volume instead of weakening the 20-page ceiling.
 
 Create `strategy/page-map.md` before writing full copy. For every page record:
 
@@ -274,6 +278,8 @@ Requirements:
 - `prefers-reduced-motion` respected in preview behavior;
 - no decorative gradients, blobs, particles, confetti, glass cards, fake dashboards, or unrelated icons.
 - explicit `visualIntent`, `visualIntentRationale`, `compositionFamily` and `visualPeak` metadata matching the page map;
+- a type-compatible composition family that changes the rendered geometry, never metadata used only to satisfy a counter;
+- no composition family repeated on consecutive pages and no family used more than three times;
 - no generic orbit, signal, grid or abstract line motif in a final Black Flower dossier;
 - no equal-card grid, decorative flowchart, severity meter, progress bar, pill cloud, dark central platform card or text-only film route as a final composition;
 - image-led routes, activation, storyboard and production pages using approved local assets;
@@ -300,6 +306,7 @@ Return:
 - `delivery/prospect/slides/01-stable-id.png` through the final naturally numbered page;
 - `delivery/prospect/dossier.pdf` and `delivery/prospect/contact-sheet.png`;
 - `delivery/author/` with editable strict-TypeScript source, lockfile, allowed processed assets and redistributable fonts;
+- `delivery/author/render-report.json`, its matching `render-report.sha256` sidecar and the source path used by the independent QA audit;
 - brief, evidence ledger, claim map and asset ledger in the author package;
 - page map, diagnosis and retained platform notes in the author package;
 - QA report listing checks run, passed, corrected, and any clearly disclosed limitations;
@@ -322,13 +329,15 @@ Do not deliver when any of these is true:
 - a final substantive visible field lacks an exact resolving claim, uses an absolute deck path, or was covered by blanket `proposal` classification;
 - a final storyboard frame lacks a local approved image, or any asset still uses HTTP;
 - an image ID is missing or unregistered, a used registry row is not approved, its scope does not cover the delivery mode, or generated origin conflicts with policy;
-- `render-report.json` describes a draft or selected render, or its counts and rendered IDs do not prove a complete deck;
+- generated media is presented as evidence, an exact product, an identified person, a screenshot, a document, an archive or a brand identity;
+- `render-report.json` or `render-report.sha256` is missing, the sidecar does not match, the report describes a draft or selected render, or its counts and rendered IDs do not prove a complete deck;
+- the independent audit reports a source-file or loaded-dossier hash mismatch;
 - text clips, collides, becomes unreadable over the motif, or enters the protected right zone;
 - the dossier copies an exemplar-specific palette, motif, metaphor, or client asset;
 - the cover or final lockup implies a mandate, partnership or endorsement that does not exist;
 - a Black Flower dossier is signed Nexaia, omits Black Flower authorship or uses a generic studio placeholder;
-- fewer than 45% or more than 65% of pages are image-led without an explicit, documented exception;
-- fewer than 60% of visual pages use real or documentary assets, or generated images exceed 40% without an explicitly concept-art-led brief;
+- fewer than 45% or more than 65% of pages are image-led;
+- fewer than 60% of visual pages use real or documentary assets, or generated images exceed 40%;
 - more than two pages are primarily diagrammatic, more than two text/system pages run consecutively after the introduction, or fewer than six composition silhouettes exist;
 - a risk, route, priority activation, storyboard or production page substitutes cards, arrows, meters, generic geometry or text for meaningful media;
 - the dossier contains no concrete photograph, product, screenshot, archive, portrait, cultural reference, scene or storyboard;

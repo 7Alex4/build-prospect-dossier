@@ -28,6 +28,7 @@ export const exampleDossier = {
   },
   evidence: [
     { id: "fixture:context-audit", kind: "observation", status: "verified", claim: "Signaux fictifs consignés dans la note de cadrage locale de cette démonstration." },
+    { id: "fixture:narrative-plan", kind: "observation", status: "verified", claim: "Architecture narrative fictive consignée dans le plan éditorial local de cette démonstration." },
     { id: "fixture:vector-assets", kind: "fact", status: "verified", claim: "Visuels SVG neutres fabriqués localement et inclus avec le moteur." },
     { id: "fixture:contact-card", kind: "fact", status: "verified", claim: "Coordonnées fictives définies dans la fixture locale de démonstration." },
   ],

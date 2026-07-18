@@ -2,9 +2,11 @@ import type { Dossier } from "./types.js";
 import { validateAssetGovernance } from "./asset-validation";
 import { validateBlackFlowerProfile } from "./black-flower-validation";
 import { validateContentClaims } from "./claim-validation";
+import { validateFontContract } from "./font-validation";
 import { validateGovernance } from "./governance-validation";
 import { validateNestedDossier } from "./validation-nested";
 import { validateProofEvidence } from "./proof-validation";
+import { validateTextLimits } from "./text-validation";
 
 export interface ValidationIssue {
   level: "error" | "warning";
@@ -33,28 +35,6 @@ const slideTypes = new Set([
   "thank-you",
   "lockup",
 ]);
-
-const textLimits: Readonly<Record<string, number>> = {
-  title: 120,
-  subtitle: 180,
-  proposition: 180,
-  statement: 300,
-  intro: 320,
-  conclusion: 240,
-  body: 360,
-  detail: 360,
-  lead: 380,
-  quote: 420,
-  consequence: 260,
-  implication: 260,
-  logline: 420,
-  visual: 300,
-  onScreen: 140,
-  audio: 200,
-  reason: 280,
-  message: 320,
-  relationshipLabel: 220,
-};
 
 function isRecord(value: unknown): value is UnknownRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -200,28 +180,6 @@ function validateSlide(slide: UnknownRecord, path: string, issues: ValidationIss
   }
 }
 
-function validateText(value: unknown, path: string, key: string, issues: ValidationIssue[]): void {
-  if (typeof value === "string") {
-    const limit = textLimits[key];
-    if (limit !== undefined && value.length > limit) {
-      issue(issues, "error", "text-limit", path, `${value.length} caractères, maximum ${limit}.`);
-    }
-    if (/\s{3,}/.test(value)) {
-      issue(issues, "warning", "whitespace", path, "Espaces consécutives à vérifier.");
-    }
-    return;
-  }
-  if (Array.isArray(value)) {
-    value.forEach((item, index) => validateText(item, `${path}[${index}]`, key, issues));
-    return;
-  }
-  if (isRecord(value)) {
-    Object.entries(value).forEach(([childKey, child]) =>
-      validateText(child, path ? `${path}.${childKey}` : childKey, childKey, issues),
-    );
-  }
-}
-
 function normalizedOutputId(value: string): string {
   return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
     .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "").slice(0, 64);
@@ -265,11 +223,12 @@ export function validateDossier(value: unknown): ValidationIssue[] {
     }
   });
   validateNestedDossier(value, issues);
+  validateFontContract(value, issues);
   validateGovernance(value, issues);
   validateAssetGovernance(value, issues);
   validateBlackFlowerProfile(value, issues);
   validateContentClaims(value, issues);
-  validateText(value, "", "", issues);
+  validateTextLimits(value, issues);
   return issues;
 }
 

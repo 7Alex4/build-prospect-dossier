@@ -61,7 +61,7 @@ export function SlideMotif({ slide, theme }: { slide: DossierSlide; theme: Brand
 export function SlideRunningHeader({ slide, theme }: { slide: DossierSlide; theme: BrandTheme }) {
   const header = theme.chrome?.runningHeader;
   if (!header || (slide.type === "cover" && !header.showOnCover)) return null;
-  return <p className={`slide__running-header slide__running-header--${header.align}`}>{header.text}</p>;
+  return <p className={`slide__running-header slide__running-header--${header.align}`} data-fit>{header.text}</p>;
 }
 
 export function SlideChapterMark({ slide }: { slide: DossierSlide }) {

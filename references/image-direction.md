@@ -204,7 +204,7 @@ Use rarely. A cultural image may clarify a risk, boredom, predictability or fami
 
 ## 7. Generative imagery policy
 
-Black Flower default for Alex: generative imagery is authorized for creative projection. Neutral open-source default: no generative imagery without explicit authorization.
+Alex's Black Flower owner brief authorizes generative imagery for creative projection, but each dossier must record the authorizer and durable reference. The profile name alone grants nothing. Neutral open-source default: no generative imagery without explicit authorization.
 
 Use generative imagery only when the user explicitly authorizes it and when no real, official, licensed or designed alternative can achieve the necessary concept. If authorized:
 
@@ -220,7 +220,7 @@ For Black Flower campaign work:
 
 - generate scenes, routes, moodboards and storyboard frames, never complete slide layouts;
 - if an exact product must appear, generate the world first and composite the real approved product cutout;
-- keep generated visual pages below 40% unless the brief is explicitly concept-art-led;
+- keep generated visual pages at or below 40%;
 - lock casting, lens, light, grain and palette across a sequence;
 - reject synthetic beauty that performs no narrative work.
 

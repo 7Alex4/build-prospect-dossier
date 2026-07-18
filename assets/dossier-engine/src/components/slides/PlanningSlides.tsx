@@ -14,7 +14,7 @@ export function Timeline({ slide }: { slide: TimelineSlide }) {
               {step.image ? <AssetImage asset={step.image} className="timeline-step-image" /> : null}
               <div className="timeline-meta">
                 <IndexLabel index={index + 1}>{step.phase}</IndexLabel>
-                <span>{step.duration}</span>
+                <span data-fit>{step.duration}</span>
               </div>
               <h2 data-fit>{step.title}</h2>
               <p data-fit>{step.detail}</p>
@@ -46,7 +46,7 @@ export function Activation({ slide }: { slide: ActivationSlide }) {
       {slide.image ? <AssetImage asset={slide.image} className="activation-image" /> : null}
       {slide.sequence ? (
         <ol className="activation-sequence">
-          {slide.sequence.map((item) => <li key={item}>{item}</li>)}
+          {slide.sequence.map((item) => <li data-fit key={item}>{item}</li>)}
         </ol>
       ) : null}
     </div>
@@ -70,11 +70,11 @@ export function Production({ slide }: { slide: ProductionSlide }) {
         </div>
         <aside className="deliverables">
           <p className="eyebrow">Livrables</p>
-          <ul>{slide.deliverables.map((item) => <li key={item}>{item}</li>)}</ul>
+          <ul>{slide.deliverables.map((item) => <li data-fit key={item}>{item}</li>)}</ul>
           {slide.constraints ? (
             <div className="constraints">
               <p className="eyebrow">Contraintes</p>
-              <ul>{slide.constraints.map((item) => <li key={item}>{item}</li>)}</ul>
+              <ul>{slide.constraints.map((item) => <li data-fit key={item}>{item}</li>)}</ul>
             </div>
           ) : null}
         </aside>

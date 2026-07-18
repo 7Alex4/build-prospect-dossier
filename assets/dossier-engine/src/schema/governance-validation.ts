@@ -1,6 +1,8 @@
 import type { ValidationIssue } from "./validation";
 import type { DossierSlide } from "./types";
 import { clientFacingAuditStrings, structuralAuditStrings } from "./content-claims";
+import { validateFinalEvidenceVisibility } from "./governance-visibility-validation";
+import { validateGenerativeAuthorization } from "./generative-authorization-validation";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -74,6 +76,7 @@ function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord |
       });
     }
   }
+  validateGenerativeAuthorization(meta, issues);
   return meta;
 }
 
@@ -268,6 +271,7 @@ export function validateGovernance(value: UnknownRecord, issues: ValidationIssue
   const meta = validateMeta(value.meta, issues);
   const registry = validateRegistry(value.evidence, issues);
   validateSlideEvidence(value.slides, registry, issues);
+  validateFinalEvidenceVisibility(meta, value.slides, registry, issues);
   if (meta) {
     validateRelationship(meta, value.slides, issues);
     validateForbiddenTerms(meta, value.slides, value.theme, issues);

@@ -26,6 +26,7 @@ export interface AuditOutputOptions {
   readonly outputDirectory: string;
   readonly pdfPath?: string;
   readonly renderReportPath?: string;
+  readonly sourcePath?: string;
 }
 
 export interface AuditedPage {
@@ -203,14 +204,24 @@ export async function auditOutput(options: AuditOutputOptions): Promise<OutputAu
     const reportPath = options.renderReportPath
       ?? path.join(path.dirname(path.resolve(options.pdfPath)), "render-report.json");
     try {
-      const reportInspection = await inspectRenderReport(reportPath, pages.map((page) => page.file));
+      const reportInspection = await inspectRenderReport(
+        reportPath,
+        pages.map((page) => ({ file: page.file, sha256: page.sha256 })),
+        options.pdfPath,
+        options.sourcePath,
+      );
       renderReport = reportInspection.report;
       issues.push(...reportInspection.issues);
     } catch (error) {
       issues.push(error instanceof Error ? error.message : String(error));
     }
   } else if (options.renderReportPath !== undefined) {
-    const reportInspection = await inspectRenderReport(options.renderReportPath, pages.map((page) => page.file));
+    const reportInspection = await inspectRenderReport(
+      options.renderReportPath,
+      pages.map((page) => ({ file: page.file, sha256: page.sha256 })),
+      undefined,
+      options.sourcePath,
+    );
     renderReport = reportInspection.report;
     issues.push(...reportInspection.issues);
   }

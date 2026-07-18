@@ -10,7 +10,7 @@ Choose a page count that matches the available evidence and carry the reader fro
 2. Profile selection
 3. Focused 15-page profile
 4. Standard 18-page profile
-5. Full 23-page profile
+5. Second-volume rule
 6. Page-map contract
 7. Rhythm rules
 8. Compression and expansion
@@ -41,9 +41,8 @@ Every page must advance this chain. If removing a page changes nothing, remove o
 |---|---|---|
 | Focused, 15 pages | One clear opportunity or first outreach with enough visual material | One platform, two concise routes, activation, storyboard and production proof |
 | Standard, 18–20 pages | Most Black Flower prospecting dossiers | Diagnosis, visual proof, platform, three routes, activation, storyboard and production proof |
-| Full, 21–23 pages | Explicitly requested or justified full campaign, multiple products or routes, a real film concept, storyboard, substantial references | Four-act campaign proposal with execution proof |
 
-Default to 20 pages for a campaign proposal and compress to 18 only through the documented merges below. Expand beyond 20 only when the additional pages contain distinct evidence or decisions.
+Default to 20 pages for a campaign proposal and compress to 18 only through the documented merges below. Never expand a single Black Flower dossier beyond 20 pages.
 
 ## 3. Focused 15-page profile
 
@@ -98,54 +97,9 @@ Use this for the default 18–20-page output.
 
 To compress to 18 pages, merge architecture with why-now, merge product truth with creative system, or omit the third route when it is materially weaker. Never remove the current baseline, all visual routes, storyboard, production Black Flower, thank-you or final lockup merely to hit the count.
 
-## 5. Full 23-page profile
+## 5. Second-volume rule
 
-Use this profile only for a complete strategic campaign proposal that the user requested or the brief explicitly justifies. The standard prospecting target remains 15–20 pages.
-
-### Act I: establish the moment
-
-| Page | Family | Purpose |
-|---:|---|---|
-| 1 | Cover | Idea before detail |
-| 2 | Architecture | Four-chapter reading map |
-| 3 | Why now or why this matters | Moment when evidenced; otherwise durable observed tension |
-| 4 | Brand house | Distinctive codes and origin of the platform |
-| 5 | Existing foundation | Recognize current strength with evidence |
-| 6 | Gap or incarnation | Explain what needs to become more visible or human |
-| 7 | Risk | Refuse the category cliché or literal heritage treatment |
-| 8 | Strategic equation | Transform two forces into a clear opportunity |
-
-### Act II: name the territory
-
-| Page | Family | Purpose |
-|---:|---|---|
-| 9 | Territory opener | Territory, tension and promise, with strongest product or brand proof |
-| 10 | Platform | Point of view, code, territory and tone |
-| 11 | Manifesto or central tension | Give the platform emotional or editorial memory |
-
-### Act III: demonstrate range
-
-| Page | Family | Purpose |
-|---:|---|---|
-| 12 | Route opener | One platform, several tensions, products or applications |
-| 13 | Route 1 | Specific subject, tension, concept and signature |
-| 14 | Route 2 | Genuinely different route |
-| 15 | Route 3 | Genuinely different route |
-| 16 | Route 4 or system | Fourth route only when justified; otherwise communication system |
-
-### Act IV: choose and prove
-
-| Page | Family | Purpose |
-|---:|---|---|
-| 17 | Priority activation | Why this concept, subject and moment |
-| 18 | Concept mechanics | Three movements or method |
-| 19 | Storyboard or prototype | Show executable detail and timing |
-| 20 | Production Black Flower | Delivery role, approach and approved portrait or production proof |
-| 21 | References | Four relevant references with explicit fit |
-| 22 | Thank-you | Reframe value, invite next step |
-| 23 | Final lockup | End with marks, silence and truthful attribution |
-
-The fourth route, storyboard and reference page are optional in substance even when the page profile suggests them. Compress the profile if the evidence is weak.
+When a campaign genuinely needs more than 20 pages, close the first dossier with its thank-you and lockup, then create a separately titled second volume for production detail, route variants or references. Each volume must have its own purpose, page map and QA. Never hide an overlong first dossier behind an exception flag.
 
 ## 6. Page-map contract
 

@@ -52,6 +52,12 @@ desired_outcome: exploratory-meeting
 distribution_mode: private-prospecting
 relationship_status: independent-proposal
 generative_assets: authorized
+generative_assets_authorization:
+  status: explicitly-authorized
+  authorized_by: Alex Houser
+  reference: black-flower-owner-brief-2026-07-18#visuals
+campaign_mode: campaign-platform
+creative_route_count: 2
 forbidden_client_terms: []
 studio: Black Flower Creative House
 studio_signature: BlackFlower
@@ -73,7 +79,7 @@ Allowed `relationship_status` values:
 
 Default to `private-prospecting` and `independent-proposal`. A later public release is a new rights decision, not an automatic extension of private prospecting use.
 
-For Alex's Black Flower work, default `generative_assets` to `authorized` for creative projection and never for evidence. For outside open-source users, default to `forbidden` and change it only when explicitly authorized. Populate `forbidden_client_terms` from active project instructions, legal naming constraints or user preferences.
+Alex's owner brief authorizes Black Flower creative projection and never evidence. Materialize that permission in every dossier with `status: explicitly-authorized`, the authorizer and the durable owner-brief reference. The Black Flower profile alone grants nothing. For outside open-source users, default to `forbidden` and change it only with their own explicit authorization. Populate `forbidden_client_terms` from active project instructions, legal naming constraints or user preferences.
 
 The Black Flower profile has a fixed studio identity: `Black Flower Creative House`, visible signature `BlackFlower`. Use job-local logo paths only when the mark is supplied and cleared. In an explicit neutral profile, studio identity is optional; do not invent a sender, mark, person, email, website or empty signature slot.
 

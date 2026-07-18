@@ -31,7 +31,7 @@ export function Proof({ slide }: { slide: ProofSlide }) {
           {slide.quote ? (
             <blockquote className="proof-quote">
               <p data-fit>« {slide.quote} »</p>
-              {slide.source ? <cite>{slide.source}</cite> : null}
+              {slide.source ? <cite data-fit>{slide.source}</cite> : null}
             </blockquote>
           ) : null}
           {slide.proofPoints ? (
@@ -99,7 +99,7 @@ export function Platform({ slide }: { slide: PlatformSlide }) {
       <SectionHeading eyebrow={slide.eyebrow} title={slide.title} compact />
       <div className="platform-system">
         <div className="platform-core">
-          <span>{slide.variant}</span>
+          <span data-fit>{slide.variant}</span>
           <h2 data-fit>{slide.core.label}</h2>
           <p data-fit>{slide.core.detail}</p>
         </div>
@@ -115,7 +115,7 @@ export function Platform({ slide }: { slide: PlatformSlide }) {
       </div>
       {slide.outcomes ? (
         <ul className="platform-outcomes">
-          {slide.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+          {slide.outcomes.map((outcome) => <li data-fit key={outcome}>{outcome}</li>)}
         </ul>
       ) : null}
     </div>

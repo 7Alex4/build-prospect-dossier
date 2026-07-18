@@ -5,6 +5,7 @@ export interface AuditOutputOptions {
     readonly outputDirectory: string;
     readonly pdfPath?: string;
     readonly renderReportPath?: string;
+    readonly sourcePath?: string;
 }
 export interface AuditedPage {
     readonly file: string;

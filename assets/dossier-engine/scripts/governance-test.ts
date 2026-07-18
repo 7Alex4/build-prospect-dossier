@@ -53,6 +53,7 @@ assert.equal(exampleDossier.meta.generativeAssets, "forbidden");
 assert.equal(exampleDossier.meta.stage, "final");
 assert.deepEqual(exampleDossier.evidence.map((entry) => entry.id), [
   "fixture:context-audit",
+  "fixture:narrative-plan",
   "fixture:vector-assets",
   "fixture:contact-card",
 ]);
@@ -64,6 +65,27 @@ assert.ok(hasIssue(missingGovernance, "governance-enum"));
 const missingRegistry = clone();
 if (isRecord(missingRegistry)) delete missingRegistry.evidence;
 assert.ok(hasIssue(missingRegistry, "evidence-required"));
+
+const missingGenerativeAuthorization = clone();
+meta(missingGenerativeAuthorization).generativeAssets = "authorized";
+assert.ok(hasIssue(missingGenerativeAuthorization, "generative-authorization-required"));
+
+const explicitGenerativeAuthorization = clone();
+meta(explicitGenerativeAuthorization).generativeAssets = "authorized";
+meta(explicitGenerativeAuthorization).generativeAssetsAuthorization = {
+  status: "explicitly-authorized",
+  authorizedBy: "Fixture validator",
+  reference: "fixture:governance-authorization",
+};
+assert.ok(!hasIssue(explicitGenerativeAuthorization, "generative-authorization-required"));
+
+const staleGenerativeAuthorization = clone();
+meta(staleGenerativeAuthorization).generativeAssetsAuthorization = {
+  status: "explicitly-authorized",
+  authorizedBy: "Fixture validator",
+  reference: "fixture:stale-authorization",
+};
+assert.ok(hasIssue(staleGenerativeAuthorization, "generative-authorization-mismatch"));
 
 const missingCoverLabel = clone();
 delete slide(missingCoverLabel, "cover").relationshipLabel;
@@ -140,6 +162,14 @@ appendEvidence(proposalFromObservation, [
 addClaim(proposalFromObservation, { text: "Piste créative", kind: "proposal", evidenceIds: ["observation:usable"] });
 assert.ok(!hasIssue(proposalFromObservation, "evidence-kind-mismatch"));
 assert.ok(!hasIssue(proposalFromObservation, "evidence-unusable"));
+
+const finalInternalProposal = clone();
+meta(finalInternalProposal).stage = "final";
+appendEvidence(finalInternalProposal, [
+  { id: "proposal:private", kind: "proposal", status: "internal-only", claim: "Piste privée" },
+]);
+addClaim(finalInternalProposal, { text: "Piste privée", kind: "proposal", evidenceIds: ["proposal:private"] });
+assert.ok(hasIssue(finalInternalProposal, "evidence-private-final"));
 
 const rejectedProposal = clone();
 appendEvidence(rejectedProposal, [

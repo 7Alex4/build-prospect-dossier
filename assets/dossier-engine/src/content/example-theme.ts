@@ -20,6 +20,41 @@ export const exampleTheme = {
     display: "Arial, Helvetica, sans-serif",
     body: "Arial, Helvetica, sans-serif",
     mono: "Menlo, Monaco, monospace",
+    faces: [
+      {
+        role: "display",
+        family: "Arial",
+        style: "normal",
+        weights: [400, 700],
+        source: {
+          kind: "system",
+          allowedResolvedFamilies: ["Arial", "ArialMT", "Liberation Sans", "Arimo"],
+          license: "Police système de l'environnement de rendu, fixture technique uniquement.",
+        },
+      },
+      {
+        role: "body",
+        family: "Arial",
+        style: "normal",
+        weights: [400, 700],
+        source: {
+          kind: "system",
+          allowedResolvedFamilies: ["Arial", "ArialMT", "Liberation Sans", "Arimo"],
+          license: "Police système de l'environnement de rendu, fixture technique uniquement.",
+        },
+      },
+      {
+        role: "mono",
+        family: "Menlo",
+        style: "normal",
+        weights: [400, 700],
+        source: {
+          kind: "system",
+          allowedResolvedFamilies: ["Menlo", "Monaco", "Liberation Mono", "DejaVu Sans Mono"],
+          license: "Police système de l'environnement de rendu, fixture technique uniquement.",
+        },
+      },
+    ],
   },
   motif: {
     kind: "asset",

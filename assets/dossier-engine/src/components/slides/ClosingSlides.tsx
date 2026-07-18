@@ -15,7 +15,7 @@ export function ThankYou({ slide }: { slide: ThankYouSlide }) {
   return (
     <div className={classes}>
       <div className="thankyou-main">
-        <p className="eyebrow">{slide.eyebrow ?? "Prochaine étape"}</p>
+        <p className="eyebrow" data-fit>{slide.eyebrow ?? "Prochaine étape"}</p>
         <h1 data-fit>{slide.title}</h1>
         <p data-fit>{slide.message}</p>
         {slide.nextStep ? <strong data-fit>{slide.nextStep}</strong> : null}
@@ -23,14 +23,20 @@ export function ThankYou({ slide }: { slide: ThankYouSlide }) {
       {slide.image ? <AssetImage asset={slide.image} className="thankyou-image" /> : null}
       {slide.contact ? (
         <address className="contact-card">
-          <p>{slide.contact.name}</p>
-          <span>{slide.contact.role}</span>
-          {emailHref ? <a href={emailHref}>{slide.contact.email}</a> : <span>{slide.contact.email}</span>}
+          <p data-fit>{slide.contact.name}</p>
+          <span data-fit>{slide.contact.role}</span>
+          {emailHref
+            ? <a data-fit href={emailHref}>{slide.contact.email}</a>
+            : <span data-fit>{slide.contact.email}</span>}
           {slide.contact.phone ? (
-            phoneHref ? <a href={phoneHref}>{slide.contact.phone}</a> : <span>{slide.contact.phone}</span>
+            phoneHref
+              ? <a data-fit href={phoneHref}>{slide.contact.phone}</a>
+              : <span data-fit>{slide.contact.phone}</span>
           ) : null}
           {slide.contact.website ? (
-            websiteHref ? <a href={websiteHref}>{slide.contact.website}</a> : <span>{slide.contact.website}</span>
+            websiteHref
+              ? <a data-fit href={websiteHref}>{slide.contact.website}</a>
+              : <span data-fit>{slide.contact.website}</span>
           ) : null}
         </address>
       ) : null}
@@ -46,16 +52,18 @@ export function Lockup({ slide }: { slide: LockupSlide }) {
       {slide.mark ? (
         <AssetImage asset={slide.mark} className="lockup-mark" />
       ) : (
-        <span className="lockup-wordmark">{slide.textMark ?? slide.studio ?? slide.client}</span>
+        <span className="lockup-wordmark" data-fit>{slide.textMark ?? slide.studio ?? slide.client}</span>
       )}
-      <p className="lockup-client">{slide.client}</p>
+      <p className="lockup-client" data-fit>{slide.client}</p>
       {slide.title ? <h1 data-fit>{slide.title}</h1> : null}
       {slide.statement ? <p className="lockup-statement" data-fit>{slide.statement}</p> : null}
       {slide.relationshipLabel ? (
         <p className="lockup-relationship" data-fit>{slide.relationshipLabel}</p>
       ) : null}
       {signature.length > 0 ? (
-        <div className="lockup-signature">{signature.map((item) => <span key={item}>{item}</span>)}</div>
+        <div className="lockup-signature">
+          {signature.map((item) => <span data-fit key={item}>{item}</span>)}
+        </div>
       ) : null}
     </div>
   );

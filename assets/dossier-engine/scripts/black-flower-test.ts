@@ -50,6 +50,10 @@ assert.ok(!Object.hasOwn(blackFlowerValidationFixture.slides[0] ?? {}, "image"))
 
 const markup = renderToStaticMarkup(createElement(App, { dossier: blackFlowerValidationFixture }));
 assert.ok(markup.includes('data-framework-profile="black-flower"'));
+assert.ok(markup.includes('data-composition-family="image-dominant"'));
+assert.ok(markup.includes('data-visual-intent="image-led"'));
+assert.ok(markup.includes("slide--composition-image-dominant"));
+assert.ok(markup.includes("slide--visual-peak"));
 assert.ok(markup.includes("Strategic creative campaign proposal · BlackFlower"));
 assert.ok(markup.includes('data-presentation="cutout"'));
 assert.ok(markup.includes("film-product-cutout"));
@@ -60,12 +64,23 @@ assert.ok(!markup.includes("cover-text-visual"));
 assert.ok(!markup.includes('role="meter"'));
 
 const css = readFileSync(new URL("../src/styles/black-flower-profile.css", import.meta.url), "utf8");
+const compositionCss = readFileSync(new URL("../src/styles/black-flower-compositions.css", import.meta.url), "utf8");
 assert.ok(css.includes("--bf-body-min: 24px"));
 assert.ok(css.includes("padding: 108px 140px 120px"));
 assert.ok(css.includes("left: 84px"));
 assert.ok(css.includes("font-size: 36px"));
 assert.ok(!css.includes("font-size: 17px"));
 assert.ok(!css.includes("font-size: 13px"));
+assert.ok(compositionCss.includes(".slide--composition-image-dominant"));
+assert.ok(compositionCss.includes(".slide--composition-editorial-split"));
+assert.ok(compositionCss.includes(".slide--composition-silent-cover"));
+assert.ok(compositionCss.includes(".slide--composition-editorial-columns"));
+assert.ok(compositionCss.includes(".slide--composition-typographic-manifesto"));
+assert.ok(compositionCss.includes(".slide--composition-reference-wall"));
+assert.ok(compositionCss.includes(".slide--composition-diagrammatic-system"));
+assert.ok(compositionCss.includes(".slide--composition-closing-letter"));
+assert.ok(compositionCss.includes(".slide--composition-lockup"));
+assert.ok(compositionCss.includes(".slide--intent-image-led"));
 
 const missingIntent = clone();
 delete slide(missingIntent, "03-pourquoi-maintenant").visualIntent;
@@ -82,6 +97,60 @@ assert.ok(hasIssue(missingFamily, "black-flower-composition-family"));
 const missingPeakFlag = clone();
 delete slide(missingPeakFlag, "03-pourquoi-maintenant").visualPeak;
 assert.ok(hasIssue(missingPeakFlag, "black-flower-visual-peak"));
+
+const truncatedNarrative = clone();
+if (!isRecord(truncatedNarrative)) throw new Error("Fixture invalide.");
+truncatedNarrative.slides = slides(truncatedNarrative).filter((entry) =>
+  ["01-ouverture", "04-preuves", "06-risque", "07-basculements", "17-merci", "18-signature"].includes(String(entry.id)),
+);
+assert.ok(hasIssue(truncatedNarrative, "black-flower-slide-count"));
+assert.ok(hasIssue(truncatedNarrative, "black-flower-narrative-required"));
+
+const oversizedNarrative = clone();
+if (!isRecord(oversizedNarrative)) throw new Error("Fixture invalide.");
+oversizedNarrative.slides = [...slides(oversizedNarrative), ...slides(oversizedNarrative).slice(1, 5)];
+assert.ok(hasIssue(oversizedNarrative, "black-flower-slide-count"));
+
+const missingRouteCount = clone();
+delete meta(missingRouteCount).creativeRouteCount;
+assert.ok(hasIssue(missingRouteCount, "black-flower-route-count"));
+
+const missingBaselineImage = clone();
+delete slide(missingBaselineImage, "04-preuves").image;
+assert.ok(hasIssue(missingBaselineImage, "black-flower-current-baseline"));
+
+const singleRoute = clone();
+if (!isRecord(singleRoute)) throw new Error("Fixture invalide.");
+singleRoute.slides = slides(singleRoute).filter((entry) => entry.id !== "12-film-serie");
+meta(singleRoute).creativeRouteCount = 1;
+assert.ok(hasIssue(singleRoute, "black-flower-route-depth"));
+
+const proposalWash = clone();
+slides(proposalWash).forEach((entry) => {
+  if (!Array.isArray(entry.claims)) return;
+  entry.claims.forEach((claim) => {
+    if (!isRecord(claim)) return;
+    claim.kind = "proposal";
+    delete claim.evidenceIds;
+  });
+});
+assert.ok(hasIssue(proposalWash, "black-flower-claim-mix"));
+assert.ok(hasIssue(proposalWash, "black-flower-objective-claims"));
+assert.ok(hasIssue(proposalWash, "black-flower-grounded-section"));
+
+const unsourcedInterpretation = clone();
+const riskClaims = slide(unsourcedInterpretation, "06-risque").claims;
+if (!Array.isArray(riskClaims) || !isRecord(riskClaims[0])) throw new Error("Claim de risque absent.");
+delete riskClaims[0].evidenceIds;
+assert.ok(hasIssue(unsourcedInterpretation, "black-flower-interpretation-source"));
+
+const uncoveredFooter = clone();
+slide(uncoveredFooter, "04-preuves").footer = "Fondée en 1842 et leader mondial";
+assert.ok(hasIssue(uncoveredFooter, "claim-coverage"));
+
+const uncoveredLegal = clone();
+slide(uncoveredLegal, "18-signature").legal = "Fondée en 1842 et leader mondial";
+assert.ok(hasIssue(uncoveredLegal, "claim-coverage"));
 
 const weakImageCadence = clone();
 const architecture = slide(weakImageCadence, "02-architecture");
@@ -124,6 +193,18 @@ if (isRecord(wrongPageMarker) && isRecord(wrongPageMarker.theme)) {
 }
 assert.ok(hasIssue(wrongPageMarker, "black-flower-page-marker"));
 
+const hiddenFooter = clone();
+if (isRecord(hiddenFooter) && isRecord(hiddenFooter.theme) && isRecord(hiddenFooter.theme.chrome)) {
+  hiddenFooter.theme.chrome.footer = "hidden";
+}
+assert.ok(hasIssue(hiddenFooter, "black-flower-footer"));
+
+const unsafePalette = clone();
+if (isRecord(unsafePalette) && isRecord(unsafePalette.theme) && isRecord(unsafePalette.theme.palette)) {
+  unsafePalette.theme.palette.paper = "url(https://tracker.invalid/pixel.png)";
+}
+assert.ok(hasIssue(unsafePalette, "theme-color"));
+
 const placeholder = clone();
 const proofImage = slide(placeholder, "04-preuves").image;
 if (!isRecord(proofImage)) throw new Error("Image de preuve absente.");
@@ -154,6 +235,10 @@ const repeatedAdjacentFamily = clone();
 slide(repeatedAdjacentFamily, "03-pourquoi-maintenant").compositionFamily = "diagrammatic-system";
 assert.ok(hasIssue(repeatedAdjacentFamily, "black-flower-adjacent-compositions"));
 
+const unboundFamily = clone();
+slide(unboundFamily, "07-basculements").compositionFamily = "portrait-profile";
+assert.ok(hasIssue(unboundFamily, "black-flower-composition-binding"));
+
 const incompleteSequence = clone();
 const sequenceSteps = slide(incompleteSequence, "09-methode").steps;
 if (!Array.isArray(sequenceSteps) || !isRecord(sequenceSteps[0])) throw new Error("Étape de séquence absente.");
@@ -170,28 +255,4 @@ const weakPeaks = clone();
 slides(weakPeaks).forEach((entry) => { entry.visualPeak = false; });
 assert.ok(hasIssue(weakPeaks, "black-flower-visual-peak-count"));
 
-const generatedDominance = clone();
-if (!isRecord(generatedDominance) || !Array.isArray(generatedDominance.assets)) throw new Error("Assets absents.");
-generatedDominance.assets.forEach((entry) => {
-  if (isRecord(entry)) entry.origin = "generated";
-});
-meta(generatedDominance).generativeAssets = "authorized";
-assert.ok(hasIssue(generatedDominance, "black-flower-non-generated-ratio"));
-assert.ok(hasIssue(generatedDominance, "black-flower-generated-ratio"));
-
-const mixedGenerated = clone();
-const cutout = slide(mixedGenerated, "10-film-hero").productCutout;
-if (!isRecord(cutout) || !isRecord(mixedGenerated) || !Array.isArray(mixedGenerated.assets)) {
-  throw new Error("Cutout de fixture absent.");
-}
-["04-preuves", "06-risque", "07-basculements", "10-film-hero", "11-storyboard-hero"].forEach((id) => {
-  slide(mixedGenerated, id).productCutout = structuredClone(cutout);
-});
-const cutoutRecord = mixedGenerated.assets.find((entry) => isRecord(entry) && entry.id === cutout.id);
-if (!isRecord(cutoutRecord)) throw new Error("Registre du cutout absent.");
-cutoutRecord.origin = "generated";
-meta(mixedGenerated).generativeAssets = "authorized";
-assert.ok(hasIssue(mixedGenerated, "black-flower-generated-ratio"));
-assert.ok(!hasIssue(mixedGenerated, "black-flower-non-generated-ratio"));
-
-console.log("Tests Black Flower: identité, source mix, cadence, compositions, cutouts et séquences validés.");
+console.log("Tests Black Flower: identité, cadence, compositions, cutouts et séquences validés.");

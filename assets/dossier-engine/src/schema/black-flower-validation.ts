@@ -1,4 +1,5 @@
 import { clientFacingAuditStrings, structuralAuditStrings } from "./content-claims";
+import { validateBlackFlowerContent } from "./black-flower-content-validation";
 import { compositionFamilies } from "./profile-types";
 import type { DossierSlide } from "./types";
 import type { ValidationIssue } from "./validation";
@@ -18,6 +19,8 @@ const meaningfulNatures = new Set([
   "photograph", "product-cutout", "screenshot", "document", "archive",
   "illustration", "storyboard", "portrait",
 ]);
+const documentaryOrigins = new Set(["provided", "official-site", "press-kit", "licensed-library", "editorial", "screenshot"]);
+const documentaryNatures = new Set(["photograph", "product-cutout", "screenshot", "document", "archive", "portrait"]);
 
 interface ContentImage {
   readonly image: UnknownRecord;
@@ -101,6 +104,9 @@ function validateIdentity(meta: UnknownRecord, theme: UnknownRecord, issues: Val
   }
   if (!isRecord(theme.pageMarker) || theme.pageMarker.kind !== "number") {
     add(issues, "error", "black-flower-page-marker", "theme.pageMarker.kind", "Pagination numérique requise en bas à gauche.");
+  }
+  if (!isRecord(theme.chrome) || theme.chrome.footer !== "minimal") {
+    add(issues, "error", "black-flower-footer", "theme.chrome.footer", "Footer minimal visible requis pour la pagination Black Flower.");
   }
 }
 
@@ -248,21 +254,26 @@ function validateSourceMix(slides: readonly unknown[], assets: unknown, issues: 
     if (isRecord(entry) && nonEmpty(entry.id) && nonEmpty(entry.origin)) origins.set(entry.id, entry.origin);
   });
   let visual = 0;
-  let nonGenerated = 0;
+  let documentary = 0;
   let generated = 0;
   slides.forEach((entry, index) => {
-    if (!isRecord(entry) || (entry.visualIntent !== "image-led" && entry.visualIntent !== "image-supported")) return;
+    if (!isRecord(entry)) return;
+    const pageImages = nestedImages(entry, `slides[${index}]`);
+    if (pageImages.length === 0) return;
     visual += 1;
-    const pageOrigins = nestedImages(entry, `slides[${index}]`).flatMap(({ image }) =>
+    const pageOrigins = pageImages.flatMap(({ image }) =>
       nonEmpty(image.id) && origins.has(image.id) ? [origins.get(image.id) as string] : [],
     );
-    if (pageOrigins.some((origin) => origin !== "generated")) nonGenerated += 1;
+    if (pageImages.some(({ image }) =>
+      nonEmpty(image.id)
+      && documentaryOrigins.has(origins.get(image.id) ?? "")
+      && documentaryNatures.has(String(image.mediaNature)))) documentary += 1;
     if (pageOrigins.some((origin) => origin === "generated")) generated += 1;
   });
-  const nonGeneratedRatio = visual === 0 ? 0 : nonGenerated / visual;
+  const documentaryRatio = visual === 0 ? 0 : documentary / visual;
   const generatedRatio = visual === 0 ? 0 : generated / visual;
-  if (nonGeneratedRatio < .6) {
-    add(issues, "error", "black-flower-non-generated-ratio", "slides", `Pages visuelles avec asset non généré: ${Math.round(nonGeneratedRatio * 100)}%. Minimum: 60%.`);
+  if (documentaryRatio < .6) {
+    add(issues, "error", "black-flower-real-documentary-ratio", "slides", `Pages visuelles avec média réel ou documentaire: ${Math.round(documentaryRatio * 100)}%. Minimum: 60%.`);
   }
   if (generatedRatio > .4) {
     add(issues, "error", "black-flower-generated-ratio", "slides", `Pages visuelles contenant un asset généré: ${Math.round(generatedRatio * 100)}%. Maximum: 40%.`);
@@ -276,6 +287,7 @@ export function validateBlackFlowerProfile(value: UnknownRecord, issues: Validat
   validateIdentity(value.meta, value.theme, issues);
   rejectForeignSignature(value.meta, value.theme, value.slides, issues);
   validateMotif(value.theme, issues);
+  validateBlackFlowerContent(value.meta, value.slides, value.assets, issues);
   validateCadence(value.slides, issues);
   validateSourceMix(value.slides, value.assets, issues);
 }

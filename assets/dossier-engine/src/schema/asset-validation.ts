@@ -16,9 +16,15 @@ const origins = [
   "generated",
 ] as const satisfies readonly AssetOrigin[];
 const rightsStatuses = ["approved", "reference-only", "unknown", "rejected"] as const;
+const syntheticForbiddenRoles = new Set(["evidence", "product", "portrait", "identity"]);
+const syntheticForbiddenNatures = new Set([
+  "product-cutout", "screenshot", "document", "archive", "portrait", "brand-mark",
+]);
 
 export interface AssetUsage {
   readonly id: string | null;
+  readonly mediaNature: string | null;
+  readonly mediaRole: string | null;
   readonly path: string;
   readonly scope: "theme" | "slide";
   readonly slideId?: string;
@@ -54,6 +60,8 @@ function collectImages(
   if (isImageLike(value)) {
     return [{
       id: nonEmpty(value.id) ? value.id : null,
+      mediaNature: nonEmpty(value.mediaNature) ? value.mediaNature : null,
+      mediaRole: nonEmpty(value.mediaRole) ? value.mediaRole : null,
       path,
       scope,
       ...(slideId === undefined ? {} : { slideId }),
@@ -188,6 +196,16 @@ function validateUsage(
   }
   if (record.origin === "generated" && generativeAssets !== "authorized") {
     error(issues, "asset-generative-policy", `${registryEntry.path}.origin`, "Asset généré interdit par meta.generativeAssets.");
+  }
+  if (record.origin === "generated"
+    && (syntheticForbiddenRoles.has(usage.mediaRole ?? "")
+      || syntheticForbiddenNatures.has(usage.mediaNature ?? ""))) {
+    error(
+      issues,
+      "asset-synthetic-misrepresentation",
+      usage.path,
+      "Un média généré ne peut pas représenter une preuve, un produit exact, une personne, un document, une archive ou une identité.",
+    );
   }
   if (nonEmpty(record.src) && usage.src !== null && record.src !== usage.src) {
     error(issues, "asset-src-mismatch", `${usage.path}.src`, `La source ne correspond pas au registre pour ${usage.id}.`);

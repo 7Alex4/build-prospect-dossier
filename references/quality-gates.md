@@ -161,6 +161,7 @@ Hard failures:
 - private-proposal asset reused in a public artifact without new clearance;
 - watermark or search interface in a shipping asset;
 - generated image presented as evidence;
+- generated or illustrative media used as brand truth, current-baseline proof, document or archive;
 - wrong product variant or person;
 - broken image;
 - unreadable storyboard or moodboard;
@@ -169,9 +170,9 @@ Hard failures:
 - missing timing on a storyboard that states a fixed duration.
 - final storyboard frame without an approved local image;
 - HTTP asset accepted as a warning or deferred until rendering instead of failing validation.
-- fewer than 45% or more than 65% image-led pages without a documented exception;
-- fewer than 60% of visual pages use real or documentary assets;
-- generated imagery exceeds 40% without an explicitly concept-art-led brief;
+- fewer than 45% or more than 65% image-led pages;
+- fewer than 60% of pages that actually render substantive slide media use real or documentary assets;
+- generated imagery appears on more than 40% of those pages, regardless of declared visual intent;
 - more than two pages are primarily diagrammatic;
 - more than two text/system pages run consecutively after the introduction;
 - `editorial-sequence` step without an image or product overlap without an exact contained cutout;
@@ -262,8 +263,8 @@ Hard failures:
 - dense or sparse page that breaks the deck's rhythm;
 - small text, image or frame that cannot be read at 100%;
 - inconsistent motif or background state without narrative reason.
-- image-led ratio outside 45–65% without a documented exception;
-- fewer than 60% real or documentary visual pages, or generated share above 40% without a concept-art-led brief;
+- image-led ratio outside 45–65%;
+- fewer than 60% real or documentary visual pages, or generated share above 40%;
 - more than two primarily diagrammatic pages or more than two consecutive text/system pages after the introduction;
 - fewer than six composition silhouettes or fewer than three contact-sheet peaks;
 - risk, route, priority activation, storyboard or production page without substantive approved media;
@@ -312,6 +313,11 @@ render-report selection == []
 render-report renderedCount == totalSlides == renderedSlideIds length
 render-report traceability asset IDs == IDs derived from traversed images
 render-report traceability evidence IDs == deduplicated slide plus claim evidence IDs
+render-report.sha256 == exact render-report.json bytes
+render-report source SHA-256 == audited source file
+render-report loaded dossier SHA-256 == dossier loaded from source when supported
+render-report generated asset == explicit authorizer and durable authorization reference
+render-report asset source identity == hydrated content actually rendered
 asset hydration <= 32 MiB each and <= 256 MiB total by default
 ```
 

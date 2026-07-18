@@ -156,7 +156,7 @@ Use when diagnosis and brand truth each deserve proof, the platform needs emotio
 
 Target 9–12 image-led pages depending on whether the dossier contains 18, 19 or 20 pages. Reserve separate visual pages for current communication, product truth, routes, activation, storyboard and production.
 
-### Expanded, 21-23 pages
+### Expanded, 18-20 pages
 
 Use only when explicitly requested or justified, three or four genuinely distinct routes exist, one route has a developed concept and storyboard, and the reader will assess a full campaign proposal.
 Do not add pages only to resemble an expanded source.

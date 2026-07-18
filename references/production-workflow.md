@@ -66,6 +66,28 @@ Create a job with the scaffold command documented by `--help`:
 corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" init-project -- "$DOSSIER_JOB_DIR"
 ```
 
+The public default is `neutral` and carries no Black Flower authorship. For Alex's Black Flower workflow, select the profile explicitly:
+
+```bash
+corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" init-project -- \
+  "$DOSSIER_JOB_DIR" \
+  --profile black-flower \
+  --authorize-generative-assets "black-flower-owner-brief-2026-07-18#visuals" \
+  --generative-assets-authorized-by "Alex Houser"
+```
+
+The public initializer always writes `generative_assets: forbidden`. When the brief contains explicit authorization, record both the authorizer and a durable reference at creation time:
+
+```bash
+corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" init-project -- \
+  "$DOSSIER_JOB_DIR" \
+  --profile black-flower \
+  --authorize-generative-assets "brief-2026-07-18#visuals" \
+  --generative-assets-authorized-by "Alex Houser"
+```
+
+This writes an `explicitly-authorized` audit block in `brief.yaml`. The profile flag alone never authorizes generation. Do not change the policy to `authorized` without the same trace fields.
+
 The initializer must refuse a non-empty destination. Do not use `--force` unless overwriting that exact destination is explicitly intended and its contents have been inspected.
 
 If the initializer is unavailable, copy `assets/dossier-engine/` into the job and create this structure manually:
@@ -183,7 +205,7 @@ The dossier is a typed object satisfying `Dossier`. Keep factual and editorial c
 
 The content has four levels:
 
-1. `meta`: client, framework profile, required Black Flower identity or optional neutral studio, language, version, date, distribution, relationship, generative-asset policy and required `stage`;
+1. `meta`: client, framework profile, campaign mode, declared film-route count, required Black Flower identity or optional neutral studio, language, version, date, distribution, relationship, generative-asset policy, authorization trace and required `stage`;
 2. `evidence`: typed registry of evidence IDs, classes and usable statuses;
 3. `theme`: palette, typography, logo, motif and marker behavior;
 4. `slides`: ordered discriminated union of page families, including typed claim metadata.
@@ -307,7 +329,7 @@ Mirror the job ledger in the typed root `assets` registry. Each record requires 
 | `status` | `status` |
 | `distribution_scope` | `allowedDistributionScopes` |
 
-Only `status: "approved"` is shippable. Every used asset must include the active `meta.distributionMode` in `allowedDistributionScopes`. An origin of `generated` also requires `meta.generativeAssets: "authorized"`. The validator traverses slide images, storyboard frames, references, logos, motifs, page markers and theme backgrounds. It rejects missing IDs, unknown registry IDs, mismatched sources, uncleared rights and incompatible scopes.
+Only `status: "approved"` is shippable. Every used asset must include the active `meta.distributionMode` in `allowedDistributionScopes`. An origin of `generated` also requires `meta.generativeAssets: "authorized"` and a complete explicit authorization block. Generated media cannot carry evidence, exact-product, identified-person, screenshot, document, archive or identity semantics. The validator traverses slide images, storyboard frames, references, logos, motifs, page markers and theme backgrounds. It rejects missing IDs, unknown registry IDs, mismatched sources, uncleared rights and incompatible scopes.
 
 Do not write `slide.assetIds`. This field is rejected because it can drift. The renderer derives slide and theme asset IDs from the `ImageAsset` objects actually traversed.
 
@@ -358,7 +380,8 @@ It also checks stage, optional-studio relationship wording, contact email syntax
 
 The renderer adds browser-level checks:
 
-- fonts loaded before capture;
+- every declared font family, style and 400/700 weight loaded before capture;
+- actual Chromium platform family, PostScript name and custom/system state match the governed font contract;
 - images decoded successfully;
 - no browser console errors;
 - no marked content overflow;
@@ -386,6 +409,7 @@ The renderer creates:
 output/
 ├── dossier.pdf
 ├── render-report.json
+├── render-report.sha256
 └── slides/
     ├── 01-cover.png
     ├── 02-architecture.png
@@ -402,13 +426,17 @@ Requirements:
 - PDF MediaBox is A4 landscape, 841.89 × 595.28 pt, with the PNG fitted without distortion;
 - no stale PNG from a previous longer deck remains in the delivery directory;
 - `render-report.json` records the input and checks performed;
+- `render-report.sha256` is mandatory and must match the exact bytes of `render-report.json`;
 - `render-report.json` uses `schemaVersion: "1.0"` and records root `stage`, `totalSlides`, `renderedCount`, `selectionApplied`, exact CLI `selection` values and ordered `renderedSlideIds`;
 - `render-report.json` derives `themeAssetIds` and `traceability[].assetIds` from traversed images, never from a manual declaration;
 - `render-report.json` summarizes used registry rows without copying raw local paths or data URIs; `assetRegistry[].sourceIdentity` contains only a kind and SHA-256;
+- every used asset identity hashes the hydrated content that was rendered, including assets whose registry row uses only a `ledgerId`;
+- `fontAudit` carries the canonical font contract and its SHA-256, plus every resolved role, family, style, weight, PostScript name, licence and source hash;
+- `governance.generativeAssetsAuthorization` is `null` when generation is forbidden and carries the explicit authorizer and durable reference when it is authorized;
 - each `traceability[].evidenceIds` is the deduplicated union of slide-level evidence and evidence cited by its detailed `claims`;
 - a delivery report must have `stage: "final"`, `selectionApplied: false`, an empty `selection`, and `renderedCount === totalSlides === renderedSlideIds.length`;
 
-Use a fresh output directory or inspect and deliberately clear the exact old output directory before a final render.
+The renderer stages each run independently, preserves the last valid delivery on failure and serializes concurrent publication. Never delete another active `.render-*` staging directory.
 
 ## 11. Audit the rendered package
 
@@ -420,6 +448,8 @@ When `pdftoppm` is not on `PATH`, set `PDFTOPPM_PATH` to its absolute executable
 corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" audit-output -- \
   "$DOSSIER_JOB_DIR/output/slides" \
   --pdf "$DOSSIER_JOB_DIR/output/dossier.pdf" \
+  --render-report "$DOSSIER_JOB_DIR/output/render-report.json" \
+  --source "$DOSSIER_JOB_DIR/src/content/deck.ts" \
   --out "$DOSSIER_JOB_DIR/qa/output-audit"
 ```
 
@@ -433,6 +463,10 @@ The audit must independently verify:
 - PDF MediaBox and landscape orientation;
 - per-page embedded filename, SHA-256 linkage and order against the final PNG sequence;
 - real rasterized PDF page content against the corresponding final PNG, using Poppler `pdftoppm`, independently of the embedded markers;
+- the detached `render-report.sha256` checksum;
+- the report source-file hash and, when the source can be loaded, the loaded-dossier hash;
+- the explicit generative authorization trace and the hydrated content hash of every used asset;
+- the font-contract hash, every declared face, its source identity and the resolved-family allowlist;
 - a regenerated contact sheet;
 - a machine-readable `audit.json`;
 - nonzero exit status for a hard failure.
@@ -454,8 +488,9 @@ Record page, decoder, decoded value, expected value and result in `qa/qr-audit.c
 Pixel-identical output is guaranteed only when the OS, Chromium build and exact local font files are identical. Dependency, input and asset stability remains required as well. For repeatable output:
 
 - keep the lockfile and Chromium version stable;
-- use licensed local font files for every job, record their filenames, versions or hashes and licenses, and never depend on an undeclared system fallback;
-- wait for `document.fonts.ready` before capture;
+- use licensed local font files for every job and declare each role, family, style, weight, relative file, format, SHA-256 and licence in `theme.typography.faces`;
+- reserve system-font contracts for redistributable technical fixtures, with an explicit allowlist of platform-resolved families;
+- require both `document.fonts` and Chromium platform-font inspection to pass before capture;
 - avoid current timestamps, random values and network-loaded content in pages;
 - use stable SVG, raster and CSS assets;
 - keep PDF metadata fixed or explicitly supplied;

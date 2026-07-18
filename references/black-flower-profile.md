@@ -31,6 +31,12 @@ studio: Black Flower Creative House
 studio_signature: BlackFlower
 running_header: Strategic creative campaign proposal · BlackFlower
 generative_assets: authorized
+generative_assets_authorization:
+  status: explicitly-authorized
+  authorized_by: Alex Houser
+  reference: black-flower-owner-brief-2026-07-18#visuals
+campaign_mode: campaign-platform
+creative_route_count: 2
 ```
 
 Rules:
@@ -76,8 +82,8 @@ For a dossier of 15–20 pages:
 - 15 pages: 7–9 image-led pages;
 - 18 pages: 9–11 image-led pages;
 - 20 pages: 10–12 image-led pages;
-- at least 60% of visual pages use real, official, documentary, licensed or supplied assets;
-- generated images remain below 40% of visual pages unless the brief is explicitly concept-art-led;
+- at least 60% of pages that actually render substantive slide media use real, official, documentary, licensed or supplied assets;
+- generated images remain at or below 40% of those pages, regardless of declared visual intent;
 - no more than two true diagram pages;
 - no more than two text-led or system-led pages consecutively after the introduction;
 - at least six distinct composition silhouettes;
@@ -134,7 +140,7 @@ Reject an image if another generic image could replace it without changing the a
 
 ## Generative imagery
 
-Alex has authorized generation for the Black Flower framework. This standing authorization applies to creative projection, not evidence.
+Alex's owner brief authorizes generation for Black Flower creative projection, not evidence. Every dossier must repeat the explicit authorizer and durable reference in its authorization block. Selecting the Black Flower profile alone grants nothing.
 
 Authorized uses:
 
