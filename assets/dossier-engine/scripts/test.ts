@@ -19,7 +19,12 @@ import "./contact-test";
 import "./governance-test";
 import "./asset-test";
 import "./input-test";
+import "./render-integrity-test";
 import "./structural-test";
+import "./black-flower-test";
+import "./composition-layout-test";
+import "./font-test";
+import "./black-flower-source-test";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -90,7 +95,7 @@ assert.ok(exampleDossier.theme.backgrounds?.surface.alt);
 assert.equal(exampleDossier.theme.chrome?.footer, "minimal");
 const proofTrace = exampleDossier.slides.find((slide) => slide.id === "04-preuves");
 assert.ok(proofTrace?.claims?.filter((claim) => claim.contentPath.startsWith("proofPoints"))
-  .every((claim) => claim.kind === "proposal"));
+  .every((claim) => claim.kind === "interpretation" && claim.evidenceIds?.includes("fixture:narrative-plan")));
 assert.ok(proofTrace?.claims?.some((claim) =>
   claim.contentPath === "image.credit"
   && claim.kind === "fact"

@@ -6,34 +6,22 @@ import type {
 } from "../../schema/types";
 import { Arrow, AssetImage, IndexLabel, SectionHeading } from "../primitives";
 
-function CoverTextVisual({ slide }: { slide: CoverSlide }) {
-  return (
-    <div className="cover-text-visual">
-      <span>{slide.tag ?? "Proposition"}</span>
-      <strong>{slide.proposition}</strong>
-      <p>{slide.subtitle}</p>
-    </div>
-  );
-}
-
 export function Cover({ slide }: { slide: CoverSlide }) {
   return (
-    <div className="cover-layout">
+    <div className={`cover-layout ${slide.image ? "cover-layout--image" : "cover-layout--typographic"}`}>
       <div className="cover-copy">
-        <p className="eyebrow">{slide.eyebrow ?? slide.client}</p>
+        <p className="eyebrow" data-fit>{slide.eyebrow ?? slide.client}</p>
         {slide.relationshipLabel ? (
           <p className="cover-relationship" data-fit>{slide.relationshipLabel}</p>
         ) : null}
         <h1 data-fit>{slide.title}</h1>
         <p className="cover-subtitle" data-fit>{slide.subtitle}</p>
         <div className="cover-proposition">
-          <span>{slide.tag ?? "Proposition"}</span>
+          <span data-fit>{slide.tag ?? "Proposition"}</span>
           <p data-fit>{slide.proposition}</p>
         </div>
       </div>
-      <div className="cover-visual">
-        {slide.image ? <AssetImage asset={slide.image} /> : <CoverTextVisual slide={slide} />}
-      </div>
+      {slide.image ? <div className="cover-visual"><AssetImage asset={slide.image} /></div> : null}
     </div>
   );
 }
@@ -55,7 +43,7 @@ export function Architecture({ slide }: { slide: ArchitectureSlide }) {
         </div>
         <div className="architecture-axis">
           <span />
-          <p>{slide.axisLabel ?? "Un système cohérent, du signal à l'impact"}</p>
+          <p data-fit>{slide.axisLabel ?? "Un système cohérent, du signal à l'impact"}</p>
           <span />
         </div>
       </div>
@@ -86,7 +74,7 @@ export function Manifesto({ slide }: { slide: ManifestoSlide }) {
   return (
     <div className={`manifesto-layout ${slide.image ? "manifesto-layout--image" : ""}`}>
       <div className="manifesto-copy">
-        <p className="eyebrow">{slide.eyebrow ?? "Manifeste"}</p>
+        <p className="eyebrow" data-fit>{slide.eyebrow ?? "Manifeste"}</p>
         <h1 data-fit>{slide.title}</h1>
         <div className="manifesto-lines">
           {slide.lines.map((line, index) => (

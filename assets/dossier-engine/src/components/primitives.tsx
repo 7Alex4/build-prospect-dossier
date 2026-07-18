@@ -18,6 +18,7 @@ export function AssetImage({ asset, className = "", decorative = false }: AssetI
       className={`asset ${className}`}
       data-fit
       data-treatment={asset.treatment ?? "natural"}
+      data-presentation={asset.presentation ?? "frame"}
     >
       <img
         alt={decorative ? "" : asset.alt}
@@ -28,7 +29,7 @@ export function AssetImage({ asset, className = "", decorative = false }: AssetI
         src={asset.src}
         style={style}
       />
-      {asset.credit ? <figcaption>{asset.credit}</figcaption> : null}
+      {asset.credit ? <figcaption data-fit>{asset.credit}</figcaption> : null}
     </figure>
   );
 }
@@ -43,7 +44,7 @@ interface HeadingProps {
 export function SectionHeading({ eyebrow, title, intro, compact = false }: HeadingProps) {
   return (
     <header className={`section-heading ${compact ? "section-heading--compact" : ""}`}>
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      {eyebrow ? <p className="eyebrow" data-fit>{eyebrow}</p> : null}
       <h1 data-fit>{title}</h1>
       {intro ? <p className="intro" data-fit>{intro}</p> : null}
     </header>
@@ -59,7 +60,7 @@ export function IndexLabel({ index, children }: IndexLabelProps) {
   return (
     <div className="index-label">
       <span>{String(index).padStart(2, "0")}</span>
-      {children ? <p>{children}</p> : null}
+      {children ? <p data-fit>{children}</p> : null}
     </div>
   );
 }
@@ -67,7 +68,7 @@ export function IndexLabel({ index, children }: IndexLabelProps) {
 export function Pills({ items }: { items: readonly string[] }) {
   return (
     <ul className="pills">
-      {items.map((item) => <li key={item}>{item}</li>)}
+      {items.map((item) => <li data-fit key={item}>{item}</li>)}
     </ul>
   );
 }

@@ -24,6 +24,8 @@ Options:
   --pdf <file.pdf>    Validate and visually compare an assembled PDF (requires Poppler)
   --render-report <file.json>
                       Validate a full final render report (default: sibling of PDF)
+  --source <deck.ts|deck.json>
+                      Recompute the report source and loaded-dossier hashes when possible
   --help              Show this help
 `;
 
@@ -34,6 +36,7 @@ export async function auditOutputCli(arguments_: readonly string[]): Promise<num
       out: "value",
       pdf: "value",
       "render-report": "value",
+      source: "value",
     });
     if (optionFlag(parsed.options, "help")) {
       process.stdout.write(AUDIT_OUTPUT_HELP);
@@ -43,11 +46,13 @@ export async function auditOutputCli(arguments_: readonly string[]): Promise<num
     const outputDirectory = optionValue(parsed.options, "out") ?? path.join(pagesDirectory, "audit");
     const pdfPath = optionValue(parsed.options, "pdf");
     const renderReportPath = optionValue(parsed.options, "render-report");
+    const sourcePath = optionValue(parsed.options, "source");
     const report = await auditOutput({
       pagesDirectory,
       outputDirectory,
       ...(pdfPath === undefined ? {} : { pdfPath }),
       ...(renderReportPath === undefined ? {} : { renderReportPath }),
+      ...(sourcePath === undefined ? {} : { sourcePath }),
     });
     process.stdout.write(`${report.status.toUpperCase()}: ${report.pageCount} page image(s); report at ${path.resolve(outputDirectory, "audit.json")}\n`);
     return report.status === "pass" ? 0 : 1;

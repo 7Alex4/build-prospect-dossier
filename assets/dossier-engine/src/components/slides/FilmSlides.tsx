@@ -5,9 +5,9 @@ import { AssetImage, IndexLabel, Pills, SectionHeading } from "../primitives";
 function FilmTextVisual({ slide }: { slide: FilmConceptSlide }) {
   return (
     <div className="film-text-visual">
-      <span>{slide.format}</span>
-      <strong>{slide.conceptName}</strong>
-      <p>{slide.duration}</p>
+      <span data-fit>{slide.format}</span>
+      <strong data-fit>{slide.conceptName}</strong>
+      <p data-fit>{slide.duration}</p>
     </div>
   );
 }
@@ -17,14 +17,15 @@ export function FilmConcept({ slide }: { slide: FilmConceptSlide }) {
     <div className="film-layout">
       <div className="film-visual">
         {slide.image ? <AssetImage asset={slide.image} /> : <FilmTextVisual slide={slide} />}
+        {slide.productCutout ? <AssetImage asset={slide.productCutout} className="film-product-cutout" /> : null}
         <div className="film-format">
-          <span>{slide.format}</span>
-          <strong>{slide.duration}</strong>
+          <span data-fit>{slide.format}</span>
+          <strong data-fit>{slide.duration}</strong>
         </div>
       </div>
       <div className="film-copy">
-        <p className="eyebrow">{slide.eyebrow ?? "Concept de film"}</p>
-        <p className="film-kicker">{slide.title}</p>
+        <p className="eyebrow" data-fit>{slide.eyebrow ?? "Concept de film"}</p>
+        <p className="film-kicker" data-fit>{slide.title}</p>
         <h1 data-fit>{slide.conceptName}</h1>
         <p className="film-logline" data-fit>{slide.logline}</p>
         <Pills items={slide.toneWords} />
@@ -37,8 +38,8 @@ function StoryVisual({ frame }: { frame: StoryboardSlide["frames"][number] }) {
   if (frame.image) return <AssetImage asset={frame.image} />;
   return (
     <div className="story-draft-visual">
-      <span>{frame.number}</span>
-      <p>{frame.beat}</p>
+      <span data-fit>{frame.number}</span>
+      <p data-fit>{frame.beat}</p>
       <small>Visuel de travail</small>
     </div>
   );
@@ -52,16 +53,16 @@ export function Storyboard({ slide }: { slide: StoryboardSlide }) {
   return (
     <div className="storyboard-layout">
       <SectionHeading eyebrow={slide.eyebrow} title={slide.title} compact />
-      {slide.duration ? <p className="storyboard-duration">Durée totale · {slide.duration}</p> : null}
+      {slide.duration ? <p className="storyboard-duration" data-fit>Durée totale · {slide.duration}</p> : null}
       <div className={`storyboard-grid ${dense ? "storyboard-grid--dense" : ""}`} style={gridStyle}>
         {slide.frames.map((frame) => (
           <article className="story-frame" key={frame.number}>
             <StoryVisual frame={frame} />
             <div className="story-copy">
               <div>
-                <strong>{frame.number}</strong>
+                <strong data-fit>{frame.number}</strong>
                 <h2 data-fit>{frame.beat}</h2>
-                {frame.timecode ? <span className="story-timecode">{frame.timecode}</span> : null}
+                {frame.timecode ? <span className="story-timecode" data-fit>{frame.timecode}</span> : null}
               </div>
               <p data-fit>{frame.visual}</p>
               {frame.onScreen ? <span data-fit>Écran: {frame.onScreen}</span> : null}
@@ -86,15 +87,15 @@ export function References({ slide }: { slide: ReferencesSlide }) {
                 <AssetImage asset={reference.image} />
               ) : (
                 <div className="reference-text-visual">
-                  <strong>{reference.title}</strong>
-                  <p>{reference.source}</p>
+                  <strong data-fit>{reference.title}</strong>
+                  <p data-fit>{reference.source}</p>
                 </div>
               )}
               <IndexLabel index={index + 1} />
             </div>
             <h2 data-fit>{reference.title}</h2>
             <p data-fit>{reference.reason}</p>
-            {reference.source ? <span>{reference.source}</span> : null}
+            {reference.source ? <span data-fit>{reference.source}</span> : null}
           </article>
         ))}
       </div>

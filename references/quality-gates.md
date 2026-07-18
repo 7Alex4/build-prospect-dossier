@@ -136,6 +136,11 @@ Hard failures:
 - generic decorative gradients, blobs, particles, confetti or glass cards;
 - client logo distorted, redrawn or low-resolution without disclosure.
 - lockup or wording implies a mandate, approval, endorsement or partnership that does not exist.
+- Black Flower dossier signed Nexaia or missing the `BlackFlower` authorship frame;
+- generic orbit, signal, grid or abstract line motif used in a final Black Flower dossier;
+- repeated equal cards, decorative flowcharts, severity meters, progress bars, pills, fake dashboards or dark central platform cards;
+- fewer than six composition silhouettes or fewer than three visible contact-sheet peaks.
+- one composition family repeated on adjacent pages or used more than three times;
 
 ## 6. Image and provenance gate, 13 points
 
@@ -156,6 +161,7 @@ Hard failures:
 - private-proposal asset reused in a public artifact without new clearance;
 - watermark or search interface in a shipping asset;
 - generated image presented as evidence;
+- generated or illustrative media used as brand truth, current-baseline proof, document or archive;
 - wrong product variant or person;
 - broken image;
 - unreadable storyboard or moodboard;
@@ -164,6 +170,14 @@ Hard failures:
 - missing timing on a storyboard that states a fixed duration.
 - final storyboard frame without an approved local image;
 - HTTP asset accepted as a warning or deferred until rendering instead of failing validation.
+- fewer than 45% or more than 65% image-led pages;
+- fewer than 60% of pages that actually render substantive slide media use real or documentary assets;
+- generated imagery appears on more than 40% of those pages, regardless of declared visual intent;
+- more than two pages are primarily diagrammatic;
+- more than two text/system pages run consecutively after the introduction;
+- `editorial-sequence` step without an image or product overlap without an exact contained cutout;
+- risk, route, priority activation, storyboard or production lacks meaningful approved media;
+- a motif, logo, texture or decorative SVG is counted as argumentative media.
 
 ## 7. Technical gate, 10 points
 
@@ -194,7 +208,7 @@ Hard failures:
 
 ## 8. Visual inspection gate, 10 points
 
-Inspect every PNG at 100% and the full contact sheet.
+Inspect every PNG at 100%, the full contact sheet, and the contact sheet at 25%.
 
 ### Page-level inspection
 
@@ -224,6 +238,11 @@ Check:
 - production and reference pages arrive late;
 - thank-you slows the sequence;
 - final lockup feels inevitable.
+- at least 45% of thumbnails are image-led and the ratio remains at or below 65%;
+- at least six silhouettes are distinct;
+- at least three pages stop the eye immediately;
+- visible objects, products, materials, people, references and places make the prospect recognizable when logos are hidden;
+- no long tunnel of cards, tables, timelines or diagrams exists.
 
 Required representative comparisons:
 
@@ -244,6 +263,13 @@ Hard failures:
 - dense or sparse page that breaks the deck's rhythm;
 - small text, image or frame that cannot be read at 100%;
 - inconsistent motif or background state without narrative reason.
+- image-led ratio outside 45–65%;
+- fewer than 60% real or documentary visual pages, or generated share above 40%;
+- more than two primarily diagrammatic pages or more than two consecutive text/system pages after the introduction;
+- fewer than six composition silhouettes or fewer than three contact-sheet peaks;
+- risk, route, priority activation, storyboard or production page without substantive approved media;
+- dossier that remains generic when logos are hidden;
+- Black Flower dossier visibly authored by Nexaia.
 
 ## Automated output checks
 
@@ -287,6 +313,11 @@ render-report selection == []
 render-report renderedCount == totalSlides == renderedSlideIds length
 render-report traceability asset IDs == IDs derived from traversed images
 render-report traceability evidence IDs == deduplicated slide plus claim evidence IDs
+render-report.sha256 == exact render-report.json bytes
+render-report source SHA-256 == audited source file
+render-report loaded dossier SHA-256 == dossier loaded from source when supported
+render-report generated asset == explicit authorizer and durable authorization reference
+render-report asset source identity == hydrated content actually rendered
 asset hydration <= 32 MiB each and <= 256 MiB total by default
 ```
 

@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install PDF tools
+        run: sudo apt-get update && sudo apt-get install --yes poppler-utils
+
+      - name: Install dossier tools
+        working-directory: scripts
+        run: pnpm install --frozen-lockfile
+
+      - name: Check dossier tools
+        working-directory: scripts
+        run: pnpm check
+
+      - name: Verify dossier tools package
+        working-directory: scripts
+        run: npm pack --dry-run --json > /tmp/dossier-tools-pack.json
+
+      - name: Install dossier engine
+        working-directory: assets/dossier-engine
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        working-directory: assets/dossier-engine
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check dossier engine
+        working-directory: assets/dossier-engine
+        run: pnpm check
+
+      - name: Render reference dossier
+        working-directory: assets/dossier-engine
+        run: pnpm render src/content/example.ts --out "$RUNNER_TEMP/dossier-reference"
+
+      - name: Audit reference delivery
+        working-directory: scripts
+        run: >-
+          node dist/audit-output.js "$RUNNER_TEMP/dossier-reference/slides"
+          --pdf "$RUNNER_TEMP/dossier-reference/dossier.pdf"
+          --render-report "$RUNNER_TEMP/dossier-reference/render-report.json"
+          --source "$GITHUB_WORKSPACE/assets/dossier-engine/src/content/example.ts"
+          --out "$RUNNER_TEMP/dossier-reference/audit"
+
+      - name: Render Black Flower validation dossier
+        working-directory: assets/dossier-engine
+        run: pnpm render src/content/black-flower-validation-fixture.ts --out "$RUNNER_TEMP/dossier-black-flower"
+
+      - name: Audit Black Flower validation delivery
+        working-directory: scripts
+        run: >-
+          node dist/audit-output.js "$RUNNER_TEMP/dossier-black-flower/slides"
+          --pdf "$RUNNER_TEMP/dossier-black-flower/dossier.pdf"
+          --render-report "$RUNNER_TEMP/dossier-black-flower/render-report.json"
+          --source "$GITHUB_WORKSPACE/assets/dossier-engine/src/content/black-flower-validation-fixture.ts"
+          --out "$RUNNER_TEMP/dossier-black-flower/audit"
+
+      - name: Verify dossier engine package
+        working-directory: assets/dossier-engine
+        run: npm pack --dry-run --json > /tmp/dossier-engine-pack.json
+
+      - name: Block private-source leakage
+        run: |
+          private_source_pattern='/''Users/|PB ''SWISS|PB ''Swiss|Co''rum|Ber''neron|Ti''ssot|C''craft'
+          if git grep -I -i -n -E "$private_source_pattern" -- ':!pnpm-lock.yaml'; then
+            echo "Private or source-specific material detected in the public package."
+            exit 1
+          fi
+          if git ls-files | grep -E -i "$private_source_pattern"; then
+            echo "Private or source-specific filename detected in the public package."
+            exit 1
+          fi
+          if git ls-files | grep -E -i '\.(gif|jpe?g|mov|mp4|otf|pdf|png|ttf|webp|woff2?)$'; then
+            echo "Binary media or font detected in the reusable public package."
+            exit 1
+          fi

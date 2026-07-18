@@ -53,6 +53,7 @@ test("init project copies the engine, ignores generated files and creates workfl
     "company",
     "brand",
     "product",
+    "framework_profile",
     "official_domain",
     "country",
     "language",
@@ -66,7 +67,9 @@ test("init project copies the engine, ignores generated files and creates workfl
     "distribution_mode",
     "relationship_status",
     "generative_assets",
+    "generative_assets_authorization",
     "studio",
+    "studio_signature",
     "assumptions",
     "constraints",
     "forbidden_client_terms",
@@ -77,7 +80,14 @@ test("init project copies the engine, ignores generated files and creates workfl
   assert.match(brief, /^stage: draft$/m);
   assert.match(brief, /^distribution_mode: private-prospecting$/m);
   assert.match(brief, /^relationship_status: independent-proposal$/m);
+  assert.match(brief, /^framework_profile: neutral$/m);
   assert.match(brief, /^generative_assets: forbidden$/m);
+  assert.match(brief, /^generative_assets_authorization:$/m);
+  assert.match(brief, /^  status: not-authorized$/m);
+  assert.match(brief, /^  authorized_by: null$/m);
+  assert.match(brief, /^  reference: null$/m);
+  assert.match(brief, /^studio: null$/m);
+  assert.match(brief, /^studio_signature: null$/m);
   assert.match(brief, /^forbidden_client_terms: \[\]$/m);
   assert.equal(
     await readFile(path.join(target, "research", "evidence.csv"), "utf8"),
@@ -101,6 +111,10 @@ test("init project copies the engine, ignores generated files and creates workfl
     "Claim IDs and content paths",
     "Asset ID",
     "Proof function",
+    "Visual intent",
+    "Visual-intent rationale",
+    "Composition family",
+    "Visual peak",
     "Transition in",
     "Transition out",
     "Unanswered question",
@@ -135,16 +149,25 @@ test("init project copies the engine, ignores generated files and creates workfl
 ## Assets
 
 - shipping assets:
+- image-led pages and ratio:
+- real/documentary visual pages and ratio:
+- generated visual pages and ratio:
+- diagram pages:
 - provided:
 - official:
 - licensed:
 - generated with explicit authorization:
+- authorization reference checked:
 - reference-only excluded:
 
 ## Visual review
 
 - pages inspected at 100%:
 - contact sheet inspected:
+- contact sheet inspected at 25%:
+- distinct silhouettes:
+- visible peaks:
+- logo-hidden prospect recognition:
 - 375 px preview:
 - 1440 px preview:
 
@@ -158,6 +181,62 @@ test("init project copies the engine, ignores generated files and creates workfl
 `,
   );
   assert.equal(await exists(path.join(target, "research", "observations", "source-notes.md")), false);
+});
+
+test("init project records explicit generative asset authorization", async (context) => {
+  const temporary = await mkdtemp(path.join(os.tmpdir(), "prospect-init-authorized-"));
+  context.after(async () => rm(temporary, { recursive: true, force: true }));
+  const template = path.join(temporary, "engine");
+  const target = path.join(temporary, "job");
+  await mkdir(template, { recursive: true });
+  await writeFile(path.join(template, "package.json"), '{"name":"engine"}\n', "utf8");
+
+  await initProject({
+    targetDirectory: target,
+    templateDirectory: template,
+    generativeAssetAuthorization: {
+      authorizedBy: "Alex Houser",
+      reference: "brief-2026-07-18#visuals",
+    },
+    profile: "black-flower",
+  });
+
+  const brief = await readFile(path.join(target, "brief.yaml"), "utf8");
+  assert.match(brief, /^generative_assets: authorized$/m);
+  assert.match(brief, /^  status: explicitly-authorized$/m);
+  assert.match(brief, /^  authorized_by: "Alex Houser"$/m);
+  assert.match(brief, /^  reference: "brief-2026-07-18#visuals"$/m);
+  assert.match(brief, /^framework_profile: black-flower$/m);
+  assert.match(brief, /^studio: Black Flower Creative House$/m);
+  assert.match(brief, /^studio_signature: BlackFlower$/m);
+});
+
+test("init project rejects an unknown profile", async (context) => {
+  const temporary = await mkdtemp(path.join(os.tmpdir(), "prospect-init-bad-profile-"));
+  context.after(async () => rm(temporary, { recursive: true, force: true }));
+  const template = path.join(temporary, "engine");
+  await mkdir(template, { recursive: true });
+  await writeFile(path.join(template, "package.json"), '{"name":"engine"}\n', "utf8");
+
+  await assert.rejects(initProject({
+    targetDirectory: path.join(temporary, "job"),
+    templateDirectory: template,
+    profile: "foreign" as "neutral",
+  }), /neutral or black-flower/);
+});
+
+test("init project rejects incomplete generative asset authorization", async (context) => {
+  const temporary = await mkdtemp(path.join(os.tmpdir(), "prospect-init-bad-authorization-"));
+  context.after(async () => rm(temporary, { recursive: true, force: true }));
+  const template = path.join(temporary, "engine");
+  await mkdir(template, { recursive: true });
+  await writeFile(path.join(template, "package.json"), '{"name":"engine"}\n', "utf8");
+
+  await assert.rejects(initProject({
+    targetDirectory: path.join(temporary, "job"),
+    templateDirectory: template,
+    generativeAssetAuthorization: { authorizedBy: "Alex Houser", reference: "   " },
+  }), /non-empty authorizer and reference/);
 });
 
 test("init project refuses non-empty targets unless force is explicit and preserves workflow notes", async (context) => {

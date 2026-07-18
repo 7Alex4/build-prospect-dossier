@@ -31,7 +31,7 @@ export function Proof({ slide }: { slide: ProofSlide }) {
           {slide.quote ? (
             <blockquote className="proof-quote">
               <p data-fit>« {slide.quote} »</p>
-              {slide.source ? <cite>{slide.source}</cite> : null}
+              {slide.source ? <cite data-fit>{slide.source}</cite> : null}
             </blockquote>
           ) : null}
           {slide.proofPoints ? (
@@ -46,23 +46,6 @@ export function Proof({ slide }: { slide: ProofSlide }) {
   );
 }
 
-function Severity({ level }: { level: 1 | 2 | 3 }) {
-  return (
-    <span
-      aria-label={`Sévérité ${level} sur 3`}
-      aria-valuemax={3}
-      aria-valuemin={1}
-      aria-valuenow={level}
-      className="severity"
-      role="meter"
-    >
-      {[1, 2, 3].map((step) => (
-        <i aria-hidden="true" className={step <= level ? "is-active" : ""} key={step} />
-      ))}
-    </span>
-  );
-}
-
 export function Risk({ slide }: { slide: RiskSlide }) {
   return (
     <div className={`risk-layout ${slide.image ? "risk-layout--image" : ""}`}>
@@ -71,11 +54,10 @@ export function Risk({ slide }: { slide: RiskSlide }) {
         <div className="risk-main">
           <div className="risk-list">
             {slide.risks.map((risk, index) => (
-              <article className="risk-row" key={risk.label}>
+              <article className="risk-row" data-severity={risk.severity} key={risk.label}>
                 <IndexLabel index={index + 1} />
                 <h2 data-fit>{risk.label}</h2>
                 <p data-fit>{risk.consequence}</p>
-                <Severity level={risk.severity} />
               </article>
             ))}
           </div>
@@ -117,7 +99,7 @@ export function Platform({ slide }: { slide: PlatformSlide }) {
       <SectionHeading eyebrow={slide.eyebrow} title={slide.title} compact />
       <div className="platform-system">
         <div className="platform-core">
-          <span>{slide.variant}</span>
+          <span data-fit>{slide.variant}</span>
           <h2 data-fit>{slide.core.label}</h2>
           <p data-fit>{slide.core.detail}</p>
         </div>
@@ -133,7 +115,7 @@ export function Platform({ slide }: { slide: PlatformSlide }) {
       </div>
       {slide.outcomes ? (
         <ul className="platform-outcomes">
-          {slide.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+          {slide.outcomes.map((outcome) => <li data-fit key={outcome}>{outcome}</li>)}
         </ul>
       ) : null}
     </div>

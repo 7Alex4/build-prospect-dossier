@@ -1,0 +1,120 @@
+.deck[data-framework-profile="black-flower"] .slide--intent-image-led .asset {
+  min-height: 52%;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-silent-cover .cover-copy h1 {
+  max-width: 1480px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-silent-cover .cover-proposition {
+  grid-template-columns: 210px minmax(0, 880px);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .proof-body,
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .risk-body,
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .opportunity-body {
+  grid-template-columns: minmax(0, .78fr) minmax(620px, 1.22fr);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .opportunity-image,
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .proof-image,
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .risk-image {
+  height: 700px;
+  order: -1;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .shift-grid {
+  grid-template-columns: 1fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .shift-card {
+  min-height: 0;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .shift-change {
+  margin-top: 20px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-split .proof-body,
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-split .risk-body,
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-split .opportunity-body {
+  grid-template-columns: minmax(0, 1fr) minmax(560px, 1fr);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-columns .columns-grid {
+  grid-template-columns: 1.12fr .86fr 1.02fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-evidence-field .proof-body {
+  grid-template-columns: minmax(560px, 1.08fr) minmax(0, .92fr);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-evidence-field .proof-image {
+  height: 700px;
+  order: -1;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-typographic-manifesto .manifesto-lines > p:nth-child(even) {
+  padding-left: 120px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-sequence .timeline-track--image-sequence {
+  grid-template-columns: 1.15fr .9fr .9fr 1.05fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-storyboard-grid .storyboard-grid {
+  gap: 24px 18px;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-reference-wall .references-grid {
+  grid-template-columns: 1.12fr .88fr .88fr 1.12fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-object-overlap .film-product-cutout {
+  filter: drop-shadow(0 24px 34px rgb(0 0 0 / .24));
+  transform: rotate(-3deg);
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-object-overlap .film-layout {
+  grid-template-columns: 1.22fr .78fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .activation-layout--image {
+  grid-template-columns: .96fr 1.04fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .activation-image {
+  height: 900px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-portrait-profile .production-image {
+  height: 650px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-diagrammatic-system .architecture-map {
+  display: grid;
+  grid-template-columns: .86fr 1.28fr .86fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-diagrammatic-system .platform-system {
+  grid-template-columns: .92fr 1.08fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-diagrammatic-system .timeline-track {
+  grid-template-columns: .85fr 1.05fr 1.05fr .85fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-closing-letter .thankyou-layout {
+  grid-template-columns: 1.42fr .58fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-lockup .lockup-layout {
+  align-items: flex-start;
+  padding-left: 8%;
+  text-align: left;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--visual-peak .asset img {
+  filter: saturate(1.04) contrast(1.04);
+}

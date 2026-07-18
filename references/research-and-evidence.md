@@ -37,6 +37,7 @@ Create `brief.yaml`:
 company: Example SA
 brand: Example
 product: null
+framework_profile: black-flower
 official_domain: https://example.com
 country: CH
 language: fr-CH
@@ -50,9 +51,16 @@ target_pages: 18
 desired_outcome: exploratory-meeting
 distribution_mode: private-prospecting
 relationship_status: independent-proposal
-generative_assets: forbidden
+generative_assets: authorized
+generative_assets_authorization:
+  status: explicitly-authorized
+  authorized_by: Alex Houser
+  reference: black-flower-owner-brief-2026-07-18#visuals
+campaign_mode: campaign-platform
+creative_route_count: 2
 forbidden_client_terms: []
-studio: null
+studio: Black Flower Creative House
+studio_signature: BlackFlower
 assumptions: []
 constraints: []
 ```
@@ -71,9 +79,9 @@ Allowed `relationship_status` values:
 
 Default to `private-prospecting` and `independent-proposal`. A later public release is a new rights decision, not an automatic extension of private prospecting use.
 
-Default `generative_assets` to `forbidden`. Change it only when the user explicitly requests generated imagery for that dossier. Populate `forbidden_client_terms` from active project instructions, legal naming constraints or user preferences.
+Alex's owner brief authorizes Black Flower creative projection and never evidence. Materialize that permission in every dossier with `status: explicitly-authorized`, the authorizer and the durable owner-brief reference. The Black Flower profile alone grants nothing. For outside open-source users, default to `forbidden` and change it only with their own explicit authorization. Populate `forbidden_client_terms` from active project instructions, legal naming constraints or user preferences.
 
-Studio identity is optional. When it is known, replace `null` with the verified name and job-local logo paths. When it is unknown, keep `null`; do not invent a sender, mark, person, email, website or empty signature slot.
+The Black Flower profile has a fixed studio identity: `Black Flower Creative House`, visible signature `BlackFlower`. Use job-local logo paths only when the mark is supplied and cleared. In an explicit neutral profile, studio identity is optional; do not invent a sender, mark, person, email, website or empty signature slot.
 
 ## 2. Research sequence
 
@@ -303,7 +311,7 @@ Look for an official press kit or vector on the official domain. If unavailable,
 
 ### No official imagery
 
-Use typographic, diagrammatic and screenshot-led pages. A designed evidence page is stronger than unrelated stock.
+Keep searching for current screenshots, product pages, archives, public places, materials and people. Use a precise licensed image or an authorized generated campaign scene for creative projection when appropriate. A diagram is allowed only for a real relation, sequence or quantity. It is not the default escape route. If the planned Black Flower image cadence cannot be met honestly, reduce the dossier or keep it in draft.
 
 ### Sparse company information
 
@@ -315,7 +323,7 @@ Do not manufacture urgency. Replace `Why now?` with `Why this matters` and use a
 
 ### No distinctive brand object
 
-Do not invent a pseudo-symbol. Use typography, a measured rule, an evidence diagram or a disciplined grid derived from the prospect's actual communication behavior.
+Do not invent a pseudo-symbol. Use typography, a measured rule, a material cue or no persistent motif. Do not reach for a generic orbit, signal, grid or abstract line simply to occupy space.
 
 ### No studio references supplied
 
@@ -323,7 +331,7 @@ Omit the reference page or use only verified, user-provided references. Never cr
 
 ### No studio identity supplied
 
-Do not invent a studio name, logo, person, email or website. Use a neutral text attribution only when the sender is known from the active context; otherwise omit the studio mark and record the missing identity in `brief.yaml`. The dossier may still be rendered as an independent strategic reading.
+In the Black Flower profile, use the verified canonical name and text signature already defined by the framework. Do not invent a logo, portrait, person, email or website. In a neutral profile, omit unknown studio identity and record the omission in `brief.yaml`.
 
 ### Conflicting sources
 
@@ -343,4 +351,5 @@ Research is complete when:
 - no blanket `proposal` classification hides facts, observations or interpretations;
 - every shipping asset is cleared for the declared distribution mode;
 - the cover and final relationship wording matches the declared relationship status;
+- the Black Flower image plan lands between 45% and 65% image-led pages and includes enough cleared concrete media to execute it;
 - unresolved uncertainty is either removed from client copy or clearly framed as a proposal.

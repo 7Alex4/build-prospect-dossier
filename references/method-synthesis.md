@@ -41,6 +41,8 @@ cover idea
 
 The dependency matters more than page number:
 
+This is not a diagram-first sequence. In the Black Flower profile, alternate abstraction with visible reality. Current communication, product, archive, person, material, cultural reference, campaign scene and storyboard carry the argument at least as often as text. Use 45–65% image-led pages, target 55%, and no more than two true diagrams.
+
 1. Evidence precedes critique.
 2. Critique precedes strategic reframe.
 3. Reframe precedes platform.
@@ -106,31 +108,34 @@ Preserve proportions if the native canvas changes.
 | Symbol-led | Dominant field with chapter inversions | Cropped verified brand symbol | Generated chapter state plus pagination |
 | Product-led | Stable body field with cover and final exceptions | Simplified product-derived silhouette | Deterministic progress marker |
 | Type-led | Stable paper field with controlled contrast shifts | Oversized letterform or numeral system | Generated typographic cadence |
-| Grid-only | Neutral field with no decorative object | Modular rules and negative space | Page marker generated from sequence |
+| Grid-only | Neutral field with no decorative object | Modular rules and negative space | Neutral profile only, not the default Black Flower route |
 
 No state model is a default.
 Select one after identifying a real company object, field and orientation behavior.
 
+For Black Flower, prefer symbol-led, product-led or type-led systems with a concrete image cadence. Never select grid-only merely because the prospect is Swiss, technical or restrained.
+
 ## Shared composition families
 
 1. Minimal cover declaration.
-2. Architecture page with chapter code.
-3. Three-column moment, challenge and opportunity.
-4. Proof image paired with three observed strengths.
-5. Polarized risk or rejected-shortcut page.
-6. Diagonal three-shift progression.
-7. Two-forces-to-answer diagram.
-8. Platform definition matrix.
-9. Process or method progression.
-10. Repeated route family.
-11. Flagship concept proof.
-12. Three-part concept mechanics.
-13. Storyboard or ordered proof.
-14. Editorial or communication system.
-15. Production portrait.
-16. Two-by-two prior-work matrix.
-17. Thank-you letter.
+2. Editorial architecture rows with chapter code.
+3. Oversized prospect object crop.
+4. Proof image paired with observed strengths.
+5. Risk image paired with a restrained editorial stack.
+6. Open diagonal shift progression.
+7. Platform anchored by a real object, material or image.
+8. Image sequence for method or making.
+9. Repeated scene-plus-product route family.
+10. Product-centered truth with short annotations.
+11. Cultural metaphor.
+12. Priority activation with one strong scene.
+13. Territory moodboard.
+14. Storyboard or ordered visual proof.
+15. Production Black Flower portrait.
+16. Asymmetric reference collage.
+17. Typographic manifesto or thank-you letter.
 18. Silent final lockup.
+19. Necessary diagram, maximum two pages in the whole dossier.
 
 Choose a family by rhetorical job, not visual preference.
 Create a documented exception only when no family fits.
@@ -139,17 +144,19 @@ Create a documented exception only when no family fits.
 
 ### Focused, 15 pages
 
-Use 15 pages when one strong proof is available, routes fit one matrix, no full storyboard is required and the goal is a first conversation. Add a real validation or proof-plan decision before the close; never add filler merely to reach 15.
+Use 15 pages when one focused opportunity can still support a visual baseline, two distinct routes, an inspectable storyboard and Black Flower production presence. Never use compression as a reason to remove the visual proof that makes the proposal tangible.
 
 Suggested allocation:
 
-Cover; architecture; four opportunity and shift pages; two platform and method pages; flagship proof; variation; editorial system; production; close; lockup.
+Cover; architecture and relevance; brand truth; current baseline; risk; opportunity; platform; product truth; two visual routes; priority activation; storyboard; production Black Flower; thank-you; lockup.
 
 ### Standard, 18-20 pages
 
 Use when diagnosis and brand truth each deserve proof, the platform needs emotional and operational articulation, and one activation can be demonstrated concretely.
 
-### Expanded, 21-23 pages
+Target 9–12 image-led pages depending on whether the dossier contains 18, 19 or 20 pages. Reserve separate visual pages for current communication, product truth, routes, activation, storyboard and production.
+
+### Expanded, 18-20 pages
 
 Use only when explicitly requested or justified, three or four genuinely distinct routes exist, one route has a developed concept and storyboard, and the reader will assess a full campaign proposal.
 Do not add pages only to resemble an expanded source.

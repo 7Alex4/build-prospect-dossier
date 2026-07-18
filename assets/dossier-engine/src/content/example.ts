@@ -14,6 +14,7 @@ export const exampleDossier = {
   meta: {
     title: "Un système de récit pour Prospect Démo",
     client: "Prospect Démo",
+    frameworkProfile: "neutral",
     studio: "Studio Démo",
     language: "fr-CH",
     version: "1.0",
@@ -27,6 +28,7 @@ export const exampleDossier = {
   },
   evidence: [
     { id: "fixture:context-audit", kind: "observation", status: "verified", claim: "Signaux fictifs consignés dans la note de cadrage locale de cette démonstration." },
+    { id: "fixture:narrative-plan", kind: "observation", status: "verified", claim: "Architecture narrative fictive consignée dans le plan éditorial local de cette démonstration." },
     { id: "fixture:vector-assets", kind: "fact", status: "verified", claim: "Visuels SVG neutres fabriqués localement et inclus avec le moteur." },
     { id: "fixture:contact-card", kind: "fact", status: "verified", claim: "Coordonnées fictives définies dans la fixture locale de démonstration." },
   ],
@@ -172,6 +174,7 @@ export const exampleDossier = {
       format: "Film de marque",
       duration: "75 secondes",
       toneWords: ["Tactile", "Tendu", "Humain", "Précis"],
+      image: neutralProofImage,
     },
     {
       id: "11-storyboard-hero",
@@ -196,6 +199,7 @@ export const exampleDossier = {
       format: "Série verticale et horizontale",
       duration: "6 × 35 secondes",
       toneWords: ["Direct", "Documentaire", "Sériel", "Utile"],
+      image: neutralRiskImage,
     },
     {
       id: "13-storyboard-serie",

@@ -22,12 +22,15 @@ export interface VisibleString {
 const hiddenKeys = new Set([
   "id", "type", "tone", "variant", "kind", "evidenceIds", "assetIds", "claims",
   "motifState", "chapterMark", "src", "alt", "fit", "position", "treatment",
-  "url", "sourceUrl", "timecode", "number", "severity", "index",
+  "url", "sourceUrl", "timecode", "number", "severity", "index", "visualIntent",
+  "visualIntentRationale", "compositionFamily", "visualPeak", "mediaRole", "mediaNature",
+  "productionStatus", "presentation", "derivation",
 ]);
 
 const structuralKeys = new Set([
-  "eyebrow", "tag", "footer", "client", "studio", "legal", "phase", "signal",
+  "eyebrow", "tag", "client", "studio", "phase", "signal",
   "relationshipLabel",
+  "textMark",
 ]);
 
 function isRecord(value: unknown): value is UnknownRecord {

@@ -1,23 +1,23 @@
 import type { BrandTheme, ImageAsset, SlideTone } from "./theme-types.js";
-import type { AssetRecord, DistributionMode } from "./asset-types.js";
+import type { AssetRecord } from "./asset-types.js";
+import type { CompositionFamily, VisualIntent } from "./profile-types.js";
+import type { DossierMeta } from "./meta-types.js";
 
-export type { BrandTheme, ImageAsset, SlideTone } from "./theme-types.js";
+export type {
+  BrandTheme,
+  FontFaceContract,
+  FontRole,
+  FontStyle,
+  FontWeight,
+  ImageAsset,
+  MediaNature,
+  MediaProductionStatus,
+  MediaRole,
+  SlideTone,
+} from "./theme-types.js";
+export type { CompositionFamily, FrameworkProfile, StudioIdentity, VisualIntent } from "./profile-types.js";
+export type { DossierMeta, GenerativeAssetAuthorization } from "./meta-types.js";
 export type * from "./asset-types.js";
-
-export interface DossierMeta {
-  title: string;
-  client: string;
-  studio?: string;
-  language: string;
-  version: string;
-  date: string;
-  distributionMode: DistributionMode;
-  relationshipStatus: "independent-proposal" | "client-approved" | "commissioned";
-  generativeAssets: "forbidden" | "authorized";
-  stage: "draft" | "final";
-  forbiddenClientTerms?: readonly string[];
-  confidential?: boolean;
-}
 
 export type ClaimKind = "fact" | "quote" | "observation" | "interpretation" | "proposal";
 
@@ -45,6 +45,10 @@ export interface EvidenceRecord {
 
 interface BaseSlide {
   id: string;
+  visualIntent?: VisualIntent;
+  visualIntentRationale?: string;
+  compositionFamily?: CompositionFamily;
+  visualPeak?: boolean;
   eyebrow?: string;
   tone?: SlideTone;
   footer?: string;
@@ -168,6 +172,7 @@ export interface TimelineStep {
   title: string;
   detail: string;
   deliverable?: string;
+  image?: ImageAsset;
 }
 
 export interface FilmConceptSlide extends BaseSlide {
@@ -179,6 +184,7 @@ export interface FilmConceptSlide extends BaseSlide {
   duration: string;
   toneWords: readonly string[];
   image?: ImageAsset;
+  productCutout?: ImageAsset;
 }
 
 export interface ActivationSlide extends BaseSlide {
@@ -254,6 +260,7 @@ export interface LockupSlide extends BaseSlide {
   client: string;
   studio?: string;
   mark?: ImageAsset;
+  textMark?: string;
   legal?: string;
 }
 

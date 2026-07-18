@@ -4,7 +4,8 @@ import type { ClaimKind, ClaimRef, DossierSlide } from "../schema/types";
 type ClaimSpec = readonly [contentPath: string, kind: ClaimKind, evidenceIds?: readonly string[]];
 
 const proposal = (contentPath: string): ClaimSpec => [contentPath, "proposal"];
-const interpretation = (contentPath: string): ClaimSpec => [contentPath, "interpretation"];
+const interpretation = (contentPath: string): ClaimSpec => [contentPath, "interpretation", ["fixture:context-audit"]];
+const planned = (contentPath: string): ClaimSpec => [contentPath, "interpretation", ["fixture:narrative-plan"]];
 const observed = (contentPath: string): ClaimSpec => [contentPath, "observation", ["fixture:context-audit"]];
 const assetFact = (contentPath: string): ClaimSpec => [contentPath, "fact", ["fixture:vector-assets"]];
 const contactFact = (contentPath: string): ClaimSpec => [contentPath, "fact", ["fixture:contact-card"]];
@@ -14,10 +15,10 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
     proposal("title"), proposal("subtitle"), proposal("proposition"),
   ],
   "02-architecture": [
-    proposal("title"), proposal("statement"), proposal("nodes[0].label"),
-    proposal("nodes[0].detail"), proposal("nodes[1].label"), proposal("nodes[1].detail"),
-    proposal("nodes[2].label"), proposal("nodes[2].detail"), proposal("nodes[3].label"),
-    proposal("nodes[3].detail"), proposal("axisLabel"), assetFact("image.credit"),
+    planned("title"), planned("statement"), planned("nodes[0].label"),
+    planned("nodes[0].detail"), planned("nodes[1].label"), planned("nodes[1].detail"),
+    planned("nodes[2].label"), planned("nodes[2].detail"), planned("nodes[3].label"),
+    planned("nodes[3].detail"), planned("axisLabel"), assetFact("image.credit"),
   ],
   "03-pourquoi-maintenant": [
     observed("title"), observed("intro"), observed("columns[0].title"),
@@ -25,8 +26,8 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
     observed("columns[2].title"), observed("columns[2].body"), interpretation("conclusion"),
   ],
   "04-preuves": [
-    proposal("title"), proposal("proofPoints[0]"), proposal("proofPoints[1]"),
-    proposal("proofPoints[2]"), assetFact("image.credit"),
+    planned("title"), planned("proofPoints[0]"), planned("proofPoints[1]"),
+    planned("proofPoints[2]"), assetFact("image.credit"),
   ],
   "05-manifeste": [
     proposal("title"), proposal("lines[0]"), proposal("lines[1]"), proposal("lines[2]"),
@@ -62,7 +63,7 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
   "10-film-hero": [
     proposal("title"), proposal("conceptName"), proposal("logline"), proposal("format"),
     proposal("duration"), proposal("toneWords[0]"), proposal("toneWords[1]"),
-    proposal("toneWords[2]"), proposal("toneWords[3]"),
+    proposal("toneWords[2]"), proposal("toneWords[3]"), assetFact("image.credit"),
   ],
   "11-storyboard-hero": [
     proposal("title"), proposal("frames[0].beat"), proposal("frames[0].visual"),
@@ -75,7 +76,7 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
   "12-film-serie": [
     proposal("title"), proposal("conceptName"), proposal("logline"), proposal("format"),
     proposal("duration"), proposal("toneWords[0]"), proposal("toneWords[1]"),
-    proposal("toneWords[2]"), proposal("toneWords[3]"),
+    proposal("toneWords[2]"), proposal("toneWords[3]"), assetFact("image.credit"),
   ],
   "13-storyboard-serie": [
     proposal("title"), proposal("duration"), proposal("frames[0].beat"), proposal("frames[0].visual"),
@@ -121,7 +122,7 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
     contactFact("contact.role"), contactFact("contact.email"), contactFact("contact.website"),
     proposal("nextStep"),
   ],
-  "18-signature": [proposal("title"), proposal("statement")],
+  "18-signature": [proposal("title"), proposal("statement"), proposal("legal")],
 };
 
 function claimText(value: string | { value: string; label: string }): string {

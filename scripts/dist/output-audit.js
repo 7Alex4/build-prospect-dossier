@@ -143,7 +143,7 @@ export async function auditOutput(options) {
         const reportPath = options.renderReportPath
             ?? path.join(path.dirname(path.resolve(options.pdfPath)), "render-report.json");
         try {
-            const reportInspection = await inspectRenderReport(reportPath, pages.map((page) => page.file));
+            const reportInspection = await inspectRenderReport(reportPath, pages.map((page) => ({ file: page.file, sha256: page.sha256 })), options.pdfPath, options.sourcePath);
             renderReport = reportInspection.report;
             issues.push(...reportInspection.issues);
         }
@@ -152,7 +152,7 @@ export async function auditOutput(options) {
         }
     }
     else if (options.renderReportPath !== undefined) {
-        const reportInspection = await inspectRenderReport(options.renderReportPath, pages.map((page) => page.file));
+        const reportInspection = await inspectRenderReport(options.renderReportPath, pages.map((page) => ({ file: page.file, sha256: page.sha256 })), undefined, options.sourcePath);
         renderReport = reportInspection.report;
         issues.push(...reportInspection.issues);
     }

@@ -55,6 +55,8 @@ These are factory anchors, not a demand to reproduce another dossier. Change the
 
 ## 2. Variable brand grammar
 
+In the default Black Flower profile, the production frame is fixed while the prospect grammar remains variable. Read `black-flower-profile.md` first. Keep `Black Flower Creative House` as canonical studio, `BlackFlower` as visible signature, the running header at top left and pagination at bottom left. Never render Nexaia as the creative author.
+
 Rebuild these for every prospect:
 
 - cover background;
@@ -233,6 +235,7 @@ Bad behavior:
 - reconstructed when a real source asset exists;
 - combined with unrelated decorative shapes;
 - copied from an exemplar.
+- abstract orbit, signal, grid or line language whose prospect origin cannot be explained in one sentence.
 
 ## 7. Logos and lockups
 
@@ -257,8 +260,9 @@ Bad behavior:
 
 ### Prospect and optional studio attribution
 
+- In the Black Flower profile, studio attribution is required and fixed. If no cleared mark is available, use the text signature `BlackFlower`.
 - When both marks exist, keep them optically balanced, not mechanically equal in width.
-- Studio identity is optional. When it is absent, omit its mark, signature and layout slot completely. Do not invent a name to complete the composition.
+- Studio identity is optional only in an explicit neutral profile. When it is absent there, omit its mark, signature and layout slot completely. Do not invent a name to complete the composition.
 - In independent prospecting, do not use a bare multiplication sign that can imply a partnership. Use `Proposition indépendante pour [prospect]` when no studio is supplied, or `Proposition indépendante pour [prospect], par [studio]` when it is.
 - Use a simple multiplication sign or source-approved separator only for `client-approved` or `commissioned` relationship status.
 - Respect each mark's clear space.
@@ -270,7 +274,7 @@ Bad behavior:
 
 Use a quiet orientation system:
 
-- running header at the micro guide;
+- Black Flower running header at the top-left micro guide: `Strategic creative campaign proposal · BlackFlower`;
 - page number at bottom-left or a source-derived equivalent;
 - chapter marker at bottom-right when chapter codes add value;
 - a chapter label only on openers if necessary;
@@ -315,6 +319,8 @@ Exceptions:
 
 Whitespace is active when it separates, prioritizes or builds tension. Empty space is not a substitute for insufficient content.
 
+Across the dossier, 45–65% of pages are image-led, target 55%. Use at most two diagram pages, at least six distinct composition silhouettes and no more than two consecutive text/system pages after the introduction.
+
 ## 11. Responsive preview
 
 The deliverable pages are fixed-size. The preview must scale the full canvas proportionally.
@@ -338,3 +344,6 @@ Before delivery search for and remove:
 - screenshots of source slides used as final page layouts;
 - generic luxury codes such as marble, gold dust, champagne, yachts or perfume lighting when unsupported;
 - generic technology codes such as neon grids, holograms, glowing circuits or abstract AI imagery when unsupported.
+- equal card grids, decorative flowcharts, fake metrics, severity meters, progress bars, pill clouds or dark platform boxes;
+- a final Black Flower cover, production page or lockup signed Nexaia;
+- a page whose missing image was concealed with generic vector geometry;

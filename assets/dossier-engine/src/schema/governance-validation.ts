@@ -1,6 +1,8 @@
 import type { ValidationIssue } from "./validation";
 import type { DossierSlide } from "./types";
 import { clientFacingAuditStrings, structuralAuditStrings } from "./content-claims";
+import { validateFinalEvidenceVisibility } from "./governance-visibility-validation";
+import { validateGenerativeAuthorization } from "./generative-authorization-validation";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -37,6 +39,7 @@ function validWebUrl(value: string): boolean {
 function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord | undefined {
   if (!isRecord(meta)) return undefined;
   const enums: ReadonlyArray<readonly [string, readonly string[]]> = [
+    ["frameworkProfile", ["black-flower", "neutral"]],
     ["distributionMode", ["private-prospecting", "client-project", "public"]],
     ["relationshipStatus", ["independent-proposal", "client-approved", "commissioned"]],
     ["generativeAssets", ["forbidden", "authorized"]],
@@ -50,6 +53,18 @@ function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord |
   if (meta.studio !== undefined && !nonEmpty(meta.studio)) {
     error(issues, "governance-text", "meta.studio", "Nom de studio non vide requis lorsqu'il est fourni.");
   }
+  if (meta.studioIdentity !== undefined) {
+    const identity = meta.studioIdentity;
+    if (!isRecord(identity)) {
+      error(issues, "studio-identity-shape", "meta.studioIdentity", "Objet d'identité studio requis.");
+    } else {
+      ["canonicalName", "signature"].forEach((key) => {
+        if (!nonEmpty(identity[key])) {
+          error(issues, "studio-identity-text", `meta.studioIdentity.${key}`, "Texte non vide requis.");
+        }
+      });
+    }
+  }
   if (meta.forbiddenClientTerms !== undefined) {
     if (!Array.isArray(meta.forbiddenClientTerms)) {
       error(issues, "forbidden-terms-shape", "meta.forbiddenClientTerms", "Liste de termes requise.");
@@ -61,6 +76,7 @@ function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord |
       });
     }
   }
+  validateGenerativeAuthorization(meta, issues);
   return meta;
 }
 
@@ -255,6 +271,7 @@ export function validateGovernance(value: UnknownRecord, issues: ValidationIssue
   const meta = validateMeta(value.meta, issues);
   const registry = validateRegistry(value.evidence, issues);
   validateSlideEvidence(value.slides, registry, issues);
+  validateFinalEvidenceVisibility(meta, value.slides, registry, issues);
   if (meta) {
     validateRelationship(meta, value.slides, issues);
     validateForbiddenTerms(meta, value.slides, value.theme, issues);

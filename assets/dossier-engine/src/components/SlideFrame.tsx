@@ -20,18 +20,29 @@ function BrandMark({ theme }: { theme: BrandTheme }) {
   if (theme.logo.wordmark) {
     return <img className="brand-wordmark" src={theme.logo.wordmark.src} alt={theme.logo.wordmark.alt} />;
   }
-  return <span className="brand-fallback">{theme.logo.textFallback}</span>;
+  return <span className="brand-fallback" data-fit>{theme.logo.textFallback}</span>;
 }
 
 export function SlideFrame({ children, index, slide, theme, total }: SlideFrameProps) {
   const page = String(index + 1).padStart(2, "0");
   const tone = slide.tone ?? "paper";
   const footerMode = theme.chrome?.footer ?? "bordered";
+  const classes = [
+    "slide",
+    `slide--${tone}`,
+    `slide-type--${slide.type}`,
+    slide.visualIntent ? `slide--intent-${slide.visualIntent}` : "",
+    slide.compositionFamily ? `slide--composition-${slide.compositionFamily}` : "",
+    slide.visualPeak ? "slide--visual-peak" : "",
+  ].filter(Boolean).join(" ");
   return (
     <section
-      className={`slide slide--${tone} slide-type--${slide.type}`}
+      className={classes}
+      data-composition-family={slide.compositionFamily}
       data-slide-id={slide.id}
       data-slide-type={slide.type}
+      data-visual-intent={slide.visualIntent}
+      data-visual-peak={slide.visualPeak ? "true" : "false"}
       id={`slide-${page}`}
     >
       <SlideBackground theme={theme} tone={tone} />
@@ -42,7 +53,7 @@ export function SlideFrame({ children, index, slide, theme, total }: SlideFrameP
       {footerMode !== "hidden" ? (
         <footer className={`slide__footer slide__footer--${footerMode}`}>
           <BrandMark theme={theme} />
-          {slide.footer ? <span>{slide.footer}</span> : <span aria-hidden="true" />}
+          {slide.footer ? <span data-fit>{slide.footer}</span> : <span aria-hidden="true" />}
           <SlidePageMarker index={index} theme={theme} total={total} />
         </footer>
       ) : null}

@@ -1,5 +1,58 @@
 export type SlideTone = "paper" | "ink" | "accent" | "surface" | "signal";
 
+export type MediaRole =
+  | "hero"
+  | "evidence"
+  | "editorial"
+  | "product"
+  | "portrait"
+  | "film-still"
+  | "storyboard-frame"
+  | "reference"
+  | "background"
+  | "motif"
+  | "identity";
+
+export type MediaNature =
+  | "photograph"
+  | "product-cutout"
+  | "screenshot"
+  | "document"
+  | "archive"
+  | "illustration"
+  | "storyboard"
+  | "portrait"
+  | "texture"
+  | "brand-mark";
+
+export type MediaProductionStatus = "final" | "placeholder";
+
+export type FontRole = "display" | "body" | "mono";
+export type FontStyle = "normal" | "italic";
+export type FontWeight = 400 | 500 | 600 | 700 | 800 | 900;
+
+export interface SystemFontSource {
+  kind: "system";
+  allowedResolvedFamilies: readonly string[];
+  license: string;
+}
+
+export interface LocalFontSource {
+  kind: "local";
+  file: string;
+  format: "woff2" | "woff" | "otf" | "ttf";
+  sha256: string;
+  license: string;
+}
+
+export interface FontFaceContract {
+  role: FontRole;
+  family: string;
+  style: FontStyle;
+  weights: readonly FontWeight[];
+  source: SystemFontSource | LocalFontSource;
+}
+
 export interface ImageAsset {
   id: string;
   src: string;
@@ -8,6 +61,10 @@ export interface ImageAsset {
   position?: string;
   treatment?: "natural" | "mono" | "duotone";
   credit?: string;
+  mediaRole?: MediaRole;
+  mediaNature?: MediaNature;
+  productionStatus?: MediaProductionStatus;
+  presentation?: "frame" | "cutout" | "background";
 }
 
 export interface MotifPlacement {
@@ -19,6 +76,7 @@ export interface MotifPlacement {
 
 export interface MotifConfig {
   kind: "frame" | "orbit" | "grid" | "signal" | "asset" | "none";
+  derivation?: "prospect-derived" | "typographic-system" | "generic";
   density: "quiet" | "balanced" | "bold";
   strokeWidth: number;
   cornerRadius: number;
@@ -60,6 +118,7 @@ export interface BrandTheme {
     display: string;
     body: string;
     mono: string;
+    faces?: readonly FontFaceContract[];
   };
   motif: MotifConfig;
   logo: {
