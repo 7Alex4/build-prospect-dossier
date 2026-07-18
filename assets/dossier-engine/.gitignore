@@ -1,0 +1,10 @@
+node_modules/
+dist/
+rendered*/
+.corepack/
+.playwright-browsers/
+.pnpm-store/
+.test-pdf-*/
+.DS_Store
+*.log
+*.tgz

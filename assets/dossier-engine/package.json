@@ -1,0 +1,60 @@
+{
+  "name": "prospect-dossier-engine",
+  "version": "0.1.0",
+  "description": "Deterministic 2000x1414 prospect dossier renderer",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "main": "./dist/lib/dossier-engine.js",
+  "module": "./dist/lib/dossier-engine.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/lib/dossier-engine.js"
+    },
+    "./styles.css": "./dist/lib/dossier-engine.css"
+  },
+  "files": [
+    "dist/lib",
+    "dist/types",
+    "scripts",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "corepack pnpm typecheck && corepack pnpm test && corepack pnpm build && tsx scripts/package-contract-test.ts",
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build && vite build -c vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "prepack": "npm run build",
+    "test": "tsx scripts/test.ts",
+    "validate": "tsx scripts/validate.ts",
+    "preview": "tsx scripts/preview.ts",
+    "render": "tsx scripts/render.ts"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.15",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "playwright": "^1.54.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.6"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "packageManager": "pnpm@10.13.1"
+}

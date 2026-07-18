@@ -1,0 +1,70 @@
+.slide-background {
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.slide-background figcaption {
+  bottom: 90px;
+  opacity: .65;
+}
+
+.motif--asset {
+  inset: auto;
+  opacity: 1;
+}
+
+.motif--asset .motif-asset-image {
+  height: 100%;
+  width: 100%;
+}
+
+.motif--asset figcaption,
+.chapter-mark figcaption,
+.page-marker figcaption {
+  display: none;
+}
+
+.slide__running-header {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  left: 112px;
+  letter-spacing: .08em;
+  margin: 0;
+  opacity: .72;
+  position: absolute;
+  right: 112px;
+  text-transform: uppercase;
+  top: 62px;
+  z-index: 4;
+}
+
+.slide__running-header--center { text-align: center; }
+.slide__running-header--right { text-align: right; }
+.slide--signal .slide__running-header { opacity: 1; }
+
+.chapter-mark {
+  height: 48px;
+  left: 54px;
+  position: absolute;
+  top: 54px;
+  width: 48px;
+  z-index: 5;
+}
+
+.slide__footer--minimal {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.page-marker--asset {
+  display: block;
+  height: 42px;
+  transform-origin: center;
+  width: 42px;
+}
+
+.page-marker--asset .asset {
+  height: 42px;
+  width: 42px;
+}

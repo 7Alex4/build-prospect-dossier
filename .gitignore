@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+assets/dossier-engine/dist/
+rendered/
+rendered-*/
+coverage/
+.cache/
+.vite/
+.vite-temp/
+.playwright-browsers/
+.pnpm-store/
+.corepack/
+*.log

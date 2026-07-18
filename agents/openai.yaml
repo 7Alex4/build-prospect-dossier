@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prospect Dossier Factory"
+  short_description: "Dossiers de prospection premium en PNG"
+  default_prompt: "Utilisez $build-prospect-dossier pour créer un dossier de prospection stratégique complet à partir du nom d’une entreprise et d’un angle."

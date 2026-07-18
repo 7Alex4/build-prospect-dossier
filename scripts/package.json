@@ -1,0 +1,47 @@
+{
+  "name": "@nexaia/prospect-dossier-tools",
+  "version": "1.0.0",
+  "description": "Skill-local deterministic asset preparation and dossier output auditing tools.",
+  "type": "module",
+  "license": "MIT",
+  "private": true,
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "packageManager": "pnpm@11.9.0",
+  "bin": {
+    "audit-output": "./dist/audit-output.js",
+    "init-project": "./dist/init-project.js",
+    "prepare-logo": "./dist/prepare-logo.js",
+    "source-audit": "./dist/source-audit.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "audit-output": "tsx src/audit-output.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit && tsx --test test/**/*.test.ts && tsc -p tsconfig.build.json",
+    "init-project": "tsx src/init-project.ts",
+    "prepare-logo": "tsx src/prepare-logo.ts",
+    "source-audit": "tsx src/source-audit.ts",
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pdf-lib": "1.17.1",
+    "sharp": "0.34.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2"
+  }
+}

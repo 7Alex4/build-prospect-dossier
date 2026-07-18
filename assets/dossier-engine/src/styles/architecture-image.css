@@ -1,0 +1,60 @@
+.architecture-layout--image {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 1fr) 430px;
+}
+
+.architecture-layout--image .architecture-copy {
+  min-width: 0;
+}
+
+.architecture-layout--image .section-heading h1 {
+  font-size: 78px;
+  max-height: 156px;
+}
+
+.architecture-layout--image .section-heading .intro {
+  font-size: 25px;
+  max-width: 1080px;
+}
+
+.architecture-layout--image .architecture-map {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 48px;
+}
+
+.architecture-layout--image .architecture-node {
+  min-height: 286px;
+  padding: 24px;
+}
+
+.architecture-layout--image .architecture-node h2 {
+  font-size: 34px;
+  margin-top: 48px;
+  max-height: 70px;
+}
+
+.architecture-layout--image .architecture-node > p {
+  font-size: 18px;
+  margin-top: 18px;
+  max-height: 98px;
+}
+
+.architecture-layout--image .architecture-node .arrow {
+  display: none;
+}
+
+.architecture-layout--image .architecture-axis {
+  margin-top: 24px;
+}
+
+.architecture-layout--image .architecture-axis p {
+  font-size: 12px;
+}
+
+.architecture-image {
+  height: 100%;
+  min-height: 1050px;
+}

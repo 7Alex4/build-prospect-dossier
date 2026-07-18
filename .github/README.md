@@ -1,0 +1,149 @@
+# Build Prospect Dossier
+
+An evidence-led Codex skill and strict TypeScript production engine for premium prospecting dossiers.
+
+Give Codex a company name and, optionally, an angle or film ideas. The skill researches the company, separates facts from proposals, builds a strategic narrative, art-directs the dossier, renders numbered PNG pages and an A4 landscape PDF, then audits the complete delivery.
+
+The default output is 15 to 20 pages at 2000 x 1414 px. A 21 to 23 page format is reserved for justified full campaign proposals.
+
+## What it produces
+
+- a resolved brief and evidence register;
+- an explicit claim map for every substantive visible field;
+- a rights-aware asset ledger;
+- a strategic platform and page-by-page narrative;
+- local, editable strict TypeScript source;
+- numbered opaque sRGB PNG pages;
+- an A4 landscape PDF;
+- `render-report.json` with evidence and asset traceability;
+- a contact sheet and machine-readable audit report.
+
+## Core principles
+
+- Never invent company facts, dates, quotes, awards, capabilities or relationships.
+- Distinguish facts, observations, interpretations and creative proposals.
+- Treat official or provided media as origin information, not automatic permission.
+- Block unregistered, uncleared or scope-incompatible assets.
+- Keep generative imagery forbidden unless the user explicitly authorizes it.
+- Use one dominant idea per page and maintain a controlled density rhythm.
+- Require a complete final render. A draft or selected-page render cannot pass delivery audit.
+- Keep private source forensics and third-party assets outside the public skill.
+
+## Install
+
+Ask Codex to install this repository as the `build-prospect-dossier` skill, or clone it into your Codex skills directory:
+
+```bash
+git clone https://github.com/7Alex4/build-prospect-dossier.git \
+  "$CODEX_HOME/skills/build-prospect-dossier"
+```
+
+If `CODEX_HOME` is not configured, the usual personal location is `~/.codex/skills/build-prospect-dossier`.
+
+## Use
+
+Minimal prompt:
+
+```text
+Use $build-prospect-dossier to create a complete prospecting dossier for COMPANY.
+```
+
+With a fixed angle:
+
+```text
+Use $build-prospect-dossier for COMPANY.
+The angle is "ANGLE" and must remain fixed.
+Generative imagery is forbidden.
+Produce the complete PNG, PDF and editable-source delivery.
+```
+
+The skill begins without blocking questions when a company name is sufficient. It records missing information as assumptions or research tasks instead of inventing answers.
+
+## Repository structure
+
+| Path | Purpose |
+|---|---|
+| `SKILL.md` | Core agent contract and end-to-end workflow |
+| `references/` | Research, strategy, narrative, copy, visual direction, production and QA manuals |
+| `assets/dossier-engine/` | React and strict TypeScript renderer, validators and neutral fixture |
+| `scripts/` | Source audit, logo preparation, project scaffolding and output audit tools |
+| `agents/openai.yaml` | Codex skill interface metadata |
+
+## Start a dossier project
+
+Requirements:
+
+- Node.js 20.19 or newer;
+- pnpm through Corepack;
+- Chromium for Playwright rendering;
+- Poppler tools `pdfinfo` and `pdftoppm` for final PDF audit;
+- locally licensed fonts and approved local assets for production work.
+
+Initialize a clean project from the bundled engine:
+
+```bash
+cd scripts
+corepack pnpm install --frozen-lockfile
+node dist/init-project.js /absolute/path/to/new-dossier
+```
+
+The scaffold includes the brief, evidence register, claim map, asset ledger, research notes, strategy documents, source folders, output folders and a QA report.
+
+## Quality gates
+
+The engine validates:
+
+- stable ASCII kebab-case slide IDs;
+- exact claim-to-visible-field mappings;
+- verified or official-only evidence for factual claims;
+- explicit independent, approved or commissioned relationship labels;
+- safe contact links;
+- placeholder and forbidden-term scans across visible content and theme strings;
+- local storyboard imagery in final mode;
+- typed asset rights, origins and distribution scopes;
+- bounded image hydration and reuse;
+- final versus draft render semantics.
+
+The output auditor validates:
+
+- contiguous page numbering;
+- 2000 x 1414 opaque sRGB PNG pages;
+- A4 landscape PDF geometry and page count;
+- PDF page order and source hashes;
+- real Poppler raster comparison between PDF pages and ordered PNGs;
+- a full final `render-report.json` with no selection applied.
+
+## Development checks
+
+Utility tools:
+
+```bash
+cd scripts
+corepack pnpm install --frozen-lockfile
+corepack pnpm check
+```
+
+Renderer:
+
+```bash
+cd assets/dossier-engine
+corepack pnpm install --frozen-lockfile
+corepack pnpm check
+corepack pnpm validate src/content/example.ts
+```
+
+`pnpm check` covers strict type-checking, validation tests, library and application builds, and a strict NodeNext package-consumer contract.
+
+## Publication boundary
+
+This repository contains an original generalized method, neutral fixtures and reusable code. It contains no real client dossier, client copy, photograph, font, logo or private source analysis. A new prospect job must acquire and document its own current evidence, permissions and assets.
+
+See `NOTICE` for the complete boundary.
+
+## Known limitation
+
+The delivered PDF intentionally embeds the audited PNG pages. It is visually deterministic, but its text is not selectable and the PDF is not tagged for screen readers. The numbered PNGs and editable source remain part of the complete delivery.
+
+## License
+
+MIT. See `LICENSE`.

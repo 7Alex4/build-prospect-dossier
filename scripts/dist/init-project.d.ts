@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+export declare const INIT_PROJECT_HELP = "init-project <target-directory> [options]\n\nCopies the sibling assets/dossier-engine template and creates a production job with:\nbrief.yaml, evidence and asset ledgers, a claim map, observations, source notes,\nstrategy documents, QA report, raw/processed asset folders and output/slides.\n\nTemplate exclusions: caches, dist, rendered outputs, node_modules and browser binaries.\nExisting workflow documents are preserved when --force is used.\n\nOptions:\n  --force                Allow a non-empty target explicitly\n  --template <directory> Override the sibling dossier-engine template\n  --help                 Show this help\n";
+export declare function defaultTemplateDirectory(importMetaUrl?: string): string;
+export declare function initProjectCli(arguments_: readonly string[]): Promise<number>;

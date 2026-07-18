@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { optionFlag, optionValue, parseCli, requireSinglePositional } from "./cli.js";
+import { errorMessage, isMainModule } from "./core.js";
+import { initProject } from "./project-scaffold.js";
+
+export const INIT_PROJECT_HELP = `init-project <target-directory> [options]
+
+Copies the sibling assets/dossier-engine template and creates a production job with:
+brief.yaml, evidence and asset ledgers, a claim map, observations, source notes,
+strategy documents, QA report, raw/processed asset folders and output/slides.
+
+Template exclusions: caches, dist, rendered outputs, node_modules and browser binaries.
+Existing workflow documents are preserved when --force is used.
+
+Options:
+  --force                Allow a non-empty target explicitly
+  --template <directory> Override the sibling dossier-engine template
+  --help                 Show this help
+`;
+
+export function defaultTemplateDirectory(importMetaUrl = import.meta.url): string {
+  return path.resolve(path.dirname(fileURLToPath(importMetaUrl)), "../../assets/dossier-engine");
+}
+
+export async function initProjectCli(arguments_: readonly string[]): Promise<number> {
+  try {
+    const parsed = parseCli(arguments_, { force: "boolean", help: "boolean", template: "value" });
+    if (optionFlag(parsed.options, "help")) {
+      process.stdout.write(INIT_PROJECT_HELP);
+      return 0;
+    }
+    const targetDirectory = requireSinglePositional(parsed.positionals, "init-project <target-directory> [options]");
+    const result = await initProject({
+      targetDirectory,
+      templateDirectory: optionValue(parsed.options, "template") ?? defaultTemplateDirectory(),
+      force: optionFlag(parsed.options, "force"),
+    });
+    process.stdout.write(`Initialised ${result.targetDirectory} with ${result.copiedTemplateFiles} engine file(s) and ${result.createdWorkflowFiles.length} workflow file(s).\n`);
+    return 0;
+  } catch (error) {
+    process.stderr.write(`init-project: ${errorMessage(error)}\n`);
+    return 1;
+  }
+}
+
+if (isMainModule(import.meta.url)) {
+  process.exitCode = await initProjectCli(process.argv.slice(2));
+}

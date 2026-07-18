@@ -1,0 +1,244 @@
+.proof-layout--image .proof-body,
+.risk-layout--image .risk-body,
+.opportunity-layout--image .opportunity-body,
+.timeline-layout--image .timeline-body {
+  display: grid;
+  gap: 44px;
+  margin-top: 54px;
+}
+
+.proof-layout--image .proof-body {
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, .55fr);
+}
+
+.proof-layout--image .metrics-grid,
+.risk-layout--image .risk-list,
+.opportunity-layout--image .shift-grid,
+.timeline-layout--image .timeline-track {
+  margin-top: 0;
+}
+
+.proof-image,
+.risk-image,
+.opportunity-image,
+.timeline-image {
+  height: 650px;
+}
+
+.proof-layout--image .metric {
+  min-height: 250px;
+}
+
+.proof-layout--image .metric strong {
+  font-size: 92px;
+}
+
+.proof-layout--image .proof-quote {
+  grid-template-columns: 1fr;
+  margin-top: 34px;
+}
+
+.proof-layout--image .proof-quote cite {
+  margin-top: 8px;
+}
+
+.metrics-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.metrics-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.metrics-grid--5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.metrics-grid--4 .metric strong,
+.metrics-grid--5 .metric strong {
+  font-size: 78px;
+}
+
+.metrics-grid--4 .metric h2,
+.metrics-grid--5 .metric h2 {
+  font-size: 25px;
+}
+
+.proof-layout--points-only .proof-points {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  margin-top: 58px;
+}
+
+.proof-layout--points-only .proof-points li {
+  border: 0;
+  border-top: 1px solid currentColor;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-height: 98px;
+  padding: 22px 0;
+  text-transform: none;
+}
+
+.risk-layout--image .risk-body {
+  grid-template-columns: minmax(0, 1.42fr) minmax(360px, .58fr);
+}
+
+.risk-layout--image .risk-row {
+  gap: 24px;
+  grid-template-columns: 78px 260px 1fr 94px;
+  min-height: 170px;
+}
+
+.risk-layout--image .risk-row h2 {
+  font-size: 31px;
+}
+
+.risk-layout--image .risk-row > p {
+  font-size: 19px;
+}
+
+.risk-layout--image .counterpoint {
+  font-size: 25px;
+  margin-top: 28px;
+}
+
+.opportunity-layout--image .opportunity-body {
+  grid-template-columns: minmax(0, 1.48fr) minmax(340px, .52fr);
+}
+
+.opportunity-layout--image .shift-card {
+  min-height: 520px;
+  padding: 24px;
+}
+
+.opportunity-layout--image .shift-change h2 {
+  font-size: 38px;
+}
+
+.opportunity-layout--image .shift-implication {
+  font-size: 17px;
+}
+
+.platform-layout--image .platform-system {
+  grid-template-columns: .58fr 1fr .52fr;
+}
+
+.platform-layout--image .platform-core {
+  padding: 38px;
+}
+
+.platform-layout--image .platform-core h2 {
+  font-size: 48px;
+  margin-top: 58px;
+}
+
+.platform-layout--image .platform-layer > div:last-child {
+  grid-template-columns: 210px 1fr;
+}
+
+.platform-image {
+  height: 510px;
+}
+
+.timeline-layout--image .timeline-body {
+  grid-template-columns: minmax(340px, .58fr) minmax(0, 1.42fr);
+}
+
+.timeline-layout--image .timeline-track {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.timeline-layout--image .timeline-step {
+  min-height: 315px;
+  padding: 22px 24px;
+}
+
+.timeline-layout--image .timeline-step::before {
+  top: 76px;
+}
+
+.timeline-layout--image .timeline-step h2 {
+  font-size: 34px;
+  margin-top: 44px;
+}
+
+.timeline-layout--image .timeline-step > p {
+  font-size: 17px;
+  margin-top: 18px;
+  max-height: 72px;
+}
+
+.timeline-layout--image .timeline-step > strong {
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+}
+
+.production-layout--image .production-grid {
+  gap: 34px;
+  grid-template-columns: .58fr 1.16fr .76fr;
+}
+
+.production-image {
+  height: 505px;
+}
+
+.production-layout--image .workstream {
+  gap: 18px;
+  grid-template-columns: 150px 180px 1fr;
+}
+
+.production-layout--image .workstream .index-label {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 48px 1fr;
+}
+
+.production-layout--image .workstream .index-label p {
+  font-size: 9px;
+  line-height: 1.2;
+  padding-top: 8px;
+}
+
+.production-layout--image .workstream h2 {
+  font-size: 29px;
+}
+
+.production-layout--image .workstream > p {
+  font-size: 17px;
+}
+
+.production-layout--image .deliverables {
+  padding: 34px;
+}
+
+.thankyou-layout--image.thankyou-layout--contact {
+  gap: 48px;
+  grid-template-columns: 1.06fr .5fr .54fr;
+}
+
+.thankyou-layout--image:not(.thankyou-layout--contact) {
+  gap: 72px;
+  grid-template-columns: 1.2fr .8fr;
+}
+
+.thankyou-image {
+  align-self: end;
+  height: 620px;
+}
+
+.thankyou-layout--image .thankyou-main h1 {
+  font-size: 104px;
+}
+
+.thankyou-layout--solo {
+  grid-template-columns: 1fr;
+}
+
+.thankyou-layout--solo .thankyou-main {
+  max-width: 1380px;
+}

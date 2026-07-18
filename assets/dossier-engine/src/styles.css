@@ -1,0 +1,12 @@
+@import "./styles/base.css";
+@import "./styles/primitives.css";
+@import "./styles/decor.css";
+@import "./styles/structural.css";
+@import "./styles/architecture-image.css";
+@import "./styles/strategy.css";
+@import "./styles/planning.css";
+@import "./styles/film.css";
+@import "./styles/text-compositions.css";
+@import "./styles/storyboard-contract.css";
+@import "./styles/closing.css";
+@import "./styles/image-variants.css";
