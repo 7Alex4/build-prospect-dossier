@@ -43,7 +43,11 @@ export function Lockup({ slide }: { slide: LockupSlide }) {
   const signature = [slide.studio, slide.legal].filter((item): item is string => Boolean(item));
   return (
     <div className={`lockup-layout ${silent ? "lockup-layout--silent" : ""}`}>
-      {slide.mark ? <AssetImage asset={slide.mark} className="lockup-mark" /> : <span className="lockup-symbol" />}
+      {slide.mark ? (
+        <AssetImage asset={slide.mark} className="lockup-mark" />
+      ) : (
+        <span className="lockup-wordmark">{slide.textMark ?? slide.studio ?? slide.client}</span>
+      )}
       <p className="lockup-client">{slide.client}</p>
       {slide.title ? <h1 data-fit>{slide.title}</h1> : null}
       {slide.statement ? <p className="lockup-statement" data-fit>{slide.statement}</p> : null}

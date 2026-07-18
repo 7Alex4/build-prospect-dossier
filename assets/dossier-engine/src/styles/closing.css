@@ -78,23 +78,11 @@
   text-align: center;
 }
 
-.lockup-symbol {
-  border: 2px solid currentColor;
-  display: block;
-  height: 116px;
-  position: relative;
-  transform: rotate(45deg);
-  width: 116px;
-}
-
-.lockup-symbol::after {
-  background: var(--accent);
-  content: "";
-  height: 42px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 42px;
+.lockup-wordmark {
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -.04em;
 }
 
 .lockup-mark {
@@ -148,11 +136,6 @@
   max-width: 860px;
   opacity: .7;
   position: absolute;
-}
-
-.lockup-layout--silent .lockup-symbol {
-  height: 152px;
-  width: 152px;
 }
 
 .lockup-layout--silent .lockup-client {

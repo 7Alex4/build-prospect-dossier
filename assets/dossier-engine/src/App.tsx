@@ -30,7 +30,14 @@ export function App({ dossier }: { dossier: Dossier }) {
   const deckStyle = { ...themeStyle(dossier.theme), transform: `scale(${scale})` };
   return (
     <div className="preview-shell" style={shellStyle}>
-      <main className="deck" style={deckStyle} data-dossier-title={dossier.meta.title} lang={dossier.meta.language}>
+      <main
+        className="deck"
+        data-dossier-stage={dossier.meta.stage}
+        data-dossier-title={dossier.meta.title}
+        data-framework-profile={dossier.meta.frameworkProfile}
+        lang={dossier.meta.language}
+        style={deckStyle}
+      >
         {dossier.slides.map((slide, index) => (
           <SlideRenderer
             index={index}

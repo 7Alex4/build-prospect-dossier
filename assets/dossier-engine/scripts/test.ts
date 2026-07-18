@@ -20,6 +20,7 @@ import "./governance-test";
 import "./asset-test";
 import "./input-test";
 import "./structural-test";
+import "./black-flower-test";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);

@@ -1,5 +1,6 @@
 import type { Dossier } from "./types.js";
 import { validateAssetGovernance } from "./asset-validation";
+import { validateBlackFlowerProfile } from "./black-flower-validation";
 import { validateContentClaims } from "./claim-validation";
 import { validateGovernance } from "./governance-validation";
 import { validateNestedDossier } from "./validation-nested";
@@ -266,6 +267,7 @@ export function validateDossier(value: unknown): ValidationIssue[] {
   validateNestedDossier(value, issues);
   validateGovernance(value, issues);
   validateAssetGovernance(value, issues);
+  validateBlackFlowerProfile(value, issues);
   validateContentClaims(value, issues);
   validateText(value, "", "", issues);
   return issues;

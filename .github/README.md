@@ -1,8 +1,8 @@
-# Build Prospect Dossier
+# Black Flower Prospect Dossier Framework
 
-An evidence-led Codex skill and strict TypeScript production engine for premium prospecting dossiers.
+An open-source Black Flower framework and strict TypeScript production engine for evidence-led, image-first premium prospecting dossiers.
 
-Give Codex a company name and, optionally, an angle or film ideas. The skill researches the company, separates facts from proposals, builds a strategic narrative, art-directs the dossier, renders numbered PNG pages and an A4 landscape PDF, then audits the complete delivery.
+Give Codex a company name and, optionally, an angle or film ideas. The skill researches the company, separates facts from proposals, casts meaningful real and authorized generated imagery, builds the Black Flower narrative, renders numbered PNG pages and an A4 landscape PDF, then audits the complete delivery.
 
 The default output is 15 to 20 pages at 2000 x 1414 px. A 21 to 23 page format is reserved for justified full campaign proposals.
 
@@ -11,6 +11,7 @@ The default output is 15 to 20 pages at 2000 x 1414 px. A 21 to 23 page format i
 - a resolved brief and evidence register;
 - an explicit claim map for every substantive visible field;
 - a rights-aware asset ledger;
+- an explicit visual-intent and image-cadence plan;
 - a strategic platform and page-by-page narrative;
 - local, editable strict TypeScript source;
 - numbered opaque sRGB PNG pages;
@@ -24,7 +25,10 @@ The default output is 15 to 20 pages at 2000 x 1414 px. A 21 to 23 page format i
 - Distinguish facts, observations, interpretations and creative proposals.
 - Treat official or provided media as origin information, not automatic permission.
 - Block unregistered, uncleared or scope-incompatible assets.
-- Keep generative imagery forbidden unless the user explicitly authorizes it.
+- Keep 45–65% of pages image-led, target 55%, with at least 60% real or documentary visual pages.
+- Use no more than two true diagrams and never hide missing imagery behind cards, nodes, arrows or abstract geometry.
+- Use authorized generated imagery for creative projection only, never as product, person, archive or company evidence.
+- Keep `Black Flower Creative House` as canonical author and `BlackFlower` as the visible signature. Nexaia is the technical maintainer, not the rendered author.
 - Use one dominant idea per page and maintain a controlled density rhythm.
 - Require a complete final render. A draft or selected-page render cannot pass delivery audit.
 - Keep private source forensics and third-party assets outside the public skill.
@@ -48,7 +52,7 @@ Minimal prompt:
 Use $build-prospect-dossier to create a complete prospecting dossier for COMPANY.
 ```
 
-With a fixed angle:
+Neutral or external use with a fixed angle:
 
 ```text
 Use $build-prospect-dossier for COMPANY.
@@ -58,6 +62,15 @@ Produce the complete PNG, PDF and editable-source delivery.
 ```
 
 The skill begins without blocking questions when a company name is sufficient. It records missing information as assumptions or research tasks instead of inventing answers.
+
+Black Flower default for Alex:
+
+```text
+Use $build-prospect-dossier for COMPANY with the Black Flower profile.
+The angle is "ANGLE".
+Use meaningful official, documentary and licensed images. Generated campaign scenes and storyboards are authorized, but never as evidence.
+Produce the complete PNG, PDF and editable-source delivery.
+```
 
 ## Repository structure
 
@@ -103,6 +116,11 @@ The engine validates:
 - typed asset rights, origins and distribution scopes;
 - bounded image hydration and reuse;
 - final versus draft render semantics.
+- Black Flower authorship and running-header identity;
+- 45–65% image-led cadence, real-asset share and generated-asset ceiling;
+- maximum diagram count and maximum text/system run;
+- mandatory media on risk, route, priority activation, storyboard and production pages;
+- rejection of generic final motifs and vector fallbacks.
 
 The output auditor validates:
 
@@ -136,7 +154,7 @@ corepack pnpm validate src/content/example.ts
 
 ## Publication boundary
 
-This repository contains an original generalized method, neutral fixtures and reusable code. It contains no real client dossier, client copy, photograph, font, logo or private source analysis. A new prospect job must acquire and document its own current evidence, permissions and assets.
+This repository contains an original Black Flower method, a neutral compatibility profile, redistributable fixtures and reusable code. It contains no real prospect dossier, prospect copy, third-party photograph, proprietary font, private Black Flower logo or private source analysis. A new prospect job must acquire and document its own current evidence, permissions and assets.
 
 See `NOTICE` for the complete boundary.
 

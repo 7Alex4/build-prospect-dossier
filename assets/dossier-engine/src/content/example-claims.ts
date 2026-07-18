@@ -62,7 +62,7 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
   "10-film-hero": [
     proposal("title"), proposal("conceptName"), proposal("logline"), proposal("format"),
     proposal("duration"), proposal("toneWords[0]"), proposal("toneWords[1]"),
-    proposal("toneWords[2]"), proposal("toneWords[3]"),
+    proposal("toneWords[2]"), proposal("toneWords[3]"), assetFact("image.credit"),
   ],
   "11-storyboard-hero": [
     proposal("title"), proposal("frames[0].beat"), proposal("frames[0].visual"),
@@ -75,7 +75,7 @@ const specs: Readonly<Record<string, readonly ClaimSpec[]>> = {
   "12-film-serie": [
     proposal("title"), proposal("conceptName"), proposal("logline"), proposal("format"),
     proposal("duration"), proposal("toneWords[0]"), proposal("toneWords[1]"),
-    proposal("toneWords[2]"), proposal("toneWords[3]"),
+    proposal("toneWords[2]"), proposal("toneWords[3]"), assetFact("image.credit"),
   ],
   "13-storyboard-serie": [
     proposal("title"), proposal("duration"), proposal("frames[0].beat"), proposal("frames[0].visual"),

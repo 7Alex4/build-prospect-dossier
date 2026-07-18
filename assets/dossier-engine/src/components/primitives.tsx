@@ -18,6 +18,7 @@ export function AssetImage({ asset, className = "", decorative = false }: AssetI
       className={`asset ${className}`}
       data-fit
       data-treatment={asset.treatment ?? "natural"}
+      data-presentation={asset.presentation ?? "frame"}
     >
       <img
         alt={decorative ? "" : asset.alt}

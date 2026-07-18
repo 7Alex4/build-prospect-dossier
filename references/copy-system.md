@@ -274,7 +274,7 @@ Do not introduce new strategy on this page.
 
 ### Final lockup
 
-Use marks and silence, but keep the relationship truthful. Studio identity is optional. For an independent proposal without one, use `Proposition indépendante pour [prospect]`. When a verified studio identity exists, use `Proposition indépendante pour [prospect], par [studio]`. Do not imply that the prospect commissioned, approved or partnered on the work. For an approved or commissioned dossier, use the agreed attribution.
+Use marks and silence, but keep the relationship truthful. In the Black Flower profile, studio identity is fixed: use `Proposition indépendante pour [prospect], par Black Flower Creative House` or the agreed approved/commissioned attribution. Use `BlackFlower` as the compact visible signature. Studio identity is optional only in a neutral profile. Do not imply that the prospect commissioned, approved or partnered on the work.
 
 Do not add a CTA, paragraph, URL wall or new tagline.
 

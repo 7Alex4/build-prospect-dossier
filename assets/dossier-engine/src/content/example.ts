@@ -14,6 +14,7 @@ export const exampleDossier = {
   meta: {
     title: "Un système de récit pour Prospect Démo",
     client: "Prospect Démo",
+    frameworkProfile: "neutral",
     studio: "Studio Démo",
     language: "fr-CH",
     version: "1.0",
@@ -172,6 +173,7 @@ export const exampleDossier = {
       format: "Film de marque",
       duration: "75 secondes",
       toneWords: ["Tactile", "Tendu", "Humain", "Précis"],
+      image: neutralProofImage,
     },
     {
       id: "11-storyboard-hero",
@@ -196,6 +198,7 @@ export const exampleDossier = {
       format: "Série verticale et horizontale",
       duration: "6 × 35 secondes",
       toneWords: ["Direct", "Documentaire", "Sériel", "Utile"],
+      image: neutralRiskImage,
     },
     {
       id: "13-storyboard-serie",

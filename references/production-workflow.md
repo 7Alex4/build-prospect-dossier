@@ -183,7 +183,7 @@ The dossier is a typed object satisfying `Dossier`. Keep factual and editorial c
 
 The content has four levels:
 
-1. `meta`: client, optional studio, language, version, date, distribution, relationship, generative-asset policy and required `stage`;
+1. `meta`: client, framework profile, required Black Flower identity or optional neutral studio, language, version, date, distribution, relationship, generative-asset policy and required `stage`;
 2. `evidence`: typed registry of evidence IDs, classes and usable statuses;
 3. `theme`: palette, typography, logo, motif and marker behavior;
 4. `slides`: ordered discriminated union of page families, including typed claim metadata.
@@ -214,7 +214,7 @@ The path must resolve to a client-visible claim target. `ClaimRef.text` must mat
 
 Assign `fact`, `quote`, `observation`, `interpretation` or `proposal` field by field. Never create a general helper that marks every visible field as `proposal` to satisfy coverage. Proposal status is a semantic assertion, not a fallback.
 
-Studio identity is optional. If it is absent, omit the studio mark, signature and empty layout slot. An `independent-proposal` still requires explicit cover and lockup wording such as `Proposition indépendante pour [prospect]`. When a studio is supplied, the same label must also name it.
+Studio identity is required in the Black Flower profile and fixed to `Black Flower Creative House`, with visible signature `BlackFlower`. In a neutral profile it is optional; if absent, omit its mark, signature and empty layout slot. An `independent-proposal` always requires truthful cover and lockup wording.
 
 ### Input trust boundary
 
@@ -233,7 +233,9 @@ The engine supports a measured prospect-specific grammar:
 - numeric, absent or rotating-asset page marker with deterministic angle progression;
 - optional per-slide chapter mark.
 
-Use the asset motif, backgrounds and marker only when they derive from real prospect evidence. The built-in frame, orbit, grid and signal motifs are neutral development fixtures, not default art direction for a client dossier.
+For `frameworkProfile: "black-flower"`, the stable authorship frame is mandatory: canonical studio `Black Flower Creative House`, visible signature `BlackFlower`, running header at top left and pagination at bottom left. Nexaia remains a technical maintainer only and must not appear on the rendered dossier.
+
+Use the asset motif, backgrounds and marker only when they derive from real prospect evidence. The built-in frame, orbit, grid and signal motifs are neutral development fixtures, not default art direction for a client dossier. They are forbidden in a final Black Flower dossier. Use an approved prospect-derived asset motif or no motif.
 
 ## 6. Map page roles to component families
 
@@ -256,7 +258,9 @@ Choose a family from its rhetorical function, not its appearance.
 | `production` | production logic, deliverables and constraints |
 | `references` | verified, linked and relevant precedent evidence |
 | `thank-you` | recap, invitation and optional contact |
-| `lockup` | silent close with truthful prospect attribution and optional studio attribution |
+| `lockup` | silent close with truthful prospect attribution and required Black Flower authorship, or optional studio attribution in neutral mode |
+
+Every Black Flower slide also declares an explicit visual intent. Image-led routes, risk, priority activation, storyboard and production require approved local media in final mode. A missing asset must fail validation instead of producing a graphic fallback.
 
 If no family matches the rhetorical job, create a new typed family. Do not force content into a near match merely to avoid implementation work.
 
@@ -285,7 +289,11 @@ An image asset must include useful alternative text and may define:
 - `position`: focal point;
 - `treatment`: natural, monochrome or duotone;
 - `credit`: visible credit when required;
+- `presentation`: `frame`, `cutout` or `background`;
+- `mediaRole`, `mediaNature` and `productionStatus` in the Black Flower profile;
 - a local `src` backed by an approved asset-ledger row.
+
+Film routes may define `productCutout` separately from the scene image. Creative-method steps may define one image per step. Use these typed fields instead of CSS-only backgrounds so asset governance and cadence validation can see them.
 
 Mirror the job ledger in the typed root `assets` registry. Each record requires a unique `id`, either an exact `src` or a `ledgerId`, an enumerated origin, a nonempty `rightsBasis`, a rights `status` and `allowedDistributionScopes`. Map the files as follows:
 

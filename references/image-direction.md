@@ -26,10 +26,10 @@ Assign exactly one primary role to every image.
 | Heritage proof | Support a historical or distinctive code | Verified archive or institution |
 | Product proof | Show the exact object or feature discussed | Official packshot, macro or screenshot |
 | Human proof | Give a verified person and role presence | Official portrait or provided portrait |
-| Concept scene | Dramatize a specific tension or route | Licensed editorial/stock or provided production still |
+| Concept scene | Dramatize a specific tension or route | Licensed editorial/stock, provided still or authorized generated scene |
 | Cultural shorthand | Make a risk or familiar behavior instantly legible | Properly licensed or reference-cleared cultural image |
 | Sequence proof | Show timing, mechanism or execution detail | Storyboard, prototype, wireframe or frame strip |
-| Studio proof | Demonstrate relevant prior capability | Verified studio project asset |
+| Studio proof | Demonstrate relevant prior capability or Black Flower production presence | Verified studio project asset or approved portrait |
 
 Do not assign `decoration` as a role.
 
@@ -42,8 +42,9 @@ Use sources in this discovery order, then clear each retained asset for the decl
 3. Official social or video asset with recorded URL and date.
 4. Public institution, museum or documented archive.
 5. Licensed editorial or stock image.
-6. A new diagram, typographic scene or simple illustration created for the argument.
-7. Generative imagery only when explicitly requested.
+6. Authorized generated campaign scene, film territory, moodboard or storyboard.
+7. Original Black Flower drawing, collage or material experiment.
+8. A diagram only when it explains a real relation, sequence or quantity better than an image and a sentence.
 
 Keep the highest-resolution original in `assets/raw/`. Put processed derivatives in `assets/processed/`. Record provenance, rights basis and distribution scope separately.
 
@@ -69,6 +70,8 @@ Before searching, write one entry per media page:
 ```
 
 Search for the subject and action, not for adjectives such as `premium`, `cinematic` or `luxury` alone.
+
+In `strategy/page-map.md`, also record the page's `visualIntent`, composition family and whether the image counts as argumentative media. Plan the entire contact sheet before layout. A Black Flower dossier must land between 45% and 65% image-led pages, target 55%.
 
 ## 4. Selection score
 
@@ -149,6 +152,7 @@ Use rarely. A cultural image may clarify a risk, boredom, predictability or fami
 - State what was delivered and why it matters here.
 - Use only projects the studio can substantiate.
 - Prefer one clear thumbnail or direct proof over a wall of logos.
+- A production page requires a real approved Black Flower portrait or verifiable production proof. A generic biography block does not replace it.
 
 ### Storyboards
 
@@ -186,17 +190,21 @@ Use rarely. A cultural image may clarify a risk, boredom, predictability or fami
 - Prefer unframed images or one quiet consistent radius.
 - Avoid device mockups, drop shadows and glass cards unless the source brand uses them.
 - Let product cutouts overlap only when the relation is meaningful and edges remain clean.
+- Set media presentation explicitly: `frame` for photographic fields, `cutout` for transparent products, `background` only for a true full-field scene.
+- For a route, use a licensed or generated `frame` scene plus the exact approved `cutout` product. Keep the cutout on `contain`, allow visible overflow and overlap roughly 4–10% of the canvas width.
 
 ### Diagrams and illustrations
 
-- Use them when a system or progression is clearer than a photograph.
+- Use them only when a real system, relation, sequence or quantity is clearer than a photograph and a sentence.
 - Derive line, number and icon language from the current brand.
 - Keep icons consistent in stroke and scale.
 - Do not use random icon libraries to fill space.
+- In the Black Flower profile, use no more than two primarily diagrammatic pages.
+- Never use a diagram as the main visual for a risk, creative route, priority activation or production page.
 
 ## 7. Generative imagery policy
 
-Default: no generative imagery.
+Black Flower default for Alex: generative imagery is authorized for creative projection. Neutral open-source default: no generative imagery without explicit authorization.
 
 Use generative imagery only when the user explicitly authorizes it and when no real, official, licensed or designed alternative can achieve the necessary concept. If authorized:
 
@@ -207,6 +215,14 @@ Use generative imagery only when the user explicitly authorizes it and when no r
 - inspect hands, text, reflections, geometry, product accuracy and brand marks;
 - use the image as concept material, never as documentary proof;
 - keep a human-review flag before client delivery.
+
+For Black Flower campaign work:
+
+- generate scenes, routes, moodboards and storyboard frames, never complete slide layouts;
+- if an exact product must appear, generate the world first and composite the real approved product cutout;
+- keep generated visual pages below 40% unless the brief is explicitly concept-art-led;
+- lock casting, lens, light, grain and palette across a sequence;
+- reject synthetic beauty that performs no narrative work.
 
 ## 8. Rejection criteria
 
@@ -223,4 +239,6 @@ Reject an image when:
 - it looks synthetic when the brief requests non-generative imagery;
 - it depicts a person whose identity or role is uncertain;
 - it creates legal, reputational or cultural risk disproportionate to its value;
-- a simple typographic or diagrammatic composition would be more honest and effective.
+- it exists mainly to decorate a card, grid, arrow system or pseudo-interface;
+- it cannot remain recognizable and useful at contact-sheet size;
+- another generic image could replace it without changing the argument.

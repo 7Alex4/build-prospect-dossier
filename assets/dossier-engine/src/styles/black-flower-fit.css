@@ -1,0 +1,26 @@
+.deck[data-framework-profile="black-flower"] .cover-relationship {
+  max-height: 68px;
+}
+
+.deck[data-framework-profile="black-flower"] .story-copy > span,
+.deck[data-framework-profile="black-flower"] .storyboard-grid--dense .story-copy > span {
+  max-height: 52px;
+}
+
+.deck[data-framework-profile="black-flower"] .reference > p {
+  max-height: 104px;
+}
+
+.deck[data-framework-profile="black-flower"] .lockup-relationship {
+  max-height: 72px;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-relationship,
+.deck[data-framework-profile="black-flower"] .film-format span {
+  font-family: var(--font-body);
+}
+
+.deck[data-framework-profile="black-flower"] .storyboard-duration {
+  border: 0;
+  padding: 0;
+}

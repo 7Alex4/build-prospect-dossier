@@ -17,6 +17,7 @@ export function FilmConcept({ slide }: { slide: FilmConceptSlide }) {
     <div className="film-layout">
       <div className="film-visual">
         {slide.image ? <AssetImage asset={slide.image} /> : <FilmTextVisual slide={slide} />}
+        {slide.productCutout ? <AssetImage asset={slide.productCutout} className="film-product-cutout" /> : null}
         <div className="film-format">
           <span>{slide.format}</span>
           <strong>{slide.duration}</strong>

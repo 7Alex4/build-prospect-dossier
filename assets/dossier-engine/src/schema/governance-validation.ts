@@ -37,6 +37,7 @@ function validWebUrl(value: string): boolean {
 function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord | undefined {
   if (!isRecord(meta)) return undefined;
   const enums: ReadonlyArray<readonly [string, readonly string[]]> = [
+    ["frameworkProfile", ["black-flower", "neutral"]],
     ["distributionMode", ["private-prospecting", "client-project", "public"]],
     ["relationshipStatus", ["independent-proposal", "client-approved", "commissioned"]],
     ["generativeAssets", ["forbidden", "authorized"]],
@@ -49,6 +50,18 @@ function validateMeta(meta: unknown, issues: ValidationIssue[]): UnknownRecord |
   });
   if (meta.studio !== undefined && !nonEmpty(meta.studio)) {
     error(issues, "governance-text", "meta.studio", "Nom de studio non vide requis lorsqu'il est fourni.");
+  }
+  if (meta.studioIdentity !== undefined) {
+    const identity = meta.studioIdentity;
+    if (!isRecord(identity)) {
+      error(issues, "studio-identity-shape", "meta.studioIdentity", "Objet d'identité studio requis.");
+    } else {
+      ["canonicalName", "signature"].forEach((key) => {
+        if (!nonEmpty(identity[key])) {
+          error(issues, "studio-identity-text", `meta.studioIdentity.${key}`, "Texte non vide requis.");
+        }
+      });
+    }
   }
   if (meta.forbiddenClientTerms !== undefined) {
     if (!Array.isArray(meta.forbiddenClientTerms)) {

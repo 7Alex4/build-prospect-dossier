@@ -46,23 +46,6 @@ export function Proof({ slide }: { slide: ProofSlide }) {
   );
 }
 
-function Severity({ level }: { level: 1 | 2 | 3 }) {
-  return (
-    <span
-      aria-label={`Sévérité ${level} sur 3`}
-      aria-valuemax={3}
-      aria-valuemin={1}
-      aria-valuenow={level}
-      className="severity"
-      role="meter"
-    >
-      {[1, 2, 3].map((step) => (
-        <i aria-hidden="true" className={step <= level ? "is-active" : ""} key={step} />
-      ))}
-    </span>
-  );
-}
-
 export function Risk({ slide }: { slide: RiskSlide }) {
   return (
     <div className={`risk-layout ${slide.image ? "risk-layout--image" : ""}`}>
@@ -71,11 +54,10 @@ export function Risk({ slide }: { slide: RiskSlide }) {
         <div className="risk-main">
           <div className="risk-list">
             {slide.risks.map((risk, index) => (
-              <article className="risk-row" key={risk.label}>
+              <article className="risk-row" data-severity={risk.severity} key={risk.label}>
                 <IndexLabel index={index + 1} />
                 <h2 data-fit>{risk.label}</h2>
                 <p data-fit>{risk.consequence}</p>
-                <Severity level={risk.severity} />
               </article>
             ))}
           </div>

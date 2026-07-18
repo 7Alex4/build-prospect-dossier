@@ -37,8 +37,8 @@ export async function createDossierPdf(
   pdf.setTitle(dossier.meta.title);
   if (dossier.meta.studio) pdf.setAuthor(dossier.meta.studio);
   pdf.setSubject(`Dossier pour ${dossier.meta.client}`);
-  pdf.setCreator("Prospect Dossier Engine");
-  pdf.setProducer("Prospect Dossier Engine");
+  pdf.setCreator("Black Flower Prospect Dossier Engine");
+  pdf.setProducer("Black Flower Prospect Dossier Engine");
   const fixedDate = new Date("2000-01-01T00:00:00.000Z");
   pdf.setCreationDate(fixedDate);
   pdf.setModificationDate(fixedDate);

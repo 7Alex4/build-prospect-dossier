@@ -1,5 +1,7 @@
 import type { ValidationIssue } from "./validation";
 import { validateContact } from "./contact-validation";
+import { validateImageShape as image } from "./image-shape-validation";
+import { compositionFamilies } from "./profile-types";
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -61,19 +63,6 @@ function stringList(value: unknown, path: string, issues: ValidationIssue[]): vo
   });
 }
 
-function image(value: unknown, path: string, issues: ValidationIssue[]): void {
-  if (value === undefined) return;
-  if (!isRecord(value)) {
-    add(issues, "image-shape", path, "Objet image requis.");
-    return;
-  }
-  strings(value, ["src", "alt"], path, issues);
-  if (value.fit !== undefined) allowed(value.fit, ["cover", "contain"], `${path}.fit`, issues);
-  if (value.treatment !== undefined) {
-    allowed(value.treatment, ["natural", "mono", "duotone"], `${path}.treatment`, issues);
-  }
-}
-
 function requiredImage(value: unknown, path: string, issues: ValidationIssue[]): void {
   if (value === undefined) {
     add(issues, "image-required", path, "Image requise.");
@@ -104,6 +93,14 @@ function theme(value: unknown, issues: ValidationIssue[]): void {
   } else add(issues, "theme-shape", "theme.typography", "Objet typographie requis.");
   if (isRecord(value.motif)) {
     allowed(value.motif.kind, ["frame", "orbit", "grid", "signal", "asset", "none"], "theme.motif.kind", issues);
+    if (value.motif.derivation !== undefined) {
+      allowed(
+        value.motif.derivation,
+        ["prospect-derived", "typographic-system", "generic"],
+        "theme.motif.derivation",
+        issues,
+      );
+    }
     allowed(value.motif.density, ["quiet", "balanced", "bold"], "theme.motif.density", issues);
     numberInRange(value.motif.strokeWidth, "theme.motif.strokeWidth", issues, 0, 12);
     numberInRange(value.motif.cornerRadius, "theme.motif.cornerRadius", issues, 0, 240);
@@ -169,6 +166,23 @@ function theme(value: unknown, issues: ValidationIssue[]): void {
 }
 
 function commonSlide(slide: UnknownRecord, path: string, issues: ValidationIssue[]): void {
+  if (slide.visualIntent !== undefined) {
+    allowed(
+      slide.visualIntent,
+      ["image-led", "image-supported", "typographic", "diagram"],
+      `${path}.visualIntent`,
+      issues,
+    );
+  }
+  if (slide.visualIntentRationale !== undefined) {
+    strings(slide, ["visualIntentRationale"], path, issues);
+  }
+  if (slide.compositionFamily !== undefined) {
+    allowed(slide.compositionFamily, compositionFamilies, `${path}.compositionFamily`, issues);
+  }
+  if (slide.visualPeak !== undefined && typeof slide.visualPeak !== "boolean") {
+    add(issues, "slide-boolean", `${path}.visualPeak`, "Booléen requis.");
+  }
   if (slide.tone !== undefined) {
     allowed(slide.tone, ["paper", "ink", "accent", "surface", "signal"], `${path}.tone`, issues);
   }
@@ -177,6 +191,7 @@ function commonSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
     allowed(slide.motifState, ["default", "full", "quiet", "hidden"], `${path}.motifState`, issues);
   }
   image(slide.chapterMark, `${path}.chapterMark`, issues);
+  image(slide.productCutout, `${path}.productCutout`, issues);
   if (Array.isArray(slide.claims)) {
     slide.claims.forEach((claim, index) => {
       const claimPath = `${path}.claims[${index}]`;
@@ -230,7 +245,8 @@ function nestedSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
       stringList(slide.outcomes, `${path}.outcomes`, issues);
       break;
     case "timeline":
-      objectList(slide.steps, ["phase", "duration", "title", "detail"], `${path}.steps`, issues);
+      objectList(slide.steps, ["phase", "duration", "title", "detail"], `${path}.steps`, issues)
+        .forEach((step, index) => image(step.image, `${path}.steps[${index}].image`, issues));
       break;
     case "film-concept":
       stringList(slide.toneWords, `${path}.toneWords`, issues);
@@ -263,6 +279,7 @@ function nestedSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
     case "lockup":
       if (slide.title !== undefined) strings(slide, ["title"], path, issues);
       if (slide.statement !== undefined) strings(slide, ["statement"], path, issues);
+      if (slide.textMark !== undefined) strings(slide, ["textMark"], path, issues);
       image(slide.mark, `${path}.mark`, issues);
       break;
   }

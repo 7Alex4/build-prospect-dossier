@@ -1,16 +1,22 @@
-Prospect Dossier Factory
+Black Flower Prospect Dossier Framework
 Copyright (c) 2026 Nexaia Studio
 
 The public skill, neutral engine and utility source code are licensed under the
 MIT License in LICENSE.
 
-This package contains original generalized workflow, factory layout defaults,
-page-role patterns, generic defect classes, transferable production rules and
-neutral code. Its included example dossier, platform, routes, diagrams and
-storyboard fixtures are original and fictitious. It includes no real prospect
-or client dossier, editable client source, client copy, photograph, font,
-trademark or other third-party reference material. Nothing in this package
-authorizes use of a third-party asset or mark.
+This package contains the original Black Flower prospect-dossier workflow,
+factory layout defaults, page-role patterns, generic defect classes,
+transferable production rules and a neutral compatibility profile. Black
+Flower Creative House is the canonical creative identity of the framework and
+BlackFlower is its visible dossier signature. Nexaia Studio is the technical
+maintainer and copyright holder of the open-source implementation.
+
+Its included example dossier, platform, routes, diagrams and storyboard
+fixtures are original and fictitious. It includes no real prospect or client
+dossier, editable client source, client copy, third-party photograph,
+proprietary font, private Black Flower logo, trademark or other third-party
+reference material. A text signature is used unless a job supplies a cleared
+mark. Nothing in this package authorizes use of a third-party asset or mark.
 
 Company and product names used in individual prospect jobs remain the property
 of their respective holders. This software does not imply endorsement,

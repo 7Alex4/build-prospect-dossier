@@ -39,11 +39,11 @@ Every page must advance this chain. If removing a page changes nothing, remove o
 
 | Profile | Use when | Typical execution depth |
 |---|---|---|
-| Focused, 15 pages | One clear opportunity, limited source assets, no detailed storyboard, or a first outreach | One platform, one method, one or several concise routes |
-| Standard, 18 pages | Most prospecting dossiers | Diagnosis, proof, platform, routes, prioritized activation, delivery proof |
+| Focused, 15 pages | One clear opportunity or first outreach with enough visual material | One platform, two concise routes, activation, storyboard and production proof |
+| Standard, 18–20 pages | Most Black Flower prospecting dossiers | Diagnosis, visual proof, platform, three routes, activation, storyboard and production proof |
 | Full, 21–23 pages | Explicitly requested or justified full campaign, multiple products or routes, a real film concept, storyboard, substantial references | Four-act campaign proposal with execution proof |
 
-Default to 18 pages. Expand only when the additional pages contain distinct evidence or decisions.
+Default to 20 pages for a campaign proposal and compress to 18 only through the documented merges below. Expand beyond 20 only when the additional pages contain distinct evidence or decisions.
 
 ## 3. Focused 15-page profile
 
@@ -51,53 +51,52 @@ This profile follows the compact factory logic and derives its art direction fro
 
 | Page | Family | Rhetorical job | Required substance |
 |---:|---|---|---|
-| 1 | Cover | Install the prospect, platform and truthful relationship | Prospect mark, optional studio attribution, platform or working title |
-| 2 | Architecture | Explain the reading path | Four or five chapter items |
-| 3 | Why now or why this matters | Establish a real current moment or durable relevance | Moment or observed tension, challenge, opportunity |
-| 4 | Foundation | Respect the brand's existing capital | Three proof-backed strengths |
-| 5 | Risk | Name the shortcut or perception gap | One visual proof and three risks |
-| 6 | Opportunity | State the strategic shifts | Two or three `from → to` moves |
-| 7 | Point of view | Reveal the retained platform | Point of view, promise, tension, tone |
-| 8 | Method or system | Show how the platform operates | Three or four steps or components |
-| 9 | First proof | Ground the idea in a concrete example | Film, photograph, interface, editorial or campaign proof |
-| 10 | Multiple tensions | Demonstrate range | Three or four distinct routes, products or audiences |
-| 11 | Wider platform | Extend beyond one execution | Formats, channels or proof system |
-| 12 | Production | Explain the proposed delivery role | Role, approach, strength and real portrait or proof when verified |
-| 13 | References or validation plan | Use references when verified; otherwise define how the first move will be judged | Relevance or concrete success conditions |
+| 1 | Cover | Install the prospect, platform and truthful relationship | Prospect mark, Black Flower authorship, platform or working title |
+| 2 | Architecture and why | Explain the reading path and establish relevance | Four chapter items plus one durable tension |
+| 3 | Brand truth | Respect the brand's existing capital | Archive, product, material, place or gesture |
+| 4 | Current baseline | Show what exists now | Inspectable screenshots or current communication proof |
+| 5 | Risk | Name the shortcut or perception gap | One meaningful visual and three concise risks |
+| 6 | Opportunity | State the strategic move | Two or three `from → to` shifts without cards |
+| 7 | Platform | Reveal the retained point of view | Point of view, promise, tension and tone |
+| 8 | Product truth or system | Ground the platform in reality | Product, material, gesture or image sequence |
+| 9 | Route 1 | Demonstrate one distinct creative world | Scene, product cutout when relevant, tension and idea |
+| 10 | Route 2 | Demonstrate a genuinely different world | Scene, product cutout when relevant, tension and idea |
+| 11 | Priority activation | Select the first move | Strong execution image and three concise reasons |
+| 12 | Storyboard | Prove execution | Inspectable local frames, action, sound and timing |
+| 13 | Production Black Flower | Establish delivery confidence | Approved portrait or production proof, role and approach |
 | 14 | Thank-you | Conclude without adding strategy | Short letter and next step |
-| 15 | Final lockup | End in silence | Prospect mark, optional studio mark and truthful relationship micro-label when independent |
+| 15 | Final lockup | End in silence | Prospect mark, Black Flower text signature or cleared mark, and truthful relationship micro-label when independent |
 
-When no verified references exist, use page 13 for a concise proof or validation plan. It must add a real decision, not filler. Keep the thank-you on page 14 and the final lockup on page 15.
+Keep the thank-you on page 14 and the final lockup on page 15. Put full references in the author package unless a verified reference page earns space in a longer dossier.
 
-## 4. Standard 18-page profile
+## 4. Standard 18–20-page profile
 
 Use this for the default 18–20-page output.
 
 | Page | Family | Rhetorical job |
 |---:|---|---|
-| 1 | Cover | Brand world and core platform |
+| 1 | Cover | Brand world, core proposition and Black Flower authorship |
 | 2 | Architecture | Chapters and visual navigation code |
 | 3 | Why now or why this matters | Current moment when evidenced; otherwise durable observed tension |
-| 4 | Brand truth | Heritage, behavior, place, process or product code that makes the angle credible |
-| 5 | Existing foundation | What works now, shown with real communication proof |
-| 6 | Perception gap | What remains unseen, fragmented or generic |
-| 7 | Risk | The obvious creative shortcut and its consequence |
-| 8 | Opportunity | Three strategic shifts or an equation |
-| 9 | Territory | Territory, tension and active promise |
-| 10 | Platform | Point of view, code, territory and tone |
-| 11 | Manifesto or system | Emotional articulation or practical communication system |
-| 12 | Routes | Three distinct tensions, products, audiences or formats |
-| 13 | Priority activation | Why this move, subject and moment |
-| 14 | Concept | Scene, pressure and resolution, or equivalent execution mechanics |
-| 15 | Execution proof | Short storyboard, timeline, channel set or prototype |
-| 16 | Production | Delivery role, approach and strength; studio identity only when verified |
-| 17 | References and thank-you | Split only if both are substantial |
-| 18 | Final lockup | Prospect mark, optional studio mark and explicit relationship status |
+| 4 | Brand truth | Archive, behavior, place, process or product code that makes the angle credible |
+| 5 | Current baseline | What exists now, shown with real communication proof |
+| 6 | Risk | The obvious shortcut and its consequence, anchored by a meaningful image |
+| 7 | Opportunity | Two or three strategic shifts without a card grid |
+| 8 | Platform | Point of view, promise, tension and tone |
+| 9 | Product truth | Product, material, gesture or making proof |
+| 10 | Creative system | How the platform varies, grounded in objects or images |
+| 11 | Product world | Range, use or culture shown concretely |
+| 12 | Route 1 | Specific scene, tension, idea and product relation |
+| 13 | Route 2 | Genuinely different scene and tension |
+| 14 | Route 3 | Genuinely different scene and tension |
+| 15 | Priority activation | Why this move, subject and moment, shown visually |
+| 16 | Execution moodboard | Material, light, casting, place and gesture |
+| 17 | Storyboard | Inspectable frames, action, sound and timing |
+| 18 | Production Black Flower | Approved portrait or production proof, role and approach |
+| 19 | Thank-you | Short editorial close and concrete next step |
+| 20 | Final lockup | Prospect mark, Black Flower text signature or cleared mark, and explicit relationship status |
 
-Permitted expansion to 20 pages:
-
-- add one page for a second proof or product family;
-- add one page for a full reference grid or separate thank-you.
+To compress to 18 pages, merge architecture with why-now, merge product truth with creative system, or omit the third route when it is materially weaker. Never remove the current baseline, all visual routes, storyboard, production Black Flower, thank-you or final lockup merely to hit the count.
 
 ## 5. Full 23-page profile
 
@@ -141,7 +140,7 @@ Use this profile only for a complete strategic campaign proposal that the user r
 | 17 | Priority activation | Why this concept, subject and moment |
 | 18 | Concept mechanics | Three movements or method |
 | 19 | Storyboard or prototype | Show executable detail and timing |
-| 20 | Production | Delivery role, approach and optional verified portrait/proof |
+| 20 | Production Black Flower | Delivery role, approach and approved portrait or production proof |
 | 21 | References | Four relevant references with explicit fit |
 | 22 | Thank-you | Reframe value, invite next step |
 | 23 | Final lockup | End with marks, silence and truthful attribution |
@@ -167,6 +166,11 @@ Write `strategy/page-map.md` before full copy:
   2. [block role]
   3. [optional block role]
 - Media: [asset ID and proof function, or none]
+- Visual intent: [image-led, image-supported, typographic or diagram]
+- Visual-intent rationale: [why this mode is strongest for the takeaway]
+- Composition family: [one family from black-flower-profile.md]
+- Visual peak: [yes or no]
+- Argumentative media: [yes or no]
 - Background mode: [documented theme state]
 - Motif state: [default, full, quiet or hidden]
 - Transition in: [question resolved from previous page]
@@ -179,6 +183,9 @@ Hard requirements:
 - one takeaway per page;
 - every factual page lists evidence IDs;
 - every media page lists an asset ID and proof function;
+- every page declares visual intent, rationale and composition family;
+- at least three pages are declared as visual peaks and remain obvious in the 25% contact sheet;
+- the complete plan satisfies the Black Flower image-led ratio, diagram cap and consecutive-page cap before copy is written;
 - every page has a reason to follow the previous page;
 - every route states why it differs;
 - every chapter opener changes pace intentionally.
@@ -211,19 +218,21 @@ Alternate roles:
 - system;
 - execution.
 
-Avoid more than three text-heavy pages in a row. Avoid using a large photograph on every page. The contact sheet should show deliberate changes in density without appearing like several unrelated decks.
+After the introduction, allow no more than two text-led or system-led pages in a row. Do not use a large photograph on every page, but do not let the sequence collapse into diagrams. The contact sheet should show deliberate changes in density without appearing like several unrelated decks.
 
 ### Image rhythm
 
-A strong 18-page dossier often contains:
+A Black Flower dossier contains 45–65% image-led pages, with a 55% target. An 18-page dossier normally contains:
 
-- 2 quiet lockup pages;
-- 3 to 5 proof or screenshot pages;
+- 2 quiet cover or closing pages;
+- 3 to 5 proof, archive or screenshot pages;
 - 2 to 4 product, place, person or process pages;
-- 1 to 3 concept images;
-- 4 to 7 text, diagram or system pages.
+- 2 to 4 concept, route or activation images;
+- 1 visual storyboard or film sequence;
+- no more than 2 diagram pages;
+- enough typographic pages to create contrast without forming a tunnel.
 
-Adjust to the brand. These are pacing guides, not quotas.
+At least 60% of visual pages use real, documentary, official, licensed or supplied assets. Treat these as Black Flower delivery gates, not optional pacing advice.
 
 ### Chapter rhythm
 

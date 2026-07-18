@@ -6,19 +6,9 @@ import type {
 } from "../../schema/types";
 import { Arrow, AssetImage, IndexLabel, SectionHeading } from "../primitives";
 
-function CoverTextVisual({ slide }: { slide: CoverSlide }) {
-  return (
-    <div className="cover-text-visual">
-      <span>{slide.tag ?? "Proposition"}</span>
-      <strong>{slide.proposition}</strong>
-      <p>{slide.subtitle}</p>
-    </div>
-  );
-}
-
 export function Cover({ slide }: { slide: CoverSlide }) {
   return (
-    <div className="cover-layout">
+    <div className={`cover-layout ${slide.image ? "cover-layout--image" : "cover-layout--typographic"}`}>
       <div className="cover-copy">
         <p className="eyebrow">{slide.eyebrow ?? slide.client}</p>
         {slide.relationshipLabel ? (
@@ -31,9 +21,7 @@ export function Cover({ slide }: { slide: CoverSlide }) {
           <p data-fit>{slide.proposition}</p>
         </div>
       </div>
-      <div className="cover-visual">
-        {slide.image ? <AssetImage asset={slide.image} /> : <CoverTextVisual slide={slide} />}
-      </div>
+      {slide.image ? <div className="cover-visual"><AssetImage asset={slide.image} /></div> : null}
     </div>
   );
 }

@@ -18,6 +18,19 @@ Standard content page:
 
 The coordinates are starting points. Preserve the grid across the deck and adjust for the current type metrics.
 
+## Black Flower routing override
+
+The Black Flower profile is image-led. The legacy families below describe rhetorical jobs, not a license to render them as interface components.
+
+Before selecting a family:
+
+1. assign `visualIntent`;
+2. choose one of the composition grammars in `black-flower-profile.md`;
+3. identify the exact argumentative media;
+4. reject the page if a missing image would fall back to cards, nodes, arrows, meters, pills or generic geometry.
+
+Across 15–20 pages, keep 45–65% image-led, at most two diagram pages, at least six composition silhouettes and no more than two consecutive text/system pages after the introduction.
+
 ## Table of contents
 
 1. Cover
@@ -44,24 +57,24 @@ The coordinates are starting points. Preserve the grid across the deck and adjus
 
 | Blueprint | Engine family and variant | Notes |
 |---|---|---|
-| Cover | `cover` | Use optional image and per-slide motif state |
-| Architecture | `architecture` | Four to six nodes |
-| Three-column diagnostic | `three-columns: why-now` | Rename the eyebrow to `Why this matters` when no current event exists |
+| Cover | `cover` | Silent type, true image or oversized prospect object; never a pseudo-visual fallback |
+| Architecture | `architecture` | Editorial chapter rows, not cards or connected nodes |
+| Three-column diagnostic | `three-columns: why-now` | Use sparingly; prefer a proof collage or asymmetric editorial sequence |
 | Three pillars | `three-columns: pillars` | Only for three genuinely parallel ideas |
 | Brand house | `manifesto` or `proof` | Choose conviction or evidence, not visual similarity |
 | Manifesto | `manifesto` | Short lines, not a long essay |
 | Proof split | `proof` | Metrics and quotes require typed claim references |
-| Risk split | `risk` | Image optional but must have a proof function |
-| Opportunity shifts | `opportunity: shifts` | Use `opportunity: opportunity` for a single central move |
+| Risk split | `risk` | Meaningful image required in final Black Flower mode; no severity meter |
+| Opportunity shifts | `opportunity: shifts` | Open progression, not three equal cards |
 | Strategic equation | `platform: platform` or a new typed family | Add a family when the equation needs dedicated geometry |
 | Territory opener | `platform: platform` | May use a strong image and alternate tone |
-| Platform system | `platform: system` | Core plus operating layers |
+| Platform system | `platform: system` | Real object, image split or editorial matrix; no dark central card |
 | Communication system | `activation` or `platform: system` | Choose channels versus conceptual layers |
-| Timeline or method | `timeline: timeline` or `timeline: method` | Preserve sequence and deliverables |
-| Route or film concept | `film-concept` | One route per page when depth warrants it |
-| Priority activation | `activation` or `film-concept` | Choose system versus one concrete concept |
+| Timeline or method | `timeline: timeline` or `timeline: method` | A creative method uses an image sequence; no decorative dots and line |
+| Route or film concept | `film-concept` | Meaningful scene required; use exact product cutout when relevant |
+| Priority activation | `activation` or `film-concept` | One concrete, image-led execution |
 | Storyboard or execution proof | `storyboard` | 3–12 frames with timecodes for fixed duration |
-| Production | `production` | Real proof, deliverables and constraints |
+| Production | `production` | Approved Black Flower portrait or production proof required |
 | References | `references` | Source and relevance required |
 | Thank-you | `thank-you` | Contact optional |
 | Final lockup | `lockup` | Silent content allowed; relationship label remains truthful |
@@ -80,7 +93,7 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 - prospect or product label;
 - platform phrase or working dossier title;
 - optional signature of one line;
-- prospect attribution, plus studio attribution only when supplied, matching the declared relationship status;
+- prospect attribution plus required Black Flower text signature, matching the declared relationship status;
 - one architectural motif or product signal.
 
 **Composition**
@@ -99,6 +112,8 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 - no paragraph.
 
 **Reject when:** it resembles a marketing landing hero, uses generic atmosphere, or reveals the strategy through explanatory copy before the reader enters the dossier.
+
+In Black Flower mode, the author frame is required. Use the exact running signature `BlackFlower`, never Nexaia. If no cleared Black Flower mark exists, use text instead of inventing or tracing one.
 
 ## 2. Architecture
 
@@ -125,7 +140,7 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 - chapter label: 2–6 words;
 - no descriptive paragraph under rows unless the source requires it.
 
-**Reject when:** chapter labels are merely departments or the icon system has no brand logic.
+**Reject when:** chapter labels are merely departments, the icon system has no brand logic, or the page becomes four boxed nodes linked by arrows.
 
 ## 3. Three-column diagnostic
 
@@ -134,7 +149,7 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 **Anatomy**
 
 - title and one framing sentence;
-- three equal or near-equal columns;
+- three editorial sequences with intentional hierarchy, not automatically equal cards;
 - short accent bar or number above each block;
 - block title and body;
 - optional concluding line.
@@ -154,7 +169,7 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 - one conclusion of 8–18 words;
 - no sub-subheadings.
 
-**Reject when:** the opportunity repeats the moment, columns contain unequal rhetorical levels, or body type is reduced to fit excess copy.
+**Reject when:** the opportunity repeats the moment, columns contain unequal rhetorical levels, body type is reduced to fit excess copy, or the result resembles a dashboard.
 
 ## 4. Brand house or manifesto
 
@@ -346,6 +361,8 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 
 **Reject when:** it becomes a SaaS feature grid, uses arbitrary icons or cannot be used to judge future creative work.
 
+In Black Flower mode, anchor the platform in a real prospect object, image, material or drawing. A large dark rectangle surrounded by four labeled cards is a hard failure.
+
 ## 11. Communication system
 
 **Use for:** proof ecosystem, channels, content roles or operational foundation.
@@ -377,8 +394,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 
 **Anatomy**
 
-- horizontal rule or trajectory;
-- three or four nodes;
+- a three- or four-step image sequence for a creative method, or a restrained trajectory only for a genuinely temporal plan;
 - step title, explanation and deliverables;
 - optional small source-derived illustration.
 
@@ -396,7 +412,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 - 25–50 words plus 3–6 deliverables per step;
 - no detailed project plan.
 
-**Reject when:** stages overlap, deliverables repeat or decorative gradients replace a clear sequence.
+**Reject when:** stages overlap, deliverables repeat, decorative gradients replace a clear sequence, or dots and a line pretend to be visual proof.
 
 ## 13. Route or film concept
 
@@ -425,7 +441,9 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 - signature 4–12 words;
 - total route copy 80–120 words, hard review at 140.
 
-**Reject when:** the route differs from adjacent routes only by product color, the concept image is generic, or two unresolved options remain joined by `/`.
+**Reject when:** the route differs from adjacent routes only by product color, the concept image is generic, the image is absent in final mode, or two unresolved options remain joined by `/`.
+
+Preferred Black Flower construction: meaningful licensed or generated scene, exact approved product cutout in overlap, two concise editorial blocks, one memorable signature.
 
 ## 14. Priority activation
 
@@ -450,7 +468,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 - 35–70 words per question;
 - one image.
 
-**Reject when:** the recommendation is unclear, the chosen route was not introduced, or production feasibility is ignored.
+**Reject when:** the recommendation is unclear, the chosen route was not introduced, production feasibility is ignored, or the page uses channels and cards instead of showing the activation.
 
 ## 15. Storyboard or execution proof
 
@@ -483,11 +501,11 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 
 ## 16. Production
 
-**Use for:** studio role and execution confidence.
+**Use for:** Black Flower role and execution confidence.
 
 **Anatomy**
 
-- title and short signature;
+- title `PRODUCTION BLACKFLOWER` and short signature;
 - role, approach and strength;
 - verified portrait or production proof;
 - caption with name and role when applicable.
@@ -505,7 +523,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 - approach 4–6 bullets or 50–90 words;
 - strength 25–50 words.
 
-**Reject when:** it becomes a long studio profile, uses unsupported credentials or places the studio before the prospect's value.
+**Reject when:** it becomes a long studio profile, uses unsupported credentials, places the studio before the prospect's value, lacks approved portrait or production proof, or is signed Nexaia.
 
 ## 17. References
 
@@ -539,7 +557,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 
 - `Merci` or source-appropriate title;
 - short letter;
-- truthful prospect attribution, plus studio attribution only when supplied;
+- truthful prospect attribution plus Black Flower authorship in the Black Flower profile;
 - platform phrase;
 - quiet return of the motif;
 - optional discreet next step.
@@ -565,7 +583,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 **Anatomy**
 
 - cover or final field;
-- prospect mark, optional studio mark, and a quiet relationship label when the proposal is independent;
+- prospect mark, Black Flower text signature or cleared mark, and a quiet relationship label when the proposal is independent;
 - strongest stable motif state;
 - no running header, page number or paragraph.
 

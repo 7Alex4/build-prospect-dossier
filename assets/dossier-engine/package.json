@@ -1,7 +1,7 @@
 {
   "name": "prospect-dossier-engine",
-  "version": "0.1.0",
-  "description": "Deterministic 2000x1414 prospect dossier renderer",
+  "version": "0.2.0",
+  "description": "Black Flower image-led prospect dossier renderer and validator",
   "type": "module",
   "license": "MIT",
   "private": false,

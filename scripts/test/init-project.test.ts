@@ -53,6 +53,7 @@ test("init project copies the engine, ignores generated files and creates workfl
     "company",
     "brand",
     "product",
+    "framework_profile",
     "official_domain",
     "country",
     "language",
@@ -67,6 +68,7 @@ test("init project copies the engine, ignores generated files and creates workfl
     "relationship_status",
     "generative_assets",
     "studio",
+    "studio_signature",
     "assumptions",
     "constraints",
     "forbidden_client_terms",
@@ -77,7 +79,10 @@ test("init project copies the engine, ignores generated files and creates workfl
   assert.match(brief, /^stage: draft$/m);
   assert.match(brief, /^distribution_mode: private-prospecting$/m);
   assert.match(brief, /^relationship_status: independent-proposal$/m);
-  assert.match(brief, /^generative_assets: forbidden$/m);
+  assert.match(brief, /^framework_profile: black-flower$/m);
+  assert.match(brief, /^generative_assets: authorized$/m);
+  assert.match(brief, /^studio: Black Flower Creative House$/m);
+  assert.match(brief, /^studio_signature: BlackFlower$/m);
   assert.match(brief, /^forbidden_client_terms: \[\]$/m);
   assert.equal(
     await readFile(path.join(target, "research", "evidence.csv"), "utf8"),
@@ -101,6 +106,10 @@ test("init project copies the engine, ignores generated files and creates workfl
     "Claim IDs and content paths",
     "Asset ID",
     "Proof function",
+    "Visual intent",
+    "Visual-intent rationale",
+    "Composition family",
+    "Visual peak",
     "Transition in",
     "Transition out",
     "Unanswered question",
@@ -135,6 +144,10 @@ test("init project copies the engine, ignores generated files and creates workfl
 ## Assets
 
 - shipping assets:
+- image-led pages and ratio:
+- real/documentary visual pages and ratio:
+- generated visual pages and ratio:
+- diagram pages:
 - provided:
 - official:
 - licensed:
@@ -145,6 +158,10 @@ test("init project copies the engine, ignores generated files and creates workfl
 
 - pages inspected at 100%:
 - contact sheet inspected:
+- contact sheet inspected at 25%:
+- distinct silhouettes:
+- visible peaks:
+- logo-hidden prospect recognition:
 - 375 px preview:
 - 1440 px preview:
 

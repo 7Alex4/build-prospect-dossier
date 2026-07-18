@@ -100,7 +100,7 @@
   border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   display: grid;
   gap: 34px;
-  grid-template-columns: 100px 390px 1fr 116px;
+  grid-template-columns: 100px 390px 1fr;
   min-height: 180px;
   padding: 20px 0;
 }
@@ -118,23 +118,6 @@
   max-height: 100px;
 }
 
-.severity {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.severity i {
-  border: 1px solid currentColor;
-  display: block;
-  height: 38px;
-  width: 10px;
-}
-
-.severity i.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-}
 
 .counterpoint {
   color: var(--accent);

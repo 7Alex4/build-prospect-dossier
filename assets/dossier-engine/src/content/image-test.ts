@@ -7,6 +7,7 @@ export const imageTestDossier = {
   meta: {
     title: "Test structurel des slides avec image",
     client: "Entreprise neutre",
+    frameworkProfile: "neutral",
     language: "fr-CH",
     version: "1.0-test",
     date: "2026-07-18",

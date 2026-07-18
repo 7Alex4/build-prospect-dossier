@@ -1,0 +1,56 @@
+.asset[data-presentation="cutout"] {
+  overflow: visible;
+}
+
+.asset[data-presentation="cutout"] img {
+  object-fit: contain !important;
+}
+
+.asset[data-presentation="background"] {
+  inset: 0;
+  position: absolute;
+}
+
+.film-product-cutout {
+  bottom: 14%;
+  height: 34%;
+  overflow: visible;
+  position: absolute;
+  right: -8%;
+  width: 34%;
+  z-index: 3;
+}
+
+.timeline-track--image-sequence {
+  gap: 24px;
+}
+
+.timeline-track--image-sequence .timeline-step {
+  border-left: 0;
+  min-height: 620px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.timeline-track--image-sequence .timeline-step::before {
+  display: none;
+}
+
+.timeline-step-image {
+  height: 230px;
+  margin-bottom: 26px;
+}
+
+.timeline-track--image-sequence .timeline-step h2 {
+  margin-top: 34px;
+}
+
+.timeline-track--image-sequence .timeline-step > p {
+  margin-top: 22px;
+}
+
+.timeline-track--image-sequence .timeline-step > strong {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

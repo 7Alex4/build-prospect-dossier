@@ -1,0 +1,297 @@
+.deck[data-framework-profile="black-flower"] {
+  --bf-body-min: 24px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__content {
+  padding: 108px 140px 120px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__running-header {
+  font-family: var(--font-body);
+  font-size: 22px;
+  left: 84px;
+  letter-spacing: .01em;
+  opacity: .82;
+  right: 84px;
+  text-align: left;
+  text-transform: none;
+  top: 50px;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__footer {
+  border-top: 0;
+  bottom: 0;
+  display: flex;
+  font-family: var(--font-body);
+  font-size: 18px;
+  left: 84px;
+  letter-spacing: .01em;
+  padding: 0 0 34px;
+  right: 84px;
+  text-transform: none;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__footer .brand-fallback,
+.deck[data-framework-profile="black-flower"] .slide__footer .brand-wordmark {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__footer > :nth-child(2) {
+  margin-left: 28px;
+  order: 1;
+  opacity: .62;
+}
+
+.deck[data-framework-profile="black-flower"] .page-marker {
+  font-family: var(--font-body);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  order: 0;
+}
+
+.deck[data-framework-profile="black-flower"] .motif:not(.motif--asset) {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .slide__content p {
+  font-size: max(var(--bf-body-min), 1em);
+}
+
+.deck[data-framework-profile="black-flower"] .eyebrow,
+.deck[data-framework-profile="black-flower"] .index-label,
+.deck[data-framework-profile="black-flower"] .film-kicker,
+.deck[data-framework-profile="black-flower"] .platform-core > span,
+.deck[data-framework-profile="black-flower"] .timeline-meta > span {
+  font-family: var(--font-body);
+}
+
+.deck[data-framework-profile="black-flower"] .eyebrow {
+  font-size: 20px;
+  letter-spacing: .03em;
+}
+
+.deck[data-framework-profile="black-flower"] .eyebrow::before {
+  height: 2px;
+  width: 34px;
+}
+
+.deck[data-framework-profile="black-flower"] .section-heading h1 {
+  font-size: 78px;
+  letter-spacing: -.045em;
+  line-height: .98;
+  margin-top: 26px;
+}
+
+.deck[data-framework-profile="black-flower"] .section-heading .intro {
+  font-size: 28px;
+  line-height: 1.35;
+  margin-top: 26px;
+}
+
+.deck[data-framework-profile="black-flower"] .index-label > span {
+  border: 0;
+  display: block;
+  flex-basis: auto;
+  font-size: 20px;
+  height: auto;
+  min-width: 34px;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-layout {
+  gap: 76px;
+  grid-template-columns: .94fr 1.06fr;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-copy h1 {
+  font-size: 126px;
+  letter-spacing: -.055em;
+  line-height: .9;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-visual::after {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-text-visual::before,
+.deck[data-framework-profile="black-flower"] .film-text-visual::after,
+.deck[data-framework-profile="black-flower"] .story-draft-visual::before,
+.deck[data-framework-profile="black-flower"] .story-draft-visual::after {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .architecture-node {
+  background: transparent;
+  border: 0;
+  border-top: 2px solid currentColor;
+  color: inherit;
+  padding: 26px 0;
+}
+
+.deck[data-framework-profile="black-flower"] .architecture-node .arrow {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .architecture-node > p,
+.deck[data-framework-profile="black-flower"] .column-card > p,
+.deck[data-framework-profile="black-flower"] .metric p,
+.deck[data-framework-profile="black-flower"] .risk-row > p,
+.deck[data-framework-profile="black-flower"] .shift-implication,
+.deck[data-framework-profile="black-flower"] .platform-layer p,
+.deck[data-framework-profile="black-flower"] .timeline-step > p,
+.deck[data-framework-profile="black-flower"] .channel > p,
+.deck[data-framework-profile="black-flower"] .workstream > p,
+.deck[data-framework-profile="black-flower"] .reference > p {
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.deck[data-framework-profile="black-flower"] .proof-points,
+.deck[data-framework-profile="black-flower"] .platform-outcomes,
+.deck[data-framework-profile="black-flower"] .pills {
+  gap: 22px;
+}
+
+.deck[data-framework-profile="black-flower"] .proof-points li,
+.deck[data-framework-profile="black-flower"] .platform-outcomes li,
+.deck[data-framework-profile="black-flower"] .pills li {
+  border: 0;
+  font-family: var(--font-body);
+  font-size: 20px;
+  padding: 0;
+  text-transform: none;
+}
+
+.deck[data-framework-profile="black-flower"] .shift-grid {
+  gap: 42px;
+}
+
+.deck[data-framework-profile="black-flower"] .shift-card {
+  border: 0;
+  border-top: 2px solid currentColor;
+  padding: 26px 0;
+}
+
+.deck[data-framework-profile="black-flower"] .platform-system {
+  gap: 54px;
+  grid-template-columns: .8fr 1.2fr;
+}
+
+.deck[data-framework-profile="black-flower"] .platform-core {
+  background: transparent;
+  border-top: 2px solid currentColor;
+  color: inherit;
+  padding: 34px 0;
+}
+
+.deck[data-framework-profile="black-flower"] .platform-core h2 {
+  color: inherit;
+  margin-top: 54px;
+}
+
+.deck[data-framework-profile="black-flower"] .timeline-track {
+  gap: 34px;
+}
+
+.deck[data-framework-profile="black-flower"] .timeline-step {
+  border-left: 0;
+  border-top: 2px solid currentColor;
+  padding: 26px 0;
+}
+
+.deck[data-framework-profile="black-flower"] .timeline-step::before {
+  display: none;
+}
+
+.deck[data-framework-profile="black-flower"] .timeline-step h2 {
+  margin-top: 72px;
+}
+
+.deck[data-framework-profile="black-flower"] .deliverables,
+.deck[data-framework-profile="black-flower"] .contact-card {
+  background: transparent;
+  border-top: 2px solid currentColor;
+  color: inherit;
+  padding: 34px 0;
+}
+
+.deck[data-framework-profile="black-flower"] .film-layout {
+  gap: 82px;
+  grid-template-columns: 1.1fr .9fr;
+}
+
+.deck[data-framework-profile="black-flower"] .film-copy h1 {
+  font-size: 96px;
+}
+
+.deck[data-framework-profile="black-flower"] .film-logline {
+  font-size: 28px;
+}
+
+.deck[data-framework-profile="black-flower"] .cover-relationship,
+.deck[data-framework-profile="black-flower"] .cover-proposition span,
+.deck[data-framework-profile="black-flower"] .architecture-axis p,
+.deck[data-framework-profile="black-flower"] .proof-quote cite,
+.deck[data-framework-profile="black-flower"] .platform-core > span,
+.deck[data-framework-profile="black-flower"] .timeline-meta > span,
+.deck[data-framework-profile="black-flower"] .film-format span,
+.deck[data-framework-profile="black-flower"] .film-kicker,
+.deck[data-framework-profile="black-flower"] .reference > span,
+.deck[data-framework-profile="black-flower"] .references-note,
+.deck[data-framework-profile="black-flower"] .storyboard-duration,
+.deck[data-framework-profile="black-flower"] .contact-card > span,
+.deck[data-framework-profile="black-flower"] .lockup-relationship {
+  font-size: 18px;
+}
+
+.deck[data-framework-profile="black-flower"] .timeline-step > strong,
+.deck[data-framework-profile="black-flower"] .channel > strong,
+.deck[data-framework-profile="black-flower"] .constraints li {
+  font-family: var(--font-body);
+  font-size: 24px;
+  text-transform: none;
+}
+
+.deck[data-framework-profile="black-flower"] .production-layout--image .workstream .index-label p {
+  font-size: 18px;
+}
+
+.deck[data-framework-profile="black-flower"] .film-format {
+  background: var(--slide-bg);
+  color: var(--slide-fg);
+}
+
+.deck[data-framework-profile="black-flower"] .story-copy > p {
+  font-size: 20px;
+}
+
+.deck[data-framework-profile="black-flower"] .storyboard-grid--dense .story-copy > p {
+  font-size: 18px;
+}
+
+.deck[data-framework-profile="black-flower"] .storyboard-grid--dense .story-copy h2 {
+  font-size: 24px;
+}
+
+.deck[data-framework-profile="black-flower"] .story-copy > span,
+.deck[data-framework-profile="black-flower"] .story-copy strong,
+.deck[data-framework-profile="black-flower"] .story-copy .story-timecode {
+  font-size: 18px;
+}
+
+.deck[data-framework-profile="black-flower"] .reference-text-visual,
+.deck[data-framework-profile="black-flower"] .story-draft-visual,
+.deck[data-framework-profile="black-flower"] .film-text-visual,
+.deck[data-framework-profile="black-flower"] .cover-text-visual {
+  background: color-mix(in srgb, var(--slide-fg) 8%, var(--slide-bg));
+  color: inherit;
+}
+
+.deck[data-framework-profile="black-flower"] .lockup-wordmark {
+  font-size: 72px;
+}
+
+.deck[data-framework-profile="black-flower"] .asset figcaption {
+  font-family: var(--font-body);
+  font-size: 18px;
+}

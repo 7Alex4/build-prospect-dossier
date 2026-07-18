@@ -24,6 +24,7 @@ const SCAFFOLD_FILES: Readonly<Record<string, string>> = {
   "brief.yaml": `company: ""
 brand: ""
 product: null
+framework_profile: black-flower
 official_domain: ""
 country: null
 language: fr-CH
@@ -36,8 +37,9 @@ target_pages: 18
 desired_outcome: exploratory-meeting
 distribution_mode: private-prospecting
 relationship_status: independent-proposal
-generative_assets: forbidden
-studio: null
+generative_assets: authorized
+studio: Black Flower Creative House
+studio_signature: BlackFlower
 assumptions: []
 constraints: []
 forbidden_client_terms: []
@@ -96,6 +98,11 @@ Duplicate this complete page contract for every planned slide.
 - Media role:
 - Asset ID:
 - Proof function:
+- Visual intent: image-led | image-supported | typographic | diagram
+- Visual-intent rationale:
+- Composition family:
+- Visual peak: yes | no
+- Counts as argumentative media: yes | no
 - Background mode:
 - Motif state:
 - Transition in:
@@ -129,6 +136,10 @@ Duplicate this complete page contract for every planned slide.
 ## Assets
 
 - shipping assets:
+- image-led pages and ratio:
+- real/documentary visual pages and ratio:
+- generated visual pages and ratio:
+- diagram pages:
 - provided:
 - official:
 - licensed:
@@ -139,6 +150,10 @@ Duplicate this complete page contract for every planned slide.
 
 - pages inspected at 100%:
 - contact sheet inspected:
+- contact sheet inspected at 25%:
+- distinct silhouettes:
+- visible peaks:
+- logo-hidden prospect recognition:
 - 375 px preview:
 - 1440 px preview:
 

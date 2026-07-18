@@ -31,6 +31,7 @@ function hydrationDossier(first: ImageAsset, second = first): Dossier {
     meta: {
       title: "Fixture hydratation",
       client: "Prospect Démo",
+      frameworkProfile: "neutral",
       language: "fr-CH",
       version: "1.0-test",
       date: "2026-07-18",
