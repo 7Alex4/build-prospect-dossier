@@ -3,6 +3,22 @@ import { toSafeMailtoHref, toSafeTelHref, toSafeWebsiteHref } from "../../schema
 import { AssetImage } from "../primitives";
 
 export function ThankYou({ slide }: { slide: ThankYouSlide }) {
+  if (slide.variant === "black-flower-letter") {
+    return (
+      <div className={`thankyou-letter-master ${slide.image ? "thankyou-letter-master--image" : ""}`}>
+        <h1 data-fit>{slide.title}</h1>
+        <div className="thankyou-letter-copy">
+          {slide.paragraphs.map((paragraph) => <p data-fit key={paragraph}>{paragraph}</p>)}
+          <p className="thankyou-letter-closing" data-fit>{slide.closing}</p>
+        </div>
+        <div className="thankyou-letter-signature">
+          <strong data-fit>{slide.signature}</strong>
+          <span data-fit>{slide.platform}</span>
+        </div>
+        {slide.image ? <AssetImage asset={slide.image} className="thankyou-letter-object" /> : null}
+      </div>
+    );
+  }
   const emailHref = slide.contact ? toSafeMailtoHref(slide.contact.email) : undefined;
   const phoneHref = slide.contact?.phone ? toSafeTelHref(slide.contact.phone) : undefined;
   const websiteHref = slide.contact?.website ? toSafeWebsiteHref(slide.contact.website) : undefined;
@@ -45,6 +61,22 @@ export function ThankYou({ slide }: { slide: ThankYouSlide }) {
 }
 
 export function Lockup({ slide }: { slide: LockupSlide }) {
+  if (slide.variant === "black-flower-co-mark") {
+    const separator = slide.separator ?? "times";
+    return (
+      <div className="lockup-co-mark" aria-label={`${slide.client} et Black Flower`}>
+        <div className="lockup-co-mark__group">
+          <AssetImage asset={slide.clientMark} className="lockup-co-mark__client" />
+          {separator === "gap" ? null : (
+            <span className="lockup-co-mark__separator" aria-hidden="true">
+              {separator === "times" ? "×" : "·"}
+            </span>
+          )}
+          <AssetImage asset={slide.studioMark} className="lockup-co-mark__studio" />
+        </div>
+      </div>
+    );
+  }
   const silent = !slide.title && !slide.statement;
   const signature = [slide.studio, slide.legal].filter((item): item is string => Boolean(item));
   return (

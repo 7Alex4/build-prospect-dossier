@@ -1,6 +1,6 @@
 {
   "name": "prospect-dossier-engine",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Black Flower image-led prospect dossier renderer and validator",
   "type": "module",
   "license": "MIT",

@@ -79,6 +79,8 @@ export const neutralStudioPortrait: ImageAsset = {
   credit: "Fixture vectorielle neutre",
   fit: "cover",
   position: "center",
+  sourceDimensions: { height: 900, width: 720 },
+  subjectSafeBox: { height: .74, width: .7, x: .15, y: .1 },
 };
 
 export const neutralMotifFull: ImageAsset = {

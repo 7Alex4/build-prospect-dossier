@@ -93,7 +93,7 @@ This is not a diagram-first sequence. In the Black Flower profile, alternate abs
 | Main content inset | 140 px |
 | Standard title top | 220 px |
 | Standard body start | 440 px, adjusted by family |
-| Footer baseline | 1300 px |
+| Eligible interior footer baseline | 1300 px |
 | Protected right zone | begins at 1460 px when a persistent motif is active |
 | Standard vertical media | 580 x 740 px starting point |
 | Semantic accent bar | 192 x 20 px starting point |
@@ -101,17 +101,16 @@ This is not a diagram-first sequence. In the Black Flower profile, alternate abs
 Use these as starting rails, not as a universal identity.
 Preserve proportions if the native canvas changes.
 
-## Variable visual-state models
+## Variable prospect grammars
 
-| Model | Field regime | Persistent object | Orientation detail |
+| Model | Compatible background rhythm | Persistent object | Orientation detail |
 |---|---|---|---|
-| Symbol-led | Dominant field with chapter inversions | Cropped verified brand symbol | Generated chapter state plus pagination |
-| Product-led | Stable body field with cover and final exceptions | Simplified product-derived silhouette | Deterministic progress marker |
-| Type-led | Stable paper field with controlled contrast shifts | Oversized letterform or numeral system | Generated typographic cadence |
-| Grid-only | Neutral field with no decorative object | Modular rules and negative space | Neutral profile only, not the default Black Flower route |
+| Symbol-led | `binary-chapter` | Cropped verified brand symbol | Generated chapter state plus eligible interior pagination |
+| Product-led | `stable` | Simplified product-derived silhouette | Deterministic eligible interior progress marker |
+| Type-led | `stable` or `binary-chapter` | Oversized letterform or numeral system | Generated typographic cadence |
+| Grid-only | Neutral profile only | Modular rules and negative space | Not an admissible Black Flower default |
 
-No state model is a default.
-Select one after identifying a real company object, field and orientation behavior.
+No prospect grammar is a default. Select one after identifying a real company object, field and orientation behavior. In Black Flower mode, its field behavior must still resolve to `stable` or `binary-chapter`, with only `cover` and `body` field assignments.
 
 For Black Flower, prefer symbol-led, product-led or type-led systems with a concrete image cadence. Never select grid-only merely because the prospect is Swiss, technical or restrained.
 
@@ -240,7 +239,7 @@ No third-party reference material is reusable without its own documented clearan
 14. Cutout scale inconsistency across a family.
 15. Progress marker drifting from its generated sequence.
 16. Production page appearing before strategic proof.
-17. Close without owner, contact or next action.
+17. Close without an editorial signature, prospect object or complete cover disclosure.
 18. Exact font claimed without source evidence.
 
 ## QA contract

@@ -19,6 +19,7 @@ target_pages: 18
 desired_outcome: exploratory-meeting
 distribution_mode: private-prospecting
 relationship_status: independent-proposal
+background_rhythm: stable
 generative_assets: ${authorized ? "authorized" : "forbidden"}
 generative_assets_authorization:
   status: ${authorized ? "explicitly-authorized" : "not-authorized"}
@@ -42,7 +43,7 @@ Record visible signals separately from interpretations. Link each usable observa
 
 For each source, record what it proves, what it does not prove, retrieval context, and reuse constraints.
 `,
-    "assets/asset-ledger.csv": "id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,transformations,credit_required,notes\n",
+    "assets/asset-ledger.csv": "id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,source_width,source_height,subject_safe_box,transformations,credit_required,notes\n",
 };
 const STRATEGY_FILES = {
     "strategy/diagnosis.md": `# Diagnosis
@@ -93,7 +94,7 @@ Duplicate this complete page contract for every planned slide.
 - Composition family:
 - Visual peak: yes | no
 - Counts as argumentative media: yes | no
-- Background mode:
+- Background field: cover | body
 - Motif state:
 - Transition in:
 - Transition out:
@@ -145,6 +146,10 @@ const QA_FILE = `# Dossier QA
 - contact sheet inspected at 25%:
 - distinct silhouettes:
 - visible peaks:
+- background rhythm and transition count:
+- Production master geometry:
+- Merci master geometry:
+- silent final lockup geometry:
 - logo-hidden prospect recognition:
 - 375 px preview:
 - 1440 px preview:

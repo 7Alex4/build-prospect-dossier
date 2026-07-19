@@ -76,7 +76,12 @@ try {
     totalBytes: 120,
   });
   assert.ok(hydrated.theme.logo.mark?.src.startsWith("data:image/png;base64,"));
-  assert.equal(hydrated.theme.logo.mark?.src, hydrated.slides[0]?.type === "lockup" ? hydrated.slides[0].mark?.src : undefined);
+  const hydratedSlide = hydrated.slides[0];
+  const hydratedMark = hydratedSlide?.type === "lockup"
+    && hydratedSlide.variant !== "black-flower-co-mark"
+    ? hydratedSlide.mark?.src
+    : undefined;
+  assert.equal(hydrated.theme.logo.mark?.src, hydratedMark);
 
   const withUnused: Dossier = {
     ...shared,

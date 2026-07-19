@@ -43,7 +43,7 @@ Le rendu refuse les assets HTTP. Utilisez un chemin local ou une URI `data:image
 - `draft`: les claims fournis sont contrôlés, mais une couverture complète n'est pas exigée. Les frames de storyboard peuvent rester sans image;
 - `final`: tous les textes substantiels visibles exigent un claim valide. Chaque frame de storyboard exige une image locale. Les tokens provisoires sont interdits.
 
-`meta.studio` est optionnel dans le profil `neutral`. Dans une proposition indépendante, les slides `cover` et `lockup` doivent afficher une relation explicite. Si le studio est fourni, ce libellé doit aussi le nommer.
+`meta.studio` est optionnel dans le profil `neutral`. Dans une proposition indépendante, la slide `cover` doit afficher une relation explicite. Si le studio est fourni, ce libellé doit aussi le nommer. Le lockup Black Flower final reste volontairement silencieux.
 
 En mode `black-flower` final, l'identité est fixe:
 
@@ -54,11 +54,12 @@ En mode `black-flower` final, l'identité est fixe:
   studioIdentity: {
     canonicalName: "Black Flower Creative House",
     signature: "BlackFlower"
-  }
+  },
+  backgroundRhythm: "stable"
 }
 ```
 
-Le thème doit afficher en haut à gauche `Strategic creative campaign proposal · BlackFlower`. La pagination est placée en bas à gauche par la feuille de style du profil. Les signatures de rendu Nexaia sont refusées. Le copyright technique du paquet n'est pas injecté dans les slides.
+Le thème fournit `Strategic creative campaign proposal · BlackFlower` en haut à gauche et la pagination en bas à gauche sur les pages intérieures éligibles. La couverture et le lockup final silencieux n'affichent aucun chrome. Les signatures de rendu Nexaia sont refusées. Le copyright technique du paquet n'est pas injecté dans les slides.
 
 Un dossier Black Flower final contient strictement 15 à 20 pages. Il doit suivre l'ordre diagnostic, preuve, risque, opportunité, plateforme, route créative, exécution, production, remerciement et lockup.
 
@@ -117,6 +118,17 @@ Chaque média client d'un dossier `black-flower` final doit déclarer:
 
 `mediaRole` décrit le travail éditorial du média: `hero`, `evidence`, `editorial`, `product`, `portrait`, `film-still`, `storyboard-frame` ou `reference`. `mediaNature` décrit ce qui est réellement montré: photographie, cutout produit, screenshot, document, archive, illustration, storyboard ou portrait. `productionStatus: "placeholder"` est bloqué en final Black Flower.
 
+Un portrait Production déclare aussi ses dimensions source et une safe box normalisée:
+
+```ts
+{
+  sourceDimensions: { width: 1600, height: 2000 },
+  subjectSafeBox: { x: 0.12, y: 0.06, width: 0.76, height: 0.86 }
+}
+```
+
+Le ratio source doit rester vertical, entre 0.65 et 1. La safe box conserve au moins 3% d'air vertical. Une page complète 2000 × 1414 réutilisée comme portrait est refusée.
+
 `presentation` contrôle la mise en scène de l'asset: `frame`, `background` ou `cutout`. Un `cutout` utilise `contain`, conserve son débordement et peut chevaucher la scène. Une slide `film-concept` accepte `productCutout` en plus de son image principale. Chaque `TimelineStep` accepte une image afin de produire une séquence de méthode visuelle.
 
 Les assets de fond, motifs et identités ne comptent pas comme médias de contenu. Une page ne peut donc pas satisfaire son quota avec un quadrillage, un logo, une texture ou un décor de thème.
@@ -139,9 +151,12 @@ Le moteur impose ensuite les seuils suivants sur l'ensemble du dossier:
 - aucun diagramme consécutif;
 - 2 pages sans média consécutives au maximum;
 - un média principal obligatoire pour chaque page `risk`, `film-concept`, `activation` et `production` finale;
+- un rythme de fond `stable` ou `binary-chapter`, avec quatre transitions majeures maximum en mode stable;
 - une couverture typographique silencieuse autorisée, sans pseudo-visuel de remplacement;
 - une image pour chaque référence et chaque frame de storyboard finale;
-- une marque asset ou le mot-symbole texte exact `BlackFlower` pour le lockup final;
+- une Production `black-flower-portrait` avec les trois blocs fixes et un portrait vertical isolé;
+- un Merci `black-flower-letter` de 3 à 4 paragraphes, 75 à 135 mots, avec retour d'un objet prospect;
+- un lockup `black-flower-co-mark` dont le premier plan contient uniquement le vrai logo prospect, `×` et la fleur Black Flower; le motif documenté du champ de couverture peut rester en arrière-plan;
 - au moins 6 familles de composition et 3 pics visuels;
 - au moins 60% des pages visuelles contenant un média réel ou documentaire issu d'une origine admissible;
 - au maximum 40% des pages visuelles contenant un asset généré;
@@ -152,7 +167,7 @@ Les deux ratios d'origine sont indépendants. Une page composite avec scène gé
 
 Une page visuelle est toute page qui rend au moins un média substantiel dans son contenu. Son `visualIntent` ne peut ni l'exclure du dénominateur, ni masquer une origine générée.
 
-Le profil Black Flower remplace les cartes, compteurs de sévérité, blocs sombres systématiques et typographie mono dominante par une composition éditoriale. Le corps essentiel est maintenu à 24 px ou plus. Les légendes et micro-informations restent entre 18 et 22 px. Le contenu commence à 140 px des bords, le chrome à 84 px et la pagination utilise 36 px.
+Le profil Black Flower remplace les cartes, compteurs de sévérité, blocs sombres systématiques et typographie mono dominante par une composition éditoriale. Le corps essentiel est maintenu à 24 px ou plus. Les légendes et micro-informations restent entre 18 et 22 px. Le contenu commence à 140 px des bords. Sur les pages intérieures éligibles, le chrome commence à 84 px et la pagination utilise 36 px.
 
 Ajouter seulement `frameworkProfile: "black-flower"` à un ancien dossier schématique ne suffit pas. Le validateur échoue aussi sur les intentions visuelles, les rationales, les familles, le ratio image-led, la cadence, le source mix, les pages film, risque, activation et production, puis sur les fallbacks restants.
 
@@ -174,16 +189,16 @@ Le scan client couvre aussi les alt d'images, numéros, indices, timecodes et te
 
 ### Codes stables du profil Black Flower
 
-Les intégrations peuvent traiter ces codes comme l'API de validation de la version `0.2.x`:
+Les intégrations peuvent traiter ces codes comme l'API de validation de la version `0.3.x`:
 
 | Code | Niveau | Condition |
 |---|---|---|
 | `black-flower-required-media` | erreur | Une page risk, film, activation ou production finale n'a pas d'image principale. |
 | `black-flower-studio` | erreur | Le nom canonique Black Flower est absent ou différent. |
 | `black-flower-identity` | erreur | L'objet d'identité ou la signature `BlackFlower` est invalide. |
-| `black-flower-header` | erreur | Le micro-en-tête exact ou son alignement gauche manque. |
-| `black-flower-page-marker` | erreur | La pagination numérique en bas à gauche manque. |
-| `black-flower-footer` | erreur | Le footer minimal visible requis pour la pagination manque. |
+| `black-flower-header` | erreur | Le contrat de micro-en-tête exact pour les pages intérieures éligibles ou son alignement gauche manque. |
+| `black-flower-page-marker` | erreur | Le contrat de pagination numérique en bas à gauche des pages intérieures éligibles manque. |
+| `black-flower-footer` | erreur | Le contrat de footer minimal requis pour la pagination intérieure manque. |
 | `black-flower-foreign-signature` | erreur | Nexaia apparaît dans un texte visible, un alt ou le thème rendu. |
 | `black-flower-slide-count` | erreur | Le dossier final ne contient pas 15 à 20 pages. |
 | `black-flower-narrative-required` | erreur | Une étape narrative obligatoire manque. |
@@ -220,7 +235,14 @@ Les intégrations peuvent traiter ces codes comme l'API de validation de la vers
 | `black-flower-media-nature` | erreur | La nature réelle du média manque ou est décorative. |
 | `black-flower-media-final` | erreur | Le média est un placeholder ou son statut final manque. |
 | `black-flower-reference-media` | erreur | Une référence finale utilise encore le fallback texte. |
-| `black-flower-lockup-signature` | erreur | Le lockup final n'a ni marque ni mot-symbole texte exact. |
+| `black-flower-production-master` | erreur | La Production n'utilise pas la variante portrait stricte. |
+| `black-flower-portrait-ratio` | erreur | Le portrait source n'est pas un média vertical isolé. |
+| `black-flower-portrait-safe-box` | erreur | La safe box ne protège pas le sujet et l'air autour de la tête. |
+| `black-flower-thanks-master` | erreur | Le Merci n'utilise pas la lettre éditoriale stricte. |
+| `black-flower-thanks-letter` | erreur | Le nombre de paragraphes ou le budget de mots est invalide. |
+| `black-flower-lockup-master` | erreur | Le final n'utilise pas le co-mark silencieux. |
+| `black-flower-finish-silence` | erreur | Un champ CTA, légal, relationnel ou opérationnel pollue un master de fin. |
+| `black-flower-background-transitions` | erreur | Le rythme stable dépasse quatre transitions cover/body. |
 
 ## Sorties vérifiables
 

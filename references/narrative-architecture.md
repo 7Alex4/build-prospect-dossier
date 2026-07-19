@@ -39,8 +39,8 @@ Every page must advance this chain. If removing a page changes nothing, remove o
 
 | Profile | Use when | Typical execution depth |
 |---|---|---|
-| Focused, 15 pages | One clear opportunity or first outreach with enough visual material | One platform, two concise routes, activation, storyboard and production proof |
-| Standard, 18–20 pages | Most Black Flower prospecting dossiers | Diagnosis, visual proof, platform, three routes, activation, storyboard and production proof |
+| Focused, 15 pages | One clear opportunity or first outreach with enough visual material | One platform, two concise routes, activation, storyboard and Production portrait |
+| Standard, 18–20 pages | Most Black Flower prospecting dossiers | Diagnosis, visual proof, platform, three routes, activation, storyboard and Production portrait |
 
 Default to 20 pages for a campaign proposal and compress to 18 only through the documented merges below. Never expand a single Black Flower dossier beyond 20 pages.
 
@@ -62,9 +62,9 @@ This profile follows the compact factory logic and derives its art direction fro
 | 10 | Route 2 | Demonstrate a genuinely different world | Scene, product cutout when relevant, tension and idea |
 | 11 | Priority activation | Select the first move | Strong execution image and three concise reasons |
 | 12 | Storyboard | Prove execution | Inspectable local frames, action, sound and timing |
-| 13 | Production Black Flower | Establish delivery confidence | Approved portrait or production proof, role and approach |
-| 14 | Thank-you | Conclude without adding strategy | Short letter and next step |
-| 15 | Final lockup | End in silence | Prospect mark, Black Flower text signature or cleared mark, and truthful relationship micro-label when independent |
+| 13 | Production Black Flower | Establish delivery confidence | Approved isolated portrait, role, approach and strength |
+| 14 | Thank-you | Conclude without adding strategy | Short editorial letter, without CTA or contact details |
+| 15 | Final lockup | End in silence | Approved prospect mark, `×`, Black Flower flower; relationship truth stays on cover |
 
 Keep the thank-you on page 14 and the final lockup on page 15. Put full references in the author package unless a verified reference page earns space in a longer dossier.
 
@@ -91,9 +91,9 @@ Use this for the default 18–20-page output.
 | 15 | Priority activation | Why this move, subject and moment, shown visually |
 | 16 | Execution moodboard | Material, light, casting, place and gesture |
 | 17 | Storyboard | Inspectable frames, action, sound and timing |
-| 18 | Production Black Flower | Approved portrait or production proof, role and approach |
-| 19 | Thank-you | Short editorial close and concrete next step |
-| 20 | Final lockup | Prospect mark, Black Flower text signature or cleared mark, and explicit relationship status |
+| 18 | Production Black Flower | Approved isolated portrait, role, approach and strength |
+| 19 | Thank-you | Short editorial close, without CTA or contact details |
+| 20 | Final lockup | Approved prospect mark, `×`, Black Flower flower, no other foreground content; the cover-field motif may remain behind them |
 
 To compress to 18 pages, merge architecture with why-now, merge product truth with creative system, or omit the third route when it is materially weaker. Never remove the current baseline, all visual routes, storyboard, production Black Flower, thank-you or final lockup merely to hit the count.
 
@@ -125,7 +125,7 @@ Write `strategy/page-map.md` before full copy:
 - Composition family: [one family from black-flower-profile.md]
 - Visual peak: [yes or no]
 - Argumentative media: [yes or no]
-- Background mode: [documented theme state]
+- Background field: [cover or body]
 - Motif state: [default, full, quiet or hidden]
 - Transition in: [question resolved from previous page]
 - Transition out: [question opened for next page]
@@ -143,6 +143,7 @@ Hard requirements:
 - every page has a reason to follow the previous page;
 - every route states why it differs;
 - every chapter opener changes pace intentionally.
+- Production and References, when both exist, remain separate typed pages.
 - every claim path is relative to its slide, resolves to the exact visible target and is never prefixed with `slides[...]`;
 - every final substantive visible field has valid claim coverage, with value plus label for a metric target;
 - claim classes are assigned deliberately, never through a blanket `proposal` transform;
@@ -152,12 +153,12 @@ Hard requirements:
 
 ### Background rhythm
 
-Choose one regime before layout:
+Choose one declared regime before layout:
 
-- `stable field`: one background for most pages;
-- `cover/body/final`: strong cover and final field, quieter stable body;
-- `chapter openers`: one alternate field only at act boundaries;
-- `source-authored alternation`: use only when a supplied deck makes it structural.
+- `stable`: one body field for almost every interior page, with the exact cover field reused on the final lockup and no more than four major transitions;
+- `binary-chapter`: exactly two documented fields, switched only on mapped cover, manifesto, chapter, visual-peak or final pages.
+
+Every page maps to `backgroundField: "cover" | "body"`. These labels describe recurring fields, not light and dark values. Never invent a third field or an unplanned alternation.
 
 Do not change background because a page feels empty. Fix composition, hierarchy, motif, proof or copy first.
 
@@ -216,8 +217,8 @@ Useful merges:
 - perception gap + risk;
 - territory + platform;
 - priority activation + concept;
-- production + references;
-- references + thank-you only when both remain readable.
+- omit the optional References page and keep its evidence in the author package;
+- compress an earlier compatible diagnosis or route-support pair to protect the closing masters.
 
 ### Expand when
 

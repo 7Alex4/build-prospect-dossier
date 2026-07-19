@@ -25,12 +25,14 @@ const hiddenKeys = new Set([
   "url", "sourceUrl", "timecode", "number", "severity", "index", "visualIntent",
   "visualIntentRationale", "compositionFamily", "visualPeak", "mediaRole", "mediaNature",
   "productionStatus", "presentation", "derivation",
+  "separator", "sourceDimensions", "subjectSafeBox",
+  "backgroundField",
 ]);
 
 const structuralKeys = new Set([
   "eyebrow", "tag", "client", "studio", "phase", "signal",
   "relationshipLabel",
-  "textMark",
+  "textMark", "signature", "platform",
 ]);
 
 function isRecord(value: unknown): value is UnknownRecord {

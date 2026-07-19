@@ -120,7 +120,7 @@ company-dossier/
 
 Do not copy generated directories such as `node_modules/`, `dist/`, `rendered/`, browser caches or previous output.
 
-Set `distribution_mode` and `relationship_status` in `brief.yaml` before asset selection. They control which assets may ship and how the cover and final marks are attributed.
+Set `distribution_mode` and `relationship_status` in `brief.yaml` before asset selection. They control which assets may ship and the truthful relationship wording on the cover. The final remains the silent real-logo `×` flower co-mark.
 
 ## 2. Install the engine
 
@@ -197,6 +197,17 @@ corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" prepare-logo -- \
   --matte white
 ```
 
+For another uniform background, measure the exact matte color and declare it explicitly:
+
+```bash
+corepack pnpm --dir "$PROSPECT_SKILL_DIR/scripts" prepare-logo -- \
+  "$DOSSIER_JOB_DIR/assets/raw/client-logo.png" \
+  --out "$DOSSIER_JOB_DIR/assets/processed/client-logo" \
+  --matte-color '#E1121A'
+```
+
+`--matte` and `--matte-color` are mutually exclusive. This inference is intended for monochrome marks only. Inspect the resulting edge alpha on both light and dark fields before approval.
+
 Visually inspect alpha edges on both a dark and light field. Never trace, redraw or stretch the mark automatically.
 
 ## 5. Separate content from presentation
@@ -205,7 +216,7 @@ The dossier is a typed object satisfying `Dossier`. Keep factual and editorial c
 
 The content has four levels:
 
-1. `meta`: client, framework profile, campaign mode, declared film-route count, required Black Flower identity or optional neutral studio, language, version, date, distribution, relationship, generative-asset policy, authorization trace and required `stage`;
+1. `meta`: client, framework profile, campaign mode, declared film-route count, background rhythm, required Black Flower identity or optional neutral studio, language, version, date, distribution, relationship, generative-asset policy, authorization trace and required `stage`;
 2. `evidence`: typed registry of evidence IDs, classes and usable statuses;
 3. `theme`: palette, typography, logo, motif and marker behavior;
 4. `slides`: ordered discriminated union of page families, including typed claim metadata.
@@ -236,7 +247,7 @@ The path must resolve to a client-visible claim target. `ClaimRef.text` must mat
 
 Assign `fact`, `quote`, `observation`, `interpretation` or `proposal` field by field. Never create a general helper that marks every visible field as `proposal` to satisfy coverage. Proposal status is a semantic assertion, not a fallback.
 
-Studio identity is required in the Black Flower profile and fixed to `Black Flower Creative House`, with visible signature `BlackFlower`. In a neutral profile it is optional; if absent, omit its mark, signature and empty layout slot. An `independent-proposal` always requires truthful cover and lockup wording.
+Studio identity is required in the Black Flower profile and fixed to `Black Flower Creative House`, with visible signature `BlackFlower`. In a neutral profile it is optional; if absent, omit its mark, signature and empty layout slot. An `independent-proposal` always requires truthful cover wording. The Black Flower final foreground remains mark-only and silent; the documented cover-field motif may remain behind it.
 
 ### Input trust boundary
 
@@ -255,7 +266,7 @@ The engine supports a measured prospect-specific grammar:
 - numeric, absent or rotating-asset page marker with deterministic angle progression;
 - optional per-slide chapter mark.
 
-For `frameworkProfile: "black-flower"`, the stable authorship frame is mandatory: canonical studio `Black Flower Creative House`, visible signature `BlackFlower`, running header at top left and pagination at bottom left. Nexaia remains a technical maintainer only and must not appear on the rendered dossier.
+For `frameworkProfile: "black-flower"`, the stable authorship frame is mandatory: canonical studio `Black Flower Creative House`, visible signature `BlackFlower`, running header at top left and pagination at bottom left on eligible interior pages. Hide all chrome on the cover and silent final. Nexaia remains a technical maintainer only and must not appear on the rendered dossier.
 
 Use the asset motif, backgrounds and marker only when they derive from real prospect evidence. The built-in frame, orbit, grid and signal motifs are neutral development fixtures, not default art direction for a client dossier. They are forbidden in a final Black Flower dossier. Use an approved prospect-derived asset motif or no motif.
 
@@ -277,10 +288,10 @@ Choose a family from its rhetorical function, not its appearance.
 | `film-concept` | one activation idea with logline, duration and tone |
 | `activation` | channel system, roles, assets and sequence |
 | `storyboard` | 3 to 12 inspectable frames with timing where duration is fixed; every final frame has a local image |
-| `production` | production logic, deliverables and constraints |
-| `references` | verified, linked and relevant precedent evidence |
-| `thank-you` | recap, invitation and optional contact |
-| `lockup` | silent close with truthful prospect attribution and required Black Flower authorship, or optional studio attribution in neutral mode |
+| `production` | Black Flower portrait master with mandatory isolated portrait and fixed role, approach and strength sections |
+| `references` | separate verified, linked and relevant precedent evidence page; never merge into Production |
+| `thank-you` | editorial closing letter, prospect object and two-line Black Flower signature |
+| `lockup` | silent approved prospect logo × Black Flower flower, with no chrome or body copy; the cover-field motif may remain in the background |
 
 Every Black Flower slide also declares an explicit visual intent. Image-led routes, risk, priority activation, storyboard and production require approved local media in final mode. A missing asset must fail validation instead of producing a graphic fallback.
 
@@ -313,6 +324,8 @@ An image asset must include useful alternative text and may define:
 - `credit`: visible credit when required;
 - `presentation`: `frame`, `cutout` or `background`;
 - `mediaRole`, `mediaNature` and `productionStatus` in the Black Flower profile;
+- `sourceDimensions` for every Production portrait;
+- `subjectSafeBox` for every person whose crop must remain protected;
 - a local `src` backed by an approved asset-ledger row.
 
 Film routes may define `productCutout` separately from the scene image. Creative-method steps may define one image per step. Use these typed fields instead of CSS-only backgrounds so asset governance and cadence validation can see them.

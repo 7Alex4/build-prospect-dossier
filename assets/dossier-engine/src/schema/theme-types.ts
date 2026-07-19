@@ -31,6 +31,18 @@ export type FontRole = "display" | "body" | "mono";
 export type FontStyle = "normal" | "italic";
 export type FontWeight = 400 | 500 | 600 | 700 | 800 | 900;
 
+export interface PixelDimensions {
+  height: number;
+  width: number;
+}
+
+export interface SubjectSafeBox {
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+}
+
 export interface SystemFontSource {
   kind: "system";
   allowedResolvedFamilies: readonly string[];
@@ -65,6 +77,8 @@ export interface ImageAsset {
   mediaNature?: MediaNature;
   productionStatus?: MediaProductionStatus;
   presentation?: "frame" | "cutout" | "background";
+  sourceDimensions?: PixelDimensions;
+  subjectSafeBox?: SubjectSafeBox;
 }
 
 export interface MotifPlacement {

@@ -51,6 +51,7 @@ target_pages: 18
 desired_outcome: exploratory-meeting
 distribution_mode: private-prospecting
 relationship_status: independent-proposal
+background_rhythm: stable
 generative_assets: authorized
 generative_assets_authorization:
   status: explicitly-authorized
@@ -216,7 +217,7 @@ The engine's typed `claims` metadata mirrors this map for render-time checks. Th
 Create `assets/asset-ledger.csv`:
 
 ```csv
-id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,transformations,credit_required,notes
+id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,source_width,source_height,subject_safe_box,transformations,credit_required,notes
 ```
 
 Allowed `status` values:
@@ -250,6 +251,8 @@ Important rights rules:
 - when the basis is uncertain, mark the file `reference-only` and replace it with a diagram, typographic page or cleared asset.
 
 Record transformations such as crop, background removal, monochrome conversion, exposure correction and compositing. Never conceal the origin of an asset. This workflow records decisions but is not legal advice; obtain a rights review when the intended distribution or asset is sensitive.
+
+For any portrait, record `source_width` and `source_height`. For a person used on Production, also record `subject_safe_box` as normalized `x,y,width,height`. The safe box must include the complete head, jaw, shoulders and upper torso with at least 3% air vertically. A flattened dossier page is never a portrait source.
 
 Before implementation, mirror every shipping ledger row into the dossier's typed root `assets` registry. Preserve the same `id`; map `file` to the local `src` or provide the external row as `ledgerId`; map `origin`, `rights_basis`, `status` and every permitted shipping scope. An `ImageAsset.id` is the foreign key into this registry. The renderer derives usage from the theme and slide tree, so a hand-maintained page asset list cannot replace this mapping.
 
@@ -350,6 +353,6 @@ Research is complete when:
 - every planned final substantive visible field has an exact slide-relative `content_path` and matching final wording;
 - no blanket `proposal` classification hides facts, observations or interpretations;
 - every shipping asset is cleared for the declared distribution mode;
-- the cover and final relationship wording matches the declared relationship status;
+- the cover relationship wording matches the declared relationship status and the final foreground remains the silent real-logo `×` flower master;
 - the Black Flower image plan lands between 45% and 65% image-led pages and includes enough cleared concrete media to execute it;
 - unresolved uncertainty is either removed from client copy or clearly framed as a proposal.

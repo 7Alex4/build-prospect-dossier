@@ -9,8 +9,16 @@ import {
   UserInputError,
   writeJson,
 } from "./core.js";
+import {
+  applyNormalizedMatteRemoval,
+  type HexColor,
+  type Matte,
+  type MatteRemoval,
+  parseHexColor,
+  resolveMatteDefinition,
+} from "./matte-removal.js";
 
-export type Matte = "black" | "white";
+export type { Matte } from "./matte-removal.js";
 
 export interface PrepareLogoOptions {
   readonly inputPath: string;
@@ -18,6 +26,7 @@ export interface PrepareLogoOptions {
   readonly marginFraction?: number;
   readonly outputLongestSide?: number;
   readonly matte?: Matte;
+  readonly matteColor?: string;
   readonly darkColor?: string;
   readonly lightColor?: string;
 }
@@ -38,7 +47,10 @@ export interface LogoReport {
     readonly transparentPixelShare: number;
   };
   readonly processing: {
-    readonly matteRemoval: Matte | null;
+    readonly matteRemoval: MatteRemoval | null;
+    readonly matteColor: HexColor | null;
+    readonly matteMethod: "normalized-rgb-distance" | null;
+    readonly matteReferenceDistance: number | null;
     readonly marginFraction: number;
     readonly targetLongestSide: number;
     readonly trimmedDimensions: readonly [number, number];
@@ -71,15 +83,6 @@ interface BoundingBox {
   readonly height: number;
 }
 
-function parseHexColor(value: string, label: string): readonly [number, number, number] {
-  const match = /^#([0-9a-f]{6})$/i.exec(value);
-  const hex = match?.[1];
-  if (hex === undefined) {
-    throw new UserInputError(`${label} must be a six-digit hex colour such as #111111.`);
-  }
-  return [Number.parseInt(hex.slice(0, 2), 16), Number.parseInt(hex.slice(2, 4), 16), Number.parseInt(hex.slice(4, 6), 16)];
-}
-
 function transparencyStats(pixels: Uint8Array): { count: number; share: number } {
   let count = 0;
   const pixelCount = pixels.length / 4;
@@ -89,20 +92,6 @@ function transparencyStats(pixels: Uint8Array): { count: number; share: number }
     }
   }
   return { count, share: pixelCount === 0 ? 0 : round(count / pixelCount, 6) };
-}
-
-function applyMatteRemoval(pixels: Buffer, matte: Matte): void {
-  for (let offset = 0; offset < pixels.length; offset += 4) {
-    const red = pixels[offset];
-    const green = pixels[offset + 1];
-    const blue = pixels[offset + 2];
-    if (red === undefined || green === undefined || blue === undefined) {
-      continue;
-    }
-    pixels[offset + 3] = matte === "white"
-      ? Math.max(255 - red, 255 - green, 255 - blue)
-      : Math.max(red, green, blue);
-  }
 }
 
 function visibleBounds(pixels: Uint8Array, width: number, height: number): BoundingBox {
@@ -167,8 +156,9 @@ export async function prepareLogo(options: PrepareLogoOptions): Promise<LogoRepo
   if (!Number.isInteger(targetLongestSide) || targetLongestSide < 64 || targetLongestSide > 8192) {
     throw new UserInputError("Output size must be an integer from 64 to 8192 pixels.");
   }
-  const darkColor = parseHexColor(options.darkColor ?? "#111111", "Dark colour");
-  const lightColor = parseHexColor(options.lightColor ?? "#FFFFFF", "Light colour");
+  const darkColor = parseHexColor(options.darkColor ?? "#111111", "Dark colour").rgb;
+  const lightColor = parseHexColor(options.lightColor ?? "#FFFFFF", "Light colour").rgb;
+  const matteDefinition = resolveMatteDefinition(options.matte, options.matteColor);
   const sourceStat = await stat(inputPath).catch(() => {
     throw new UserInputError(`Logo source is not readable: ${options.inputPath}`);
   });
@@ -184,12 +174,15 @@ export async function prepareLogo(options: PrepareLogoOptions): Promise<LogoRepo
   const pixels = Buffer.from(decodedData);
   const transparency = transparencyStats(pixels);
   const hasTransparentPixels = transparency.count > 0;
-  if (!hasTransparentPixels && options.matte === undefined) {
-    throw new UserInputError("Source has no transparent pixels. Supply a transparent source or explicitly use --matte white|black.");
+  if (!hasTransparentPixels && matteDefinition === undefined) {
+    throw new UserInputError("Source has no transparent pixels. Supply a transparent source or explicitly use --matte white|black or --matte-color #RRGGBB.");
   }
-  const matteRemoval = hasTransparentPixels ? null : (options.matte ?? null);
-  if (matteRemoval !== null) {
-    applyMatteRemoval(pixels, matteRemoval);
+  const matteRemoval = hasTransparentPixels ? null : (matteDefinition?.reportValue ?? null);
+  const matteStats = hasTransparentPixels || matteDefinition === undefined
+    ? null
+    : applyNormalizedMatteRemoval(pixels, matteDefinition.rgb);
+  if (matteRemoval !== null && matteStats === null) {
+    throw new UserInputError("Matte removal could not be evaluated.");
   }
   const bounds = visibleBounds(pixels, decodedInfo.width, decodedInfo.height);
   const contentTarget = Math.max(1, Math.floor(targetLongestSide / (1 + marginFraction * 2)));
@@ -228,7 +221,7 @@ export async function prepareLogo(options: PrepareLogoOptions): Promise<LogoRepo
   if (aspectRatio < 0.1 || aspectRatio > 10) {
     warnings.push("Unusual source aspect ratio. Verify that the complete logo was supplied.");
   }
-  if (options.matte !== undefined && hasTransparentPixels) {
+  if (matteDefinition !== undefined && hasTransparentPixels) {
     warnings.push("The matte option was not applied because the source already contains transparency.");
   }
   const rasterUpscaled = extension === ".png" && scaleFactor > 1;
@@ -239,7 +232,7 @@ export async function prepareLogo(options: PrepareLogoOptions): Promise<LogoRepo
       ...(rasterUpscaled ? ["The raster source was enlarged, so source-resolution limits remain visible."] : []),
     ];
   if (matteRemoval !== null) {
-    notes.push(`Transparency was inferred from the declared ${matteRemoval} matte. Review edge quality on both light and dark backgrounds.`);
+    notes.push(`Transparency was inferred from the declared ${matteRemoval} matte using normalized RGB distance. Edge inspection is required on both light and dark backgrounds.`);
   }
   const report: LogoReport = {
     schemaVersion: 1,
@@ -258,6 +251,9 @@ export async function prepareLogo(options: PrepareLogoOptions): Promise<LogoRepo
     },
     processing: {
       matteRemoval,
+      matteColor: matteRemoval === null ? null : (matteDefinition?.hex ?? null),
+      matteMethod: matteRemoval === null ? null : "normalized-rgb-distance",
+      matteReferenceDistance: matteStats?.referenceDistance ?? null,
       marginFraction,
       targetLongestSide,
       trimmedDimensions: [bounds.width, bounds.height],

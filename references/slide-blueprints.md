@@ -8,11 +8,11 @@ Map rhetorical jobs to stable page families. Coordinates assume a 2000 × 1414 p
 
 Standard content page:
 
-- running header: x 84, y 74;
+- eligible interior running header: x 84, y 74;
 - title: x 140, y 210;
 - subtitle: x 140, y 300;
 - primary content top: y 420–455;
-- page number: x 84, baseline near y 1300;
+- eligible interior page number: x 84, baseline near y 1300;
 - optional chapter marker: bottom-right around x 1820, y 1275;
 - main safe text area: x 140–1500 when the right motif is active.
 
@@ -74,10 +74,10 @@ Across 15–20 pages, keep 45–65% image-led, at most two diagram pages, at lea
 | Route or film concept | `film-concept` | Meaningful scene required; use exact product cutout when relevant |
 | Priority activation | `activation` or `film-concept` | One concrete, image-led execution |
 | Storyboard or execution proof | `storyboard` | 3–12 frames with timecodes for fixed duration |
-| Production | `production` | Approved Black Flower portrait or production proof required |
+| Production | `production` | Approved isolated Black Flower portrait required |
 | References | `references` | Source and relevance required |
-| Thank-you | `thank-you` | Contact optional |
-| Final lockup | `lockup` | Silent content allowed; relationship label remains truthful |
+| Thank-you | `thank-you` | Editorial letter and returning prospect object, with no CTA or contact details |
+| Final lockup | `lockup` | Silent prospect logo × Black Flower flower, with relationship truth disclosed on cover |
 
 This mapping is a routing aid, not permission to force content into a near match. Add a new discriminated family when the rhetorical job or geometry is genuinely different.
 
@@ -89,7 +89,7 @@ For every family, keep `meta.stage: "draft"` until incomplete copy and imagery a
 
 **Anatomy**
 
-- micro-header optional but consistent with the source line;
+- no running header or pagination on the cover;
 - prospect or product label;
 - platform phrase or working dossier title;
 - optional signature of one line;
@@ -323,7 +323,7 @@ Use the three-column grid when the copy lengths are similar and a diagonal would
 
 **Composition**
 
-- alternate background only when the documented regime uses chapter openers;
+- alternate field only when the declared `binary-chapter` rhythm maps this opener as a switch;
 - text on left 48–55%;
 - vertical or macro image on right 30–38%;
 - keep the proof visually dominant but not full bleed by default.
@@ -503,27 +503,31 @@ Preferred Black Flower construction: meaningful licensed or generated scene, exa
 
 **Use for:** Black Flower role and execution confidence.
 
+The isolated approved Black Flower portrait is mandatory. Production proof belongs on its own proof or References page and does not replace this master.
+
 **Anatomy**
 
-- title `PRODUCTION BLACKFLOWER` and short signature;
-- role, approach and strength;
-- verified portrait or production proof;
-- caption with name and role when applicable.
+- exact title `PRODUCTION BLACKFLOWER` and a one-line, 2–8-word signature;
+- exactly `Notre rôle`, `Notre approche` and `Notre force`;
+- three to five approach points;
+- isolated approved vertical portrait;
+- caption with verified name and role when applicable.
 
 **Composition**
 
-- text x 140–930;
-- portrait or proof x 1080–1700, y 430–1120;
+- text starts at x about 140 and ends before x 1040;
+- portrait targets x 1140, y 458, 600 × 760;
 - keep portrait stable and unembellished;
-- use bullet points sparingly within approach.
+- align the first section with the portrait top within 24 px;
+- use `fit: "contain"` and keep the caption outside the image.
 
 **Content limit**
 
-- role 30–55 words;
-- approach 4–6 bullets or 50–90 words;
-- strength 25–50 words.
+- role 8–45 words;
+- approach 3–5 concise points;
+- strength 8–45 words.
 
-**Reject when:** it becomes a long studio profile, uses unsupported credentials, places the studio before the prospect's value, lacks approved portrait or production proof, or is signed Nexaia.
+**Reject when:** it becomes a long studio profile, uses unsupported credentials, places the studio before the prospect's value, lacks an isolated approved portrait, uses a 2000 × 1414 page raster as a portrait, crops the subject safe box, contains an eyebrow, workstreams, deliverables or constraints, or is signed Nexaia.
 
 ## 17. References
 
@@ -555,26 +559,27 @@ Preferred Black Flower construction: meaningful licensed or generated scene, exa
 
 **Anatomy**
 
-- `Merci` or source-appropriate title;
-- short letter;
+- exact title `MERCI` without kicker or punctuation in French output;
+- three or four short paragraphs;
 - truthful prospect attribution plus Black Flower authorship in the Black Flower profile;
 - platform phrase;
-- quiet return of the motif;
-- optional discreet next step.
+- quiet return of an established prospect object or motif.
 
 **Composition**
 
 - letter width 850–1150 px;
-- place it in the left or center-left region;
+- title starts around x 140, y 220 and the letter begins at y 295–420;
 - use generous vertical spacing;
-- keep motif strong enough to recall the cover but quiet enough for reading.
+- anchor the two-line signature low at the left;
+- let the prospect object occupy the right 25–45%.
 
 **Content limit**
 
-- 110–180 words ideal;
+- 75–135 words including the closing line;
 - no new argument.
+- no CTA, contact details, URL, booking instruction or sales next step.
 
-**Reject when:** it is a generic CTA, repeats the full dossier or uses a new visual language.
+**Reject when:** it is a generic CTA, includes a contact card, booking duration or long divider, starts below the upper third, repeats the full dossier, omits the prospect object or uses a new visual language.
 
 ## 19. Final lockup
 
@@ -582,15 +587,17 @@ Preferred Black Flower construction: meaningful licensed or generated scene, exa
 
 **Anatomy**
 
-- cover or final field;
-- prospect mark, Black Flower text signature or cleared mark, and a quiet relationship label when the proposal is independent;
-- strongest stable motif state;
-- no running header, page number or paragraph.
+- exact cover field reused as the final field;
+- approved prospect mark, multiplication sign and approved Black Flower flower;
+- optional documented prospect-derived cover motif in the background only;
+- no running header, page number, footer, chapter mark, paragraph or relationship label.
 
 **Composition**
 
-- lockup slightly below or left of optical center when the motif occupies the right;
+- horizontal group centered around y 707, 220–380 px wide;
+- keep prospect on the left and Black Flower on the right with equal optical weight;
+- shift only when a documented cover motif changes the calm field;
 - preserve silence around the marks;
 - close the same visual loop opened on page 1.
 
-**Reject when:** it adds a new tagline, CTA, reference grid, contact block or unsupported claim, invents a missing studio identity, or leaves a blank studio slot.
+**Reject when:** it uses typed prospect text instead of the real logo, replaces the Black Flower flower with a wordmark or generic symbol, stacks marks, adds a foreground motif, tagline, CTA, legal line, relationship line, reference grid, contact block, header, pagination or unsupported claim, invents a missing identity, or leaves a blank mark slot.

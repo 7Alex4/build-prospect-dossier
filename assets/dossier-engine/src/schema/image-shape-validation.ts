@@ -25,6 +25,39 @@ function allowed(value: unknown, values: readonly string[], path: string, issues
   }
 }
 
+function finiteNumber(value: unknown, path: string, issues: ValidationIssue[], min: number, max: number): void {
+  if (typeof value !== "number" || !Number.isFinite(value) || value < min || value > max) {
+    add(issues, "image-number", path, `Nombre requis entre ${min} et ${max}.`);
+  }
+}
+
+function dimensions(value: unknown, path: string, issues: ValidationIssue[]): void {
+  if (value === undefined) return;
+  if (!isRecord(value)) {
+    add(issues, "image-dimensions", path, "Objet dimensions requis.");
+    return;
+  }
+  finiteNumber(value.width, `${path}.width`, issues, 1, 20000);
+  finiteNumber(value.height, `${path}.height`, issues, 1, 20000);
+}
+
+function safeBox(value: unknown, path: string, issues: ValidationIssue[]): void {
+  if (value === undefined) return;
+  if (!isRecord(value)) {
+    add(issues, "image-safe-box", path, "Objet safe box requis.");
+    return;
+  }
+  ["x", "y", "width", "height"].forEach((key) =>
+    finiteNumber(value[key], `${path}.${key}`, issues, 0, 1),
+  );
+  if (typeof value.x === "number" && typeof value.width === "number" && value.x + value.width > 1) {
+    add(issues, "image-safe-box", path, "La safe box dépasse la largeur de l'image.");
+  }
+  if (typeof value.y === "number" && typeof value.height === "number" && value.y + value.height > 1) {
+    add(issues, "image-safe-box", path, "La safe box dépasse la hauteur de l'image.");
+  }
+}
+
 export function validateImageShape(value: unknown, path: string, issues: ValidationIssue[]): void {
   if (value === undefined) return;
   if (!isRecord(value)) {
@@ -48,4 +81,6 @@ export function validateImageShape(value: unknown, path: string, issues: Validat
   if (value.presentation !== undefined) {
     allowed(value.presentation, ["frame", "cutout", "background"], `${path}.presentation`, issues);
   }
+  dimensions(value.sourceDimensions, `${path}.sourceDimensions`, issues);
+  safeBox(value.subjectSafeBox, `${path}.subjectSafeBox`, issues);
 }

@@ -129,7 +129,7 @@ The engine validates:
 - stable ASCII kebab-case slide IDs;
 - exact claim-to-visible-field mappings;
 - verified or official-only evidence for factual claims;
-- explicit independent, approved or commissioned relationship labels;
+- explicit independent, approved or commissioned relationship labels on the cover and in metadata, with a silent final co-mark;
 - safe contact links;
 - placeholder and forbidden-term scans across visible content and theme strings;
 - local storyboard imagery in final mode;
@@ -143,7 +143,10 @@ The engine validates:
 - maximum diagram count and maximum text/system run;
 - type-compatible composition families, no adjacent repetition and three uses maximum per family;
 - mandatory media on risk, route, priority activation, storyboard and production pages;
-- rejection of generic final motifs and vector fallbacks.
+- measured fixed masters for Production, Merci and the silent final co-mark;
+- portrait source-ratio and subject-safe-box validation;
+- declared `stable` or `binary-chapter` background rhythm, with transition limits;
+- rejection of generic foreground substitutes, typed-logo fallbacks and non-Black-Flower final marks; a documented prospect-derived cover motif may remain in the background.
 
 The output auditor validates:
 
