@@ -17,6 +17,14 @@
 - Documents measured rails, occupancy bands, quiet-space rules and rejection criteria for interface-like residue.
 - Keeps Production, optional References, Merci and the final lockup as separate pages.
 
+### Film-route series and clean scaffolds
+
+- Allows one contiguous series of two to four `film-concept` pages to repeat a compatible composition when the block contains every declared route and exactly matches `meta.creativeRouteCount`.
+- Keeps adjacency checks at both series boundaries and the three-use ceiling for every occurrence outside the eligible block.
+- Adds positive coverage for two, three and four-route masters, plus negative coverage for mismatched, fragmented, oversized, incompatible and overused series.
+- Excludes transient `.test-input-*` directories from initialized jobs.
+- Clarifies that job-specific `brand.ts`, `evidence.ts` and `deck.ts` files begin after research and page mapping instead of being seeded with false client content.
+
 ### Asset preparation
 
 - Adds source dimensions and subject-safe-box metadata to image assets.

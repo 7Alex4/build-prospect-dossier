@@ -22,6 +22,7 @@ import "./input-test";
 import "./render-integrity-test";
 import "./structural-test";
 import "./black-flower-test";
+import "./film-route-series-test";
 import "./finish-master-validation-test";
 import "./composition-layout-test";
 import "./finish-master-layout-test";

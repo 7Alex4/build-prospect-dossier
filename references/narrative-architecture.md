@@ -142,6 +142,7 @@ Hard requirements:
 - the complete plan satisfies the Black Flower image-led ratio, diagram cap and consecutive-page cap before copy is written;
 - every page has a reason to follow the previous page;
 - every route states why it differs;
+- a repeated route master forms one contiguous block of 2–4 `film-concept` pages, contains every declared route and exactly matches `meta.creativeRouteCount`;
 - every chapter opener changes pace intentionally.
 - Production and References, when both exist, remain separate typed pages.
 - every claim path is relative to its slide, resolves to the exact visible target and is never prefixed with `slides[...]`;
@@ -188,6 +189,8 @@ A Black Flower dossier contains 45–65% image-led pages, with a 55% target. An 
 - enough typographic pages to create contrast without forming a tunnel.
 
 At least 60% of visual pages use real, documentary, official, licensed or supplied assets. Treat these as Black Flower delivery gates, not optional pacing advice.
+
+A chapter of 2–4 declared film routes may repeat one compatible `film-concept` composition consecutively so the reader compares ideas inside a stable master. Keep every route visually and conceptually distinct. The block must contain all film routes and exactly match `meta.creativeRouteCount`; otherwise the ordinary adjacency and overuse rules apply.
 
 ### Chapter rhythm
 

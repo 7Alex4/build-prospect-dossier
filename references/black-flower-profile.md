@@ -88,8 +88,8 @@ For a dossier of 15–20 pages:
 - no more than two text-led or system-led pages consecutively after the introduction;
 - at least six distinct composition silhouettes;
 - at least three visible peaks at contact-sheet size;
-- no composition family appears more than three times;
-- do not repeat the same family on adjacent pages.
+- no composition family appears more than three times outside an eligible film-route series;
+- do not repeat the same family on adjacent pages, except inside one exact declared film-route series of 2–4 pages.
 
 Count a page as image-led only when a photograph, product, screenshot, archive, illustration, cultural reference, campaign scene or storyboard is the main rhetorical anchor. Logos, motifs, textures, decorative SVGs and tiny thumbnails do not count.
 
@@ -191,7 +191,19 @@ Use these exact engine values in `compositionFamily`:
 | `closing-letter` | Editorial thank-you letter with prospect object |
 | `lockup` | Silent co-branded close |
 
-Across one dossier, use at least six families, never repeat the same family on adjacent pages, and never use one family more than three times. An `editorial-sequence` must give every step its own inspectable image. An `object-overlap` product must remain an exact cutout with `fit: contain`, never a generated approximation.
+Across one dossier, use at least six families. Never repeat the same family on adjacent pages and never use one family more than three times outside the strict film-route exception below. An `editorial-sequence` must give every step its own inspectable image. An `object-overlap` product must remain an exact cutout with `fit: contain`, never a generated approximation.
+
+### Repeated film-route master
+
+Allow one contiguous block of 2–4 `film-concept` slides to share the same compatible composition family only when:
+
+- `meta.creativeRouteCount` is an integer from 2 to 4;
+- every `film-concept` slide in the dossier belongs to that one block;
+- the block length exactly equals `meta.creativeRouteCount`;
+- every route uses the same family;
+- that family is compatible with `film-concept`.
+
+The adjacency exemption applies only between two pages inside the block. A matching family immediately before or after it remains invalid. Count all uses outside the block normally and reject the fourth outside use. A fragmented block, mixed master, mismatched declaration or five-route run receives no exception.
 
 ### Cover manifesto
 

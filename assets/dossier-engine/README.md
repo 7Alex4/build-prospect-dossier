@@ -158,6 +158,7 @@ Le moteur impose ensuite les seuils suivants sur l'ensemble du dossier:
 - un Merci `black-flower-letter` de 3 à 4 paragraphes, 75 à 135 mots, avec retour d'un objet prospect;
 - un lockup `black-flower-co-mark` dont le premier plan contient uniquement le vrai logo prospect, `×` et la fleur Black Flower; le motif documenté du champ de couverture peut rester en arrière-plan;
 - au moins 6 familles de composition et 3 pics visuels;
+- une seule série contiguë de 2 à 4 pages `film-concept` peut répéter un master compatible lorsque toutes les routes du dossier appartiennent au bloc et que sa longueur égale exactement `meta.creativeRouteCount`; l'adjacence reste interdite aux frontières et les usages hors bloc restent plafonnés à trois;
 - au moins 60% des pages visuelles contenant un média réel ou documentaire issu d'une origine admissible;
 - au maximum 40% des pages visuelles contenant un asset généré;
 - aucun motif générique `frame`, `orbit`, `grid` ou `signal`;
@@ -221,8 +222,8 @@ Les intégrations peuvent traiter ces codes comme l'API de validation de la vers
 | `black-flower-media-cadence` | erreur | Trois pages consécutives ou plus sont sans média. |
 | `black-flower-composition-diversity` | erreur | Le dossier utilise moins de six familles de composition. |
 | `black-flower-composition-binding` | erreur | La famille déclarée ne pilote pas ce type de page. |
-| `black-flower-composition-overuse` | erreur | Une famille est utilisée plus de trois fois. |
-| `black-flower-adjacent-compositions` | erreur | Une famille se répète sur deux pages consécutives. |
+| `black-flower-composition-overuse` | erreur | Une famille est utilisée plus de trois fois hors série film admissible. |
+| `black-flower-adjacent-compositions` | erreur | Une famille se répète sur deux pages consécutives hors série film admissible ou à sa frontière. |
 | `black-flower-visual-peak-count` | erreur | Le dossier contient moins de trois pics visuels. |
 | `black-flower-real-documentary-ratio` | erreur | Moins de 60% des pages visuelles contiennent un média réel ou documentaire admissible. |
 | `black-flower-generated-ratio` | erreur | Plus de 40% des pages visuelles contiennent un asset généré. |

@@ -20,7 +20,10 @@ const IGNORED_NAMES = new Set([
     "node_modules",
 ]);
 function ignored(name) {
-    return IGNORED_NAMES.has(name) || name === "rendered" || name.startsWith("rendered-");
+    return IGNORED_NAMES.has(name)
+        || name === "rendered"
+        || name.startsWith("rendered-")
+        || name.startsWith(".test-input-");
 }
 async function directoryIsNonEmpty(directory) {
     const directoryStat = await stat(directory).catch(() => undefined);

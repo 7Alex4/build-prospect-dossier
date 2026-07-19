@@ -142,7 +142,7 @@ Hard failures:
 - generic orbit, signal, grid or abstract line motif used in a final Black Flower dossier;
 - repeated equal cards, decorative flowcharts, severity meters, progress bars, pills, fake dashboards or dark central platform cards;
 - fewer than six composition silhouettes or fewer than three visible contact-sheet peaks.
-- one composition family repeated on adjacent pages or used more than three times;
+- one composition family repeated on adjacent pages or used more than three times outside the strict film-route exception: one contiguous block of 2–4 compatible `film-concept` pages containing every route and exactly matching `meta.creativeRouteCount`;
 - Production that is not the fixed portrait master, or that contains workstreams, deliverables or constraints;
 - Merci with a kicker, CTA, contact details, URL, booking instruction, fewer than three paragraphs or no returning prospect object;
 - final-lockup foreground with anything beyond the approved prospect logo, `×` and Black Flower flower; the documented cover-field motif may remain behind them;
@@ -317,6 +317,8 @@ Merci == black-flower-letter master with 3–4 paragraphs and prospect object
 final-lockup foreground == exactly two approved marks plus one multiplication sign and zero chrome
 stable background rhythm == no more than four cover/body transitions
 binary-chapter background rhythm == exactly two documented fields and mapped switches only
+repeated film-route master == one contiguous 2–4 page block, one compatible family, every film-concept slide, exact creativeRouteCount
+composition adjacency and three-use cap == enforced outside the eligible film-route block and at both boundaries
 no browser console error
 no forbidden placeholder token
 alt, frame number, index, timecode and rendered theme strings == scanned for placeholders and forbidden terms without ClaimRef coverage

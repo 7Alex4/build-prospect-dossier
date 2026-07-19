@@ -90,6 +90,8 @@ This writes an `explicitly-authorized` audit block in `brief.yaml`. The profile 
 
 The initializer must refuse a non-empty destination. Do not use `--force` unless overwriting that exact destination is explicitly intended and its contents have been inspected.
 
+The initializer does not create `brand.ts`, `evidence.ts` or `deck.ts`. It copies the reusable engine and neutral syntax fixtures into `src/content/`, but job-specific content begins only after the evidence, retained platform and page map are complete. Do not validate or render the copied example as if it were the prospect dossier.
+
 If the initializer is unavailable, copy `assets/dossier-engine/` into the job and create this structure manually:
 
 ```text
@@ -110,15 +112,14 @@ company-dossier/
 │   └── page-map.md
 ├── src/
 │   └── content/
-│       ├── brand.ts
-│       └── deck.ts
+│       └── copied engine fixtures only; no job content yet
 ├── qa/
 │   └── report.md
 └── output/
     └── slides/
 ```
 
-Do not copy generated directories such as `node_modules/`, `dist/`, `rendered/`, browser caches or previous output.
+Do not copy generated directories such as `node_modules/`, `dist/`, `rendered/`, `.test-input-*`, browser caches or previous output.
 
 Set `distribution_mode` and `relationship_status` in `brief.yaml` before asset selection. They control which assets may ship and the truthful relationship wording on the cover. The final remains the silent real-logo `×` flower co-mark.
 
@@ -231,6 +232,8 @@ src/content/
 ├── evidence.ts     typed client-facing claims if useful
 └── deck.ts         ordered slide definitions
 ```
+
+Create this split at implementation time. Until then, the copied neutral example is syntax documentation only and is not the job dossier.
 
 Use `satisfies Dossier` so literals retain useful inference while the complete contract is checked. Mirror every client-facing claim in `research/claim-map.csv`; factual, quoted and observational claims require evidence IDs in both the typed slide metadata and the CSV. Every referenced ID must exist in the typed evidence registry with a usable status. Interpretations may derive from facts or observations; proposals may cite evidence without pretending to be facts.
 

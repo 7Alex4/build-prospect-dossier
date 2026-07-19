@@ -102,7 +102,9 @@ Classify a specific user-supplied angle as `fixed`, a directional territory as `
 
 Create the job with the bundled initializer or copy `assets/dossier-engine/` into a new project directory. Keep the skill package unchanged. The public initializer defaults to `neutral`; Alex's jobs must pass `--profile black-flower` explicitly.
 
-Use this job structure:
+The initializer does not create `brand.ts`, `evidence.ts` or `deck.ts`. It copies only the reusable engine and neutral syntax fixtures under `src/content/`; create the job-specific content files during step 10, after the evidence, retained platform and page map exist. Never treat the copied example as client content.
+
+Build toward this completed job structure:
 
 ```text
 project/
@@ -121,9 +123,9 @@ project/
 │   ├── platform.md
 │   └── page-map.md
 ├── src/content/
-│   ├── brand.ts
-│   ├── evidence.ts
-│   └── deck.ts
+│   ├── brand.ts        created during implementation
+│   ├── evidence.ts     optional typed claim split
+│   └── deck.ts         created during implementation
 ├── qa/
 ├── output/
 │   ├── slides/
@@ -286,7 +288,7 @@ Requirements:
 - no decorative gradients, blobs, particles, confetti, glass cards, fake dashboards, or unrelated icons.
 - explicit `visualIntent`, `visualIntentRationale`, `compositionFamily` and `visualPeak` metadata matching the page map;
 - a type-compatible composition family that changes the rendered geometry, never metadata used only to satisfy a counter;
-- no composition family repeated on consecutive pages and no family used more than three times;
+- no composition family repeated on consecutive pages and no family used more than three times outside one eligible film-route series; allow one contiguous block of 2–4 `film-concept` slides to share a compatible family only when the block contains every film route and its length exactly equals `meta.creativeRouteCount`; keep the adjacency ban at both boundaries and the three-use cap outside the block;
 - no generic orbit, signal, grid or abstract line motif in a final Black Flower dossier;
 - no equal-card grid, decorative flowchart, severity meter, progress bar, pill cloud, dark central platform card or text-only film route as a final composition;
 - image-led routes, activation, storyboard and production pages using approved local assets;

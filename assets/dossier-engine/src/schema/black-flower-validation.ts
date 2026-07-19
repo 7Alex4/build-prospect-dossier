@@ -1,7 +1,7 @@
 import { clientFacingAuditStrings, structuralAuditStrings } from "./content-claims";
+import { validateCompositionCadence } from "./black-flower-composition-validation";
 import { validateBlackFlowerContent } from "./black-flower-content-validation";
 import { validateBlackFlowerFinishing } from "./black-flower-finishing-validation";
-import { compositionFamilies } from "./profile-types";
 import type { DossierSlide } from "./types";
 import type { ValidationIssue } from "./validation";
 
@@ -187,14 +187,12 @@ function validateFallbacks(slide: UnknownRecord, path: string, issues: Validatio
   }
 }
 
-function validateCadence(slides: readonly unknown[], issues: ValidationIssue[]): void {
+function validateCadence(meta: UnknownRecord, slides: readonly unknown[], issues: ValidationIssue[]): void {
   let imageLed = 0;
   let diagram = 0;
   let mediaFreeRun = 0;
   let peaks = 0;
-  const families = new Set<string>();
-  const familyCounts = new Map<string, number>();
-  let previousFamily: string | undefined;
+  validateCompositionCadence(meta, slides, issues);
   slides.forEach((entry, index) => {
     if (!isRecord(entry)) return;
     const path = `slides[${index}]`;
@@ -205,17 +203,6 @@ function validateCadence(slides: readonly unknown[], issues: ValidationIssue[]):
     }
     if (!nonEmpty(entry.visualIntentRationale)) {
       add(issues, "error", "black-flower-visual-rationale", `${path}.visualIntentRationale`, "Raison visuelle explicite requise.");
-    }
-    if (!compositionFamilies.includes(entry.compositionFamily as typeof compositionFamilies[number])) {
-      add(issues, "error", "black-flower-composition-family", `${path}.compositionFamily`, "Famille de composition explicite requise.");
-    } else {
-      const family = String(entry.compositionFamily);
-      families.add(family);
-      const count = (familyCounts.get(family) ?? 0) + 1;
-      familyCounts.set(family, count);
-      if (count > 3) add(issues, "error", "black-flower-composition-overuse", `${path}.compositionFamily`, `La famille ${family} dépasse trois usages.`);
-      if (family === previousFamily) add(issues, "error", "black-flower-adjacent-compositions", `${path}.compositionFamily`, `La famille ${family} ne peut pas se répéter sur deux pages consécutives.`);
-      previousFamily = family;
     }
     if (typeof entry.visualPeak !== "boolean") {
       add(issues, "error", "black-flower-visual-peak", `${path}.visualPeak`, "Booléen visualPeak explicite requis.");
@@ -246,7 +233,6 @@ function validateCadence(slides: readonly unknown[], issues: ValidationIssue[]):
     add(issues, "warning", "black-flower-image-led-target", "slides", `Pages image-led: ${Math.round(ratio * 100)}%. Cible Black Flower: 55%.`);
   }
   if (diagram > 2) add(issues, "error", "black-flower-diagram-cap", "slides", `${diagram} diagrammes. Maximum: 2.`);
-  if (families.size < 6) add(issues, "error", "black-flower-composition-diversity", "slides", `${families.size} familles. Minimum: 6.`);
   if (peaks < 3) add(issues, "error", "black-flower-visual-peak-count", "slides", `${peaks} pics visuels. Minimum: 3.`);
 }
 
@@ -291,6 +277,6 @@ export function validateBlackFlowerProfile(value: UnknownRecord, issues: Validat
   validateMotif(value.theme, issues);
   validateBlackFlowerContent(value.meta, value.slides, value.assets, issues);
   validateBlackFlowerFinishing(value.meta, value.slides, value.theme, issues);
-  validateCadence(value.slides, issues);
+  validateCadence(value.meta, value.slides, issues);
   validateSourceMix(value.slides, value.assets, issues);
 }

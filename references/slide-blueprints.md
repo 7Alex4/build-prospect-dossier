@@ -445,6 +445,8 @@ In Black Flower mode, anchor the platform in a real prospect object, image, mate
 
 Preferred Black Flower construction: meaningful licensed or generated scene, exact approved product cutout in overlap, two concise editorial blocks, one memorable signature.
 
+For a declared series of 2–4 routes, deliberately repeat one compatible `film-concept` composition on contiguous pages so the master stays stable while scene, tension, idea and signature change. The block must contain every film route and its length must equal `meta.creativeRouteCount`. Do not extend the repeated family into the page before or after the block.
+
 ## 14. Priority activation
 
 **Use for:** the first recommended execution.

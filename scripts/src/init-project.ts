@@ -12,7 +12,10 @@ Copies the sibling assets/dossier-engine template and creates a production job w
 brief.yaml, evidence and asset ledgers, a claim map, observations, source notes,
 strategy documents, QA report, raw/processed asset folders and output/slides.
 
-Template exclusions: caches, dist, rendered outputs, node_modules and browser binaries.
+Client content: init-project does not create brand.ts, evidence.ts or deck.ts.
+Create those files after research, platform selection and page mapping.
+Template exclusions: caches, dist, rendered outputs, transient .test-input-* directories,
+node_modules and browser binaries.
 Existing workflow documents are preserved when --force is used.
 
 Options:
