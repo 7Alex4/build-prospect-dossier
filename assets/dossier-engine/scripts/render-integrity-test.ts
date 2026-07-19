@@ -17,6 +17,7 @@ async function exists(filePath: string): Promise<boolean> {
 async function populate(workspace: RenderWorkspace, marker: string): Promise<void> {
   await Promise.all([
     writeFile(join(workspace.slidesPath, "01-cover.png"), marker),
+    writeFile(workspace.contactSheetPath, marker),
     writeFile(workspace.pdfPath, marker),
     writeFile(workspace.reportPath, marker),
     writeFile(workspace.reportChecksumPath, marker),
@@ -26,6 +27,7 @@ async function populate(workspace: RenderWorkspace, marker: string): Promise<voi
 async function publishedMarker(output: string): Promise<string[]> {
   return Promise.all([
     readFile(join(output, "slides", "01-cover.png"), "utf8"),
+    readFile(join(output, "contact-sheet.png"), "utf8"),
     readFile(join(output, "dossier.pdf"), "utf8"),
     readFile(join(output, "render-report.json"), "utf8"),
     readFile(join(output, "render-report.sha256"), "utf8"),
@@ -38,6 +40,7 @@ try {
   await mkdir(join(output, "slides"), { recursive: true });
   await Promise.all([
     writeFile(join(output, "slides", "01-cover.png"), "old"),
+    writeFile(join(output, "contact-sheet.png"), "old"),
     writeFile(join(output, "dossier.pdf"), "old"),
     writeFile(join(output, "render-report.json"), "old"),
     writeFile(join(output, "render-report.sha256"), "old"),
@@ -45,20 +48,20 @@ try {
   const failedWorkspace = await prepareRenderWorkspace(output);
   await writeFile(join(failedWorkspace.slidesPath, "partial.png"), "partial");
   await cleanupRenderWorkspace(failedWorkspace);
-  assert.deepEqual(await publishedMarker(output), ["old", "old", "old", "old"]);
+  assert.deepEqual(await publishedMarker(output), ["old", "old", "old", "old", "old"]);
 
   const completeWorkspace = await prepareRenderWorkspace(output);
   await populate(completeWorkspace, "complete");
   await publishRenderWorkspace(completeWorkspace);
   await cleanupRenderWorkspace(completeWorkspace);
-  assert.deepEqual(await publishedMarker(output), ["complete", "complete", "complete", "complete"]);
+  assert.deepEqual(await publishedMarker(output), ["complete", "complete", "complete", "complete", "complete"]);
 
   const brokenWorkspace = await prepareRenderWorkspace(output);
   await populate(brokenWorkspace, "broken");
-  await rm(brokenWorkspace.reportChecksumPath);
+  await rm(brokenWorkspace.contactSheetPath);
   await assert.rejects(publishRenderWorkspace(brokenWorkspace), /Artefact de rendu absent/);
   await cleanupRenderWorkspace(brokenWorkspace);
-  assert.deepEqual(await publishedMarker(output), ["complete", "complete", "complete", "complete"]);
+  assert.deepEqual(await publishedMarker(output), ["complete", "complete", "complete", "complete", "complete"]);
 
   const first = await prepareRenderWorkspace(output);
   const second = await prepareRenderWorkspace(output);

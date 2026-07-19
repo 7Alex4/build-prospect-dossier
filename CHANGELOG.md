@@ -2,6 +2,13 @@
 
 ## 0.3.0, 2026-07-19
 
+### Deterministic contact sheets
+
+- Rebuilds `contact-sheet.png` from the ordered PNG sequence produced in the current render staging workspace.
+- Publishes the contact sheet atomically with `slides`, `dossier.pdf`, `render-report.json` and its detached checksum, so no stale sheet survives a complete or selected rerender.
+- Gives selected renders a contact sheet containing only the pages actually rendered, using up to four 400 × 283 px cells per row.
+- Keeps the independently regenerated audit contact sheet in the audit directory as evidence instead of copying it over the renderer-owned delivery artifact.
+
 ### Recurring Black Flower finishing masters
 
 - Locks Production to the measured `PRODUCTION BLACKFLOWER` portrait master with exactly `Notre rôle`, `Notre approche` and `Notre force`.

@@ -1,6 +1,6 @@
 # Black Flower Prospect Dossier Engine
 
-Moteur React et TypeScript pour produire les dossiers de prospection Black Flower. Il génère des slides PNG de 2000 × 1414 px, un PDF A4 paysage et un rapport de traçabilité JSON. Le profil `neutral` reste disponible pour intégrer le moteur sans identité commerciale.
+Moteur React et TypeScript pour produire les dossiers de prospection Black Flower. Il génère des slides PNG de 2000 × 1414 px, une planche contact PNG, un PDF A4 paysage et un rapport de traçabilité JSON. Le profil `neutral` reste disponible pour intégrer le moteur sans identité commerciale.
 
 ## Prérequis
 
@@ -259,6 +259,8 @@ Chaque page PDF contient deux entrées dans son dictionnaire:
 Ces marqueurs permettent de vérifier le contenu et l'ordre des pages. L'audit externe doit aussi rastériser le PDF avec Poppler `pdftoppm` et comparer le contenu visuel réel de chaque page au PNG ordonné.
 
 `render-report.json` utilise le schéma `1.0`. Il consigne au niveau racine `stage`, `totalSlides`, `renderedCount`, `selectionApplied`, les sélecteurs dans `selection` et les IDs réellement rendus dans `renderedSlideIds`. `themeAssetIds` et chaque entrée de `traceability[].assetIds` sont dérivés des objets réellement traversés. Le résumé `assetRegistry` conserve droits, scopes et un SHA-256 du contenu hydraté, jamais le `src` brut ni une data URI. `fontAudit` conserve le contrat de fontes, son hash, chaque graisse réellement résolue, son nom PostScript, sa licence et le hash de sa source. Le bloc `integrity` relie le fichier source, le dossier chargé, chaque PNG et le PDF. `render-report.sha256` protège le rapport lui-même. Un rapport `draft`, partiel, minimal ou contenant une preuve `internal-only` ne constitue jamais une livraison.
+
+`contact-sheet.png` est reconstruite à chaque rendu depuis les PNG ordonnés effectivement produits, puis publiée dans la même transaction que `slides`, le PDF et le rapport. Une sélection `--slides` produit donc une planche limitée à cette sélection. La grille utilise au maximum quatre colonnes, avec des cellules de 400 × 283 px. Un dossier de 20 pages produit une planche de 1600 × 1415 px.
 
 L'hydratation est plafonnée à 32 MiB par asset et 256 MiB cumulés par défaut. Les sources locales identiques sont lues une seule fois et les data URI sont soumises aux mêmes plafonds avant rendu.
 

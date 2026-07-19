@@ -9,6 +9,7 @@ import { validateDossier } from "../src/schema/validation";
 import { parseArgs } from "./lib/args";
 import { hydrateAssets, loadDossier } from "./lib/input";
 import { A4_LANDSCAPE, createDossierPdf } from "./lib/pdf";
+import { createContactSheet } from "./lib/contact-sheet";
 import { prepareRenderFonts, verifyRenderedFonts } from "./lib/render-fonts";
 import {
   cleanupRenderWorkspace,
@@ -206,6 +207,7 @@ async function renderDossier(): Promise<void> {
       pngPaths.push(pngPath);
     }
     await createDossierPdf(pngPaths, workspace.pdfPath, dossier);
+    await createContactSheet(browser, pngPaths, workspace.contactSheetPath);
     await verifyPreviewWidths(page, baseUrl);
     assertBrowserIntegrity(runtimeErrors, externalRequests);
     const pageIntegrity = await Promise.all(pngPaths.map(async (pngPath, index) => ({
@@ -238,7 +240,7 @@ async function renderDossier(): Promise<void> {
       "utf8",
     );
     await publishRenderWorkspace(workspace);
-    console.log(`Rendu: ${targets.length} PNG 2000×1414 et dossier.pdf dans ${outputPath}`);
+    console.log(`Rendu: ${targets.length} PNG 2000×1414, contact-sheet.png et dossier.pdf dans ${outputPath}`);
   } finally {
     await browser?.close();
     await viteServer?.close();

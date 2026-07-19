@@ -16,6 +16,7 @@ import { A4_LANDSCAPE, createDossierPdf, fitWithinA4 } from "./lib/pdf";
 import { createPreviewDataScript, parsePreviewInput, previewDataPlugin } from "./lib/preview";
 import "./claim-test";
 import "./contact-test";
+import "./contact-sheet-test";
 import "./governance-test";
 import "./asset-test";
 import "./input-test";

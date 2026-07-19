@@ -12,6 +12,7 @@ export interface RenderWorkspace {
   readonly outputPath: string;
   readonly stagingPath: string;
   readonly slidesPath: string;
+  readonly contactSheetPath: string;
   readonly pdfPath: string;
   readonly reportPath: string;
   readonly reportChecksumPath: string;
@@ -56,6 +57,11 @@ async function acquirePublishLock(outputPath: string): Promise<string> {
 function artifactMoves(workspace: RenderWorkspace): readonly ArtifactMove[] {
   return [
     { source: workspace.slidesPath, destination: join(workspace.outputPath, "slides"), name: "slides" },
+    {
+      source: workspace.contactSheetPath,
+      destination: join(workspace.outputPath, "contact-sheet.png"),
+      name: "contact-sheet.png",
+    },
     { source: workspace.pdfPath, destination: join(workspace.outputPath, "dossier.pdf"), name: "dossier.pdf" },
     {
       source: workspace.reportPath,
@@ -79,6 +85,7 @@ export async function prepareRenderWorkspace(outputPath: string): Promise<Render
     outputPath,
     stagingPath,
     slidesPath,
+    contactSheetPath: join(stagingPath, "contact-sheet.png"),
     pdfPath: join(stagingPath, "dossier.pdf"),
     reportPath: join(stagingPath, "render-report.json"),
     reportChecksumPath: join(stagingPath, "render-report.sha256"),

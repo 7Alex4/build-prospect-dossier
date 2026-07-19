@@ -423,6 +423,7 @@ The renderer creates:
 
 ```text
 output/
+├── contact-sheet.png
 ├── dossier.pdf
 ├── render-report.json
 ├── render-report.sha256
@@ -437,6 +438,8 @@ Requirements:
 - slide numbers begin at `01` and are contiguous;
 - filenames use zero-padded natural order and stable slide IDs;
 - every PNG is exactly 2000 × 1414 px;
+- `contact-sheet.png` is rebuilt from the ordered PNG files in the current staging workspace, using up to four 400 × 283 px cells per row;
+- a selected render contains only its selected PNG pages in both `slides/` and `contact-sheet.png`;
 - PDF order and page count match the PNG sequence;
 - every PDF page carries `DossierSourceFile` and `DossierSourceSHA256` markers matching the ordered PNG that was embedded;
 - PDF MediaBox is A4 landscape, 841.89 × 595.28 pt, with the PNG fitted without distortion;
@@ -452,7 +455,7 @@ Requirements:
 - each `traceability[].evidenceIds` is the deduplicated union of slide-level evidence and evidence cited by its detailed `claims`;
 - a delivery report must have `stage: "final"`, `selectionApplied: false`, an empty `selection`, and `renderedCount === totalSlides === renderedSlideIds.length`;
 
-The renderer stages each run independently, preserves the last valid delivery on failure and serializes concurrent publication. Never delete another active `.render-*` staging directory.
+The renderer stages each run independently, rebuilds `contact-sheet.png` before publication, then atomically promotes the slides, contact sheet, PDF and report artifacts. It preserves the last valid delivery on failure and serializes concurrent publication. Never delete another active `.render-*` staging directory.
 
 ## 11. Audit the rendered package
 
@@ -483,13 +486,13 @@ The audit must independently verify:
 - the report source-file hash and, when the source can be loaded, the loaded-dossier hash;
 - the explicit generative authorization trace and the hydrated content hash of every used asset;
 - the font-contract hash, every declared face, its source identity and the resolved-family allowlist;
-- a regenerated contact sheet;
+- a regenerated contact sheet in the audit output directory as independent visual evidence;
 - a machine-readable `audit.json`;
 - nonzero exit status for a hard failure.
 
-Open the contact sheet. Then open every full-resolution page. An automated audit cannot judge weak hierarchy, a poor crop, semantic accent misuse, image irrelevance, an unconvincing route or a flat ending.
+Open the renderer-owned `output/contact-sheet.png` and the independently regenerated audit contact sheet. Then open every full-resolution page. An automated audit cannot judge weak hierarchy, a poor crop, semantic accent misuse, image irrelevance, an unconvincing route or a flat ending.
 
-Copy the final audited contact sheet to `output/contact-sheet.png`. The copy in `qa/output-audit/` is audit evidence; the copy in `output/` is the delivery artifact.
+Keep the audit contact sheet in `qa/output-audit/` as evidence. Do not copy it over `output/contact-sheet.png`: that delivery artifact belongs to the renderer transaction and must remain generated from the same staged PNG sequence as the PDF and report.
 
 If a page contains a QR code, decode it from the final 2000 × 1414 PNG with ZBar and compare the resolved destination to the visible label:
 
