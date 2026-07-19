@@ -27,6 +27,7 @@ export function SlideFrame({ children, index, slide, theme, total }: SlideFrameP
   const page = String(index + 1).padStart(2, "0");
   const tone = slide.tone ?? "paper";
   const footerMode = theme.chrome?.footer ?? "bordered";
+  const silentLockup = slide.type === "lockup" && slide.variant === "black-flower-co-mark";
   const classes = [
     "slide",
     `slide--${tone}`,
@@ -47,10 +48,10 @@ export function SlideFrame({ children, index, slide, theme, total }: SlideFrameP
     >
       <SlideBackground theme={theme} tone={tone} />
       <SlideMotif slide={slide} theme={theme} />
-      <SlideRunningHeader slide={slide} theme={theme} />
-      <SlideChapterMark slide={slide} />
+      {!silentLockup ? <SlideRunningHeader slide={slide} theme={theme} /> : null}
+      {!silentLockup ? <SlideChapterMark slide={slide} /> : null}
       <div className="slide__content">{children}</div>
-      {footerMode !== "hidden" ? (
+      {footerMode !== "hidden" && !silentLockup ? (
         <footer className={`slide__footer slide__footer--${footerMode}`}>
           <BrandMark theme={theme} />
           {slide.footer ? <span data-fit>{slide.footer}</span> : <span aria-hidden="true" />}

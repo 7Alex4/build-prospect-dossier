@@ -1,5 +1,6 @@
 import { clientFacingAuditStrings, structuralAuditStrings } from "./content-claims";
 import { validateBlackFlowerContent } from "./black-flower-content-validation";
+import { validateBlackFlowerFinishing } from "./black-flower-finishing-validation";
 import { compositionFamilies } from "./profile-types";
 import type { DossierSlide } from "./types";
 import type { ValidationIssue } from "./validation";
@@ -167,7 +168,8 @@ function validateFallbacks(slide: UnknownRecord, path: string, issues: Validatio
       }
     });
   }
-  if (slide.type === "lockup" && !isRecord(slide.mark) && slide.textMark !== studioSignature) {
+  if (slide.type === "lockup" && slide.variant !== "black-flower-co-mark"
+    && !isRecord(slide.mark) && slide.textMark !== studioSignature) {
     add(issues, "error", "black-flower-lockup-signature", `${path}.textMark`, `Marque asset ou mot-symbole ${studioSignature} requis.`);
   }
   if (slide.type === "timeline" && slide.compositionFamily === "editorial-sequence" && Array.isArray(slide.steps)) {
@@ -288,6 +290,7 @@ export function validateBlackFlowerProfile(value: UnknownRecord, issues: Validat
   rejectForeignSignature(value.meta, value.theme, value.slides, issues);
   validateMotif(value.theme, issues);
   validateBlackFlowerContent(value.meta, value.slides, value.assets, issues);
+  validateBlackFlowerFinishing(value.meta, value.slides, value.theme, issues);
   validateCadence(value.slides, issues);
   validateSourceMix(value.slides, value.assets, issues);
 }

@@ -42,7 +42,7 @@ creative_route_count: 2
 Rules:
 
 - `Black Flower Creative House` is the canonical studio name.
-- `BlackFlower` is the visible signature in running headers and compact lockups.
+- `BlackFlower` is the visible signature in eligible interior running headers and non-final compact attributions. The silent final uses the Black Flower flower, never the wordmark.
 - `Black Flower` is acceptable in natural prose.
 - Nexaia Studio is the technical maintainer of the open-source tooling. It must never appear as the visible author of a Black Flower prospect dossier.
 - Do not publish or bundle a Black Flower mark unless its source and redistribution rights are recorded. Use the text signature when a cleared mark is unavailable.
@@ -134,7 +134,7 @@ Give each image one primary role:
 - creative projection;
 - activation;
 - film shot;
-- production proof.
+- Production portrait.
 
 Reject an image if another generic image could replace it without changing the argument.
 
@@ -186,9 +186,9 @@ Use these exact engine values in `compositionFamily`:
 | `editorial-sequence` | Image-led method or film sequence |
 | `storyboard-grid` | Inspectable storyboard frames |
 | `reference-wall` | Asymmetric reference or moodboard field |
-| `portrait-profile` | Black Flower production portrait or proof |
+| `portrait-profile` | Mandatory Black Flower Production portrait |
 | `diagrammatic-system` | Necessary diagram, maximum two pages |
-| `closing-letter` | Thank-you and next step |
+| `closing-letter` | Editorial thank-you letter with prospect object |
 | `lockup` | Silent co-branded close |
 
 Across one dossier, use at least six families, never repeat the same family on adjacent pages, and never use one family more than three times. An `editorial-sequence` must give every step its own inspectable image. An `object-overlap` product must remain an exact cutout with `fit: contain`, never a generated approximation.
@@ -268,10 +268,15 @@ Across one dossier, use at least six families, never repeat the same family on a
 
 ### Production portrait
 
-- real, approved portrait or verifiable production proof;
+- real, approved, isolated vertical portrait;
 - exact name, role and relevance;
-- title defaults to `PRODUCTION BLACKFLOWER`;
-- concise approach and strength, not a corporate biography.
+- exact title `PRODUCTION BLACKFLOWER`;
+- one-line prospect signature;
+- exactly `Notre rôle`, `Notre approche` and `Notre force`;
+- no workstreams, deliverables, constraints or dashboard residue;
+- `fit: contain`, declared source dimensions and a validated subject safe box.
+
+Use the complete measured contract in `black-flower-finishing.md`.
 
 ### Typographic manifesto
 
@@ -303,8 +308,9 @@ At 2000 × 1414 px:
 
 Rules:
 
-- anchor the running header at top left: `Strategic creative campaign proposal · BlackFlower`;
-- anchor the page number at bottom left;
+- show the running header only on eligible interior pages and anchor it at top left: `Strategic creative campaign proposal · BlackFlower`;
+- show the page number only on eligible interior pages and anchor it at bottom left;
+- hide running header, page number, footer and chapter chrome on the cover and silent final;
 - reserve the bottom-right marker for a prospect-derived chapter or progress cue when it adds value;
 - use a sans-serif body family and optionally one expressive display family;
 - use no more than four roles and three weights;
@@ -321,7 +327,7 @@ The motif must be traceable to a real prospect object: product silhouette, handl
 - one master motif and at most two states;
 - crop across 20–45% of a side when used structurally;
 - ghost state at roughly 4–14% opacity;
-- full state on cover, true chapter peak or closing;
+- full state on cover, true chapter peak or behind the silent final co-mark as part of the recurring cover field;
 - use on roughly 40–70% of pages, not automatically on every page;
 - be able to explain the origin in one sentence;
 - never reduce it to a small repeated dashboard graphic.
@@ -358,11 +364,9 @@ A standard 18–20-page sequence may use:
 15. priority activation or place;
 16. execution moodboard;
 17. storyboard;
-18. production Black Flower;
-19. thank-you and next step;
-20. references or closing lockup.
+18. closing chain: production Black Flower, optional standalone references, editorial thank-you, silent lockup.
 
-For 15 pages, merge architecture, proof and references. Do not remove the current-state baseline, visual routes, storyboard or Black Flower production presence when the brief includes campaign execution.
+The list expresses order, not one page per line. Compress or omit earlier optional beats to remain within 15–20 pages. For 15 pages, merge architecture and compatible proof pages, then omit References if necessary. Never merge Production, Merci or the final lockup. Do not remove the current-state baseline, visual routes, storyboard or Black Flower production presence when the brief includes campaign execution.
 
 ## Automatic rejection patterns
 

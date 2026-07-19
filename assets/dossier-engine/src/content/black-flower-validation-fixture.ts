@@ -1,5 +1,6 @@
 import type {
   CompositionFamily,
+  ClaimRef,
   Dossier,
   DossierSlide,
   ImageAsset,
@@ -7,6 +8,7 @@ import type {
   MediaRole,
   VisualIntent,
 } from "../schema/types";
+import { substantiveContentEntries } from "../schema/content-claims";
 import { exampleDossier } from "./example";
 import { neutralPageMarker, neutralProofImage, neutralRiskImage } from "./neutral-assets";
 
@@ -53,20 +55,39 @@ function finalMedia(asset: ImageAsset, mediaRole: MediaRole, mediaNature: MediaN
   };
 }
 
-function requiredMedia(asset: ImageAsset | undefined, mediaRole: MediaRole, nature: MediaNature): ImageAsset {
+function requiredMedia(
+  asset: ImageAsset | undefined,
+  mediaRole: MediaRole,
+  nature: MediaNature,
+  credit = true,
+): ImageAsset {
   if (!asset) throw new Error(`Média requis pour le rôle ${mediaRole}.`);
-  return finalMedia(asset, mediaRole, nature);
+  return finalMedia(asset, mediaRole, nature, credit);
 }
 
 function planned(slide: DossierSlide) {
   const plan = plans[slide.id];
   if (!plan) throw new Error(`Plan visuel absent: ${slide.id}.`);
+  const deep = slide.type === "cover" || slide.type === "lockup";
   return {
+    backgroundField: deep ? "cover" : "body",
     compositionFamily: plan.family,
+    tone: deep ? "ink" : "paper",
     visualIntent: plan.intent,
     visualIntentRationale: plan.rationale,
     visualPeak: plan.peak,
   } as const;
+}
+
+function proposalClaimed<T extends DossierSlide>(slide: T): T & { claims: readonly ClaimRef[] } {
+  const claims = substantiveContentEntries(slide).map((entry): ClaimRef => ({
+    contentPath: entry.path,
+    kind: "proposal",
+    text: typeof entry.value === "string"
+      ? entry.value
+      : `${entry.value.value} ${entry.value.label}`,
+  }));
+  return { ...slide, claims };
 }
 
 function annotateSlide(slide: DossierSlide): DossierSlide {
@@ -117,7 +138,36 @@ function annotateSlide(slide: DossierSlide): DossierSlide {
       image: finalMedia(neutralProofImage, "editorial", "screenshot", false),
       ...visual,
     };
-    case "production": return { ...slide, image: requiredMedia(slide.image, "portrait", "portrait"), ...visual };
+    case "production": {
+      const production = proposalClaimed({
+        id: slide.id,
+        type: "production",
+        variant: "black-flower-portrait",
+        title: "PRODUCTION BLACKFLOWER",
+        lead: "Donner forme à la précision.",
+        role: "Nous tenons le fil entre stratégie, écriture, direction visuelle et fabrication, afin que chaque image serve la même idée.",
+        approach: [
+          "Un cadrage resserré avant toute production.",
+          "Une direction unique du concept aux déclinaisons.",
+          "Une matière pensée dès le tournage pour plusieurs formats.",
+          "Des validations courtes aux moments décisifs.",
+        ],
+        strength: "La même équipe protège le regard, le niveau d'exécution et la continuité du dossier jusqu'aux livrables finaux.",
+        portraitCaption: "BlackFlower · Direction créative et production",
+        image: {
+          ...requiredMedia(slide.image, "portrait", "portrait", false),
+          fit: "contain",
+          presentation: "frame",
+        },
+        ...visual,
+      });
+      return {
+        ...production,
+        claims: production.claims.map((claim) => claim.contentPath === "portraitCaption"
+          ? { ...claim, kind: "fact", evidenceIds: ["fixture:contact-card"] }
+          : claim),
+      };
+    }
     case "references": return {
       ...slide,
       references: slide.references.map((reference) => ({
@@ -126,11 +176,42 @@ function annotateSlide(slide: DossierSlide): DossierSlide {
       })),
       ...visual,
     };
+    case "thank-you": return proposalClaimed({
+      id: slide.id,
+      type: "thank-you",
+      variant: "black-flower-letter",
+      title: "MERCI",
+      paragraphs: [
+        "Ce dossier part d'une conviction simple: Prospect Démo possède déjà la matière, les gestes et les preuves nécessaires pour construire un récit distinctif.",
+        "La plateforme proposée ne cherche pas à ajouter une couche de communication. Elle organise ce qui existe, choisit un point de vue et donne à chaque format une fonction précise.",
+        "BlackFlower peut apporter ce regard, tenir la continuité créative et produire un système assez sobre pour durer, assez vivant pour être reconnu et assez concret pour être activé.",
+      ],
+      closing: "Merci encore et à bientôt !",
+      signature: "BLACKFLOWER × PROSPECT DÉMO",
+      platform: "La précision en mouvement",
+      image: {
+        ...finalMedia(neutralPageMarker, "product", "product-cutout", false),
+        fit: "contain",
+        presentation: "cutout",
+      },
+      ...visual,
+    });
     case "lockup": return {
-      ...slide,
-      relationshipLabel: `Proposition indépendante pour ${slide.client}, par ${canonicalStudio}`,
-      studio: canonicalStudio,
-      textMark: signature,
+      id: slide.id,
+      type: "lockup",
+      variant: "black-flower-co-mark",
+      client: slide.client,
+      clientMark: {
+        ...finalMedia(neutralProofImage, "identity", "brand-mark", false),
+        fit: "contain",
+        presentation: "cutout",
+      },
+      studioMark: {
+        ...finalMedia(neutralPageMarker, "identity", "brand-mark", false),
+        fit: "contain",
+        presentation: "cutout",
+      },
+      separator: "times",
       ...visual,
     };
     default: return { ...slide, ...visual };
@@ -149,10 +230,11 @@ export const blackFlowerValidationFixture: Dossier = {
       reference: "fixture:black-flower-generative-authorization",
     },
     campaignMode: "campaign-platform",
+    backgroundRhythm: "stable",
     creativeRouteCount: 2,
     studio: canonicalStudio,
     studioIdentity: { canonicalName: canonicalStudio, signature },
-    version: "0.2-test",
+    version: "0.3-test",
   },
   assets: exampleDossier.assets.map((asset) => ({
     ...structuredClone(asset),

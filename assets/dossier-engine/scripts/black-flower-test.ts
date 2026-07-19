@@ -59,6 +59,9 @@ assert.ok(markup.includes('data-presentation="cutout"'));
 assert.ok(markup.includes("film-product-cutout"));
 assert.ok(markup.includes("timeline-track--image-sequence"));
 assert.ok(markup.includes("BlackFlower"));
+assert.ok(markup.includes("production-portrait-master"));
+assert.ok(markup.includes("thankyou-letter-master"));
+assert.ok(markup.includes("lockup-co-mark"));
 assert.ok(markup.includes("01 / 18"));
 assert.ok(!markup.includes("cover-text-visual"));
 assert.ok(!markup.includes('role="meter"'));
@@ -223,7 +226,7 @@ assert.ok(hasIssue(missingReference, "black-flower-reference-media"));
 
 const wrongTextMark = clone();
 slide(wrongTextMark, "18-signature").textMark = "Studio générique";
-assert.ok(hasIssue(wrongTextMark, "black-flower-lockup-signature"));
+assert.ok(hasIssue(wrongTextMark, "black-flower-finish-silence"));
 
 const weakFamilies = clone();
 slides(weakFamilies).forEach((entry) => { entry.compositionFamily = "editorial-split"; });

@@ -8,7 +8,7 @@ Apply a stable editorial discipline while deriving every brand-specific decision
 
 1. Fixed production geometry
 2. Variable brand grammar
-3. Background regime
+3. Background rhythm
 4. Palette extraction
 5. Typography
 6. Architectural motif
@@ -33,12 +33,12 @@ Use normalized geometry so the engine can scale without changing composition.
 
 | Token | Pixels | Percent | Role |
 |---|---:|---:|---|
-| Micro left | 84 | 4.2% | Running header and pagination alignment |
+| Micro left | 84 | 4.2% | Eligible interior running-header and pagination alignment |
 | Main left | 140 | 7% | Titles, content and media alignment |
 | Main right | 140 | 7% | Default outer breathing room |
-| Header top | 74 | 5.2% | Running header baseline zone |
+| Header top | 74 | 5.2% | Eligible interior running-header baseline zone |
 | Title top | 210–228 | 14.9–16.1% | Standard title start |
-| Footer baseline | 1300 | 91.9% | Page number and chapter marker zone |
+| Footer baseline | 1300 | 91.9% | Eligible interior page-number and chapter-marker zone |
 | Motif reserve start | 1500 | 75% | Default protected right zone when a large motif is present |
 | Three-column starts | 140 / 690 / 1240 | 7% / 34.5% / 62% | Standard diagnostic and concept grid |
 | Two-column split | 980–1080 | 49–54% | Editorial split and media layouts |
@@ -55,13 +55,12 @@ These are factory anchors, not a demand to reproduce another dossier. Change the
 
 ## 2. Variable brand grammar
 
-In the default Black Flower profile, the production frame is fixed while the prospect grammar remains variable. Read `black-flower-profile.md` first. Keep `Black Flower Creative House` as canonical studio, `BlackFlower` as visible signature, the running header at top left and pagination at bottom left. Never render Nexaia as the creative author.
+In the default Black Flower profile, the production frame is fixed while the prospect grammar remains variable. Read `black-flower-profile.md` first. Keep `Black Flower Creative House` as canonical studio and `BlackFlower` as visible signature. Show the running header at top left and pagination at bottom left only on eligible interior pages. Never show either on the cover or silent final. Never render Nexaia as the creative author.
 
 Rebuild these for every prospect:
 
-- cover background;
+- shared cover/final background;
 - body background;
-- final background;
 - primary ink and inverse ink;
 - functional accents and their meaning;
 - title and body family;
@@ -77,30 +76,24 @@ Never begin a new dossier by copying an exemplar's CSS tokens.
 Create a short grammar statement before implementation:
 
 ```text
-The dossier uses [background regime], [type mood], and [one architectural motif]
+The dossier uses [stable or binary-chapter rhythm], [type mood], and [one architectural motif]
 to make [brand truth] feel [three tone words]. Images prioritize [proof classes].
 Accents encode [functions], never decoration.
 ```
 
-## 3. Background regime
+## 3. Background rhythm
 
-Choose one model.
+Choose one declared model.
 
-### Stable field
+### `stable`
 
-Use one dominant field across most pages. Change only for cover, a verified chapter transition or final lockup.
+Use one body field across almost every interior page. Reuse the exact cover field on the silent final and allow no more than four major transitions. The normal sequence is `cover, body…, cover`.
 
-### Cover/body/final
+### `binary-chapter`
 
-Use a strong brand field for cover and final lockup, then a stable reading field for the body. This suits brands whose cover identity is more saturated or material than their editorial pages.
+Use exactly two documented fields. Switch only on a mapped cover, manifesto, chapter opener, visual peak or final lockup. Record every switch in the page map and never introduce a third field to rescue a weak composition.
 
-### Chapter opener
-
-Use one alternate field at true act boundaries. The alternate page should announce a new question or type of proof.
-
-### Light/dark structural alternation
-
-Use only when source materials make the alternation meaningful. Define an explicit sequence in the page map.
+Every slide declares `backgroundField: "cover" | "body"`. These roles do not imply light or dark. Cover and body fields may use any measured prospect-specific tone.
 
 Avoid full-field gradients unless an official brand system uses one as a core asset. Never use animated gradients.
 
@@ -113,7 +106,7 @@ Build the palette from official material and measured pixels.
 ```text
 coverField
 bodyField
-finalField
+finalField (exact alias of coverField)
 ink
 inkMuted
 inkInverse
@@ -263,22 +256,24 @@ Bad behavior:
 - In the Black Flower profile, studio attribution is required and fixed. If no cleared mark is available, use the text signature `BlackFlower`.
 - When both marks exist, keep them optically balanced, not mechanically equal in width.
 - Studio identity is optional only in an explicit neutral profile. When it is absent there, omit its mark, signature and layout slot completely. Do not invent a name to complete the composition.
-- In independent prospecting, do not use a bare multiplication sign that can imply a partnership. Use `Proposition indépendante pour [prospect]` when no studio is supplied, or `Proposition indépendante pour [prospect], par [studio]` when it is.
-- Use a simple multiplication sign or source-approved separator only for `client-approved` or `commissioned` relationship status.
+- In independent prospecting, disclose `Proposition indépendante pour [prospect], par [studio]` on the cover and in metadata. A bare `prospect × Black Flower` pairing is permitted only on the silent final after that disclosure has been made.
+- The Black Flower final master remains silent in the foreground: real prospect logo, `×`, Black Flower flower. It contains no relationship copy. The cover carries the relationship truth for the complete dossier. The documented prospect-derived cover motif or material texture may remain behind the marks as part of the field.
 - Respect each mark's clear space.
 - Do not combine marks into a single irreversible raster until final rendering.
-- Use the lockup on cover and final. Use it elsewhere only when the source requires it.
+- Use the full truthful attribution on the cover. Use the silent mark-only lockup on the final page. Use either elsewhere only when the page has a real identification need.
 - A prospect logo identifies the recipient; it does not signal endorsement. Never write `en collaboration avec` without evidence of that relationship.
 
 ## 8. Page markers and micro-navigation
 
-Use a quiet orientation system:
+Use a quiet orientation system on eligible interior pages:
 
 - Black Flower running header at the top-left micro guide: `Strategic creative campaign proposal · BlackFlower`;
 - page number at bottom-left or a source-derived equivalent;
 - chapter marker at bottom-right when chapter codes add value;
 - a chapter label only on openers if necessary;
 - no navigation object larger than the content it supports.
+
+Hide this chrome on the cover and silent final. A deliberate full-field interior opener may hide part of it only when the page map records the exception and orientation remains clear.
 
 Chapter codes must originate in brand or product logic when possible. Examples include product indexes, material samples, symbol states, shapes, colors or typographic numbers.
 

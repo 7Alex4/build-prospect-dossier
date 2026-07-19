@@ -16,10 +16,13 @@ Options:
   --dark <#RRGGBB>    Dark variant colour (default: #111111)
   --light <#RRGGBB>   Light variant colour (default: #FFFFFF)
   --matte white|black Explicitly infer alpha from an opaque matte
+  --matte-color <#RRGGBB>
+                       Infer alpha from an arbitrary uniform colour matte
   --help              Show this help
 
-Opaque sources fail unless --matte is explicit. Raster enlargement is reported as
-source-limited and is never described as recovering detail.
+Use either --matte or --matte-color. Colour-matte inference uses normalized RGB
+distance. Edge inspection on both light and dark outputs is required. Raster
+enlargement is reported as source-limited and never described as recovering detail.
 `;
 
 function parseMatte(value: string | undefined): Matte | undefined {
@@ -42,6 +45,7 @@ export async function prepareLogoCli(arguments_: readonly string[]): Promise<num
       dark: "value",
       light: "value",
       matte: "value",
+      "matte-color": "value",
     });
     if (optionFlag(parsed.options, "help")) {
       process.stdout.write(PREPARE_LOGO_HELP);
@@ -54,12 +58,14 @@ export async function prepareLogoCli(arguments_: readonly string[]): Promise<num
     const marginText = optionValue(parsed.options, "margin");
     const sizeText = optionValue(parsed.options, "size");
     const matte = parseMatte(optionValue(parsed.options, "matte"));
+    const matteColor = optionValue(parsed.options, "matte-color");
     const report = await prepareLogo({
       inputPath,
       outputDirectory,
       marginFraction: marginText === undefined ? 0.12 : Number(marginText),
       outputLongestSide: sizeText === undefined ? 1600 : Number(sizeText),
       ...(matte === undefined ? {} : { matte }),
+      ...(matteColor === undefined ? {} : { matteColor }),
       darkColor: optionValue(parsed.options, "dark") ?? "#111111",
       lightColor: optionValue(parsed.options, "light") ?? "#FFFFFF",
     });

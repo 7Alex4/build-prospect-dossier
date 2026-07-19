@@ -1,10 +1,12 @@
-export type Matte = "black" | "white";
+import { type HexColor, type Matte, type MatteRemoval } from "./matte-removal.js";
+export type { Matte } from "./matte-removal.js";
 export interface PrepareLogoOptions {
     readonly inputPath: string;
     readonly outputDirectory: string;
     readonly marginFraction?: number;
     readonly outputLongestSide?: number;
     readonly matte?: Matte;
+    readonly matteColor?: string;
     readonly darkColor?: string;
     readonly lightColor?: string;
 }
@@ -24,7 +26,10 @@ export interface LogoReport {
         readonly transparentPixelShare: number;
     };
     readonly processing: {
-        readonly matteRemoval: Matte | null;
+        readonly matteRemoval: MatteRemoval | null;
+        readonly matteColor: HexColor | null;
+        readonly matteMethod: "normalized-rgb-distance" | null;
+        readonly matteReferenceDistance: number | null;
         readonly marginFraction: number;
         readonly targetLongestSide: number;
         readonly trimmedDimensions: readonly [number, number];
@@ -49,4 +54,3 @@ interface LogoOutput {
     readonly sha256: string;
 }
 export declare function prepareLogo(options: PrepareLogoOptions): Promise<LogoReport>;
-export {};

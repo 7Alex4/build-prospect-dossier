@@ -1,6 +1,6 @@
 {
   "name": "@nexaia/prospect-dossier-tools",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Black Flower dossier scaffolding, deterministic asset preparation and output auditing tools.",
   "type": "module",
   "license": "MIT",

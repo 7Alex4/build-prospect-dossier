@@ -4,7 +4,6 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { initProject } from "../src/project-scaffold.js";
-
 async function exists(filePath: string): Promise<boolean> {
   return stat(filePath).then(() => true, () => false);
 }
@@ -25,7 +24,6 @@ test("init project copies the engine, ignores generated files and creates workfl
   await writeFile(path.join(template, "rendered", "slides", "01.png"), "ignored", "utf8");
 
   const result = await initProject({ targetDirectory: target, templateDirectory: template });
-
   assert.equal(result.copiedTemplateFiles, 2);
   assert.equal(await exists(path.join(target, "src", "index.ts")), true);
   assert.equal(await exists(path.join(target, "node_modules")), false);
@@ -66,6 +64,7 @@ test("init project copies the engine, ignores generated files and creates workfl
     "desired_outcome",
     "distribution_mode",
     "relationship_status",
+    "background_rhythm",
     "generative_assets",
     "generative_assets_authorization",
     "studio",
@@ -80,6 +79,7 @@ test("init project copies the engine, ignores generated files and creates workfl
   assert.match(brief, /^stage: draft$/m);
   assert.match(brief, /^distribution_mode: private-prospecting$/m);
   assert.match(brief, /^relationship_status: independent-proposal$/m);
+  assert.match(brief, /^background_rhythm: stable$/m);
   assert.match(brief, /^framework_profile: neutral$/m);
   assert.match(brief, /^generative_assets: forbidden$/m);
   assert.match(brief, /^generative_assets_authorization:$/m);
@@ -99,7 +99,7 @@ test("init project copies the engine, ignores generated files and creates workfl
   );
   assert.equal(
     await readFile(path.join(target, "assets", "asset-ledger.csv"), "utf8"),
-    "id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,transformations,credit_required,notes\n",
+    "id,file,role,subject,origin,url,creator,license,rights_basis,distribution_scope,status,captured_at,planned_pages,source_width,source_height,subject_safe_box,transformations,credit_required,notes\n",
   );
   const pageMap = await readFile(path.join(target, "strategy", "page-map.md"), "utf8");
   for (const contractField of [
@@ -115,6 +115,7 @@ test("init project copies the engine, ignores generated files and creates workfl
     "Visual-intent rationale",
     "Composition family",
     "Visual peak",
+    "Background field",
     "Transition in",
     "Transition out",
     "Unanswered question",
@@ -167,6 +168,10 @@ test("init project copies the engine, ignores generated files and creates workfl
 - contact sheet inspected at 25%:
 - distinct silhouettes:
 - visible peaks:
+- background rhythm and transition count:
+- Production master geometry:
+- Merci master geometry:
+- silent final lockup geometry:
 - logo-hidden prospect recognition:
 - 375 px preview:
 - 1440 px preview:
@@ -265,7 +270,6 @@ test("init project force refuses destination symlinks and preserves outside file
   await writeFile(path.join(template, "package.json"), '{"name":"engine"}\n', "utf8");
   await writeFile(outside, "preserve me\n", "utf8");
   await symlink(outside, path.join(target, "package.json"));
-
   await assert.rejects(
     initProject({ targetDirectory: target, templateDirectory: template, force: true }),
     /Symbolic links are forbidden/,

@@ -23,6 +23,8 @@ Default to a complete, client-ready result without asking questions. A company n
 - Use at most two genuinely necessary diagram pages. After the introduction, never place more than two text-led or system-led pages consecutively.
 - Give every page an explicit visual intent. A missing image is a deliberate typographic decision, never a fallback rendered as cards, nodes, arrows, meters, pills or abstract geometry.
 - Keep one dominant idea per page and normally no more than three content blocks.
+- Declare `stable` or `binary-chapter` background rhythm. In stable mode, allow no more than four major field changes and normally use the sequence cover field, body field, cover field. In binary-chapter mode, use exactly two documented fields and switch only on mapped chapter or peak pages. Either field may be light or dark when the prospect system requires it.
+- Treat Production, Merci and the silent final as fixed Black Flower finishing masters. Do not replace them with a planning table, CTA component or legal end card.
 - Produce 2000 × 1414 px PNG pages and an A4-landscape PDF.
 - Preserve an editable source project. Declare every final font role and 400/700 weight in the hashed font contract. Pixel-identical rendering is guaranteed only with the same OS, Chromium build and licensed local font files.
 - Keep `meta.stage` at `draft` while content is incomplete. Set it to `final` before the final validation, full render, audit and delivery.
@@ -49,6 +51,7 @@ Read only the files required for the current phase, but read each selected file 
 | Image acquisition and treatment | `references/image-direction.md` |
 | Client-facing writing | `references/copy-system.md` |
 | Page composition | `references/slide-blueprints.md` |
+| Black Flower finishing masters | `references/black-flower-finishing.md` |
 | Project creation and rendering | `references/production-workflow.md` |
 | Final validation | `references/quality-gates.md` |
 
@@ -88,6 +91,7 @@ Create `brief.yaml` immediately. Record:
 - relationship status: independent proposal, client-approved, or commissioned;
 - generative assets: `authorized` for Alex's Black Flower framework only with `status`, `authorizedBy` and durable `reference`; otherwise `forbidden` unless the user explicitly authorizes them;
 - campaign mode: `focused-opportunity` or `campaign-platform`, plus the exact number of film routes that will receive their own pages;
+- background rhythm: `stable` or `binary-chapter`;
 - forbidden client-facing terms from active project instructions;
 - assumptions and missing inputs;
 - target outcome: meeting, creative conversation, proposal, or production mandate.
@@ -162,7 +166,8 @@ Prepare:
 - `logo-dark.png` and `logo-light.png` with transparent backgrounds;
 - optional symbol-only variants;
 - studio logo variants only when supplied by the user or project;
-- a tested prospect attribution, plus studio attribution when available, with optical spacing and a truthful relationship label.
+- a tested prospect and studio attribution for the cover, with optical spacing and a truthful relationship label;
+- separate approved assets for the silent final: real prospect logo and Black Flower flower.
 
 Do not bundle client or studio marks into this open-source skill. Keep them job-local.
 
@@ -186,7 +191,7 @@ Use `references/strategy-framework.md`. For `open`, produce at least three candi
 
 Build a new visual grammar from this company, not from an exemplar. Document:
 
-- cover, body, and final background regime;
+- `stable` or `binary-chapter` rhythm, plus recurring cover/body field assignments;
 - ink, support, and functional accent colors;
 - headline, body, display-number, and caption type roles;
 - one architectural motif derived from a real brand or product code, or a documented typographic/grid system when no distinctive object exists;
@@ -216,15 +221,17 @@ Create `strategy/page-map.md` before writing full copy. For every page record:
 - composition family and why it earns its place;
 - visual peak: mark at least three pages across the dossier;
 - transition from the previous page;
+- background field: `cover` or `body`;
 - unanswered question or risk.
 
 Follow `references/narrative-architecture.md`. Do not add filler to reach a page count. Do not let film ideas appear before the strategic platform is established.
+Keep Production and References as separate typed pages whenever References is included.
 
 ### 8. Draft copy within layout limits
 
 Write the titles, subtitles, claims, blocks, captions, source notes, references, thank-you letter, and final lockup before implementation.
 
-Apply `references/copy-system.md` and the content limits in `references/slide-blueprints.md`.
+Apply `references/copy-system.md`, the content limits in `references/slide-blueprints.md`, and the strict closing contracts in `references/black-flower-finishing.md`.
 
 For French client output:
 
@@ -267,7 +274,7 @@ Requirements:
 - real assets referenced from the project;
 - a typed root `assets` registry mirroring the asset ledger, with unique IDs, source or ledger identity, origin, rights basis, approved status and compatible distribution scopes;
 - every `ImageAsset.id` resolved through that registry, with asset usage derived by traversal rather than manual `slide.assetIds`;
-- consistent page numbers and chapter markers;
+- consistent page numbers and chapter markers on eligible interior pages only;
 - unique ASCII kebab-case slide IDs such as `01-cover`; never expose a technical slide ID as footer copy;
 - typed claim metadata for factual, quoted and observational copy;
 - required `meta.stage`, kept at `draft` during incomplete work and changed to `final` for the final gate;
@@ -283,7 +290,8 @@ Requirements:
 - no generic orbit, signal, grid or abstract line motif in a final Black Flower dossier;
 - no equal-card grid, decorative flowchart, severity meter, progress bar, pill cloud, dark central platform card or text-only film route as a final composition;
 - image-led routes, activation, storyboard and production pages using approved local assets;
-- the Black Flower running header, pagination and signature contract from `references/black-flower-profile.md`.
+- the Black Flower running header, pagination and signature contract from `references/black-flower-profile.md`, applied only to eligible interior pages;
+- the measured Production, Merci and silent-lockup variants from `references/black-flower-finishing.md`.
 
 ### 11. Render, inspect, and iterate
 
@@ -295,7 +303,9 @@ Inspect three times:
 2. the contact sheet for pacing, background rhythm, motif continuity, density, image variety, and closing strength.
 3. the contact sheet at 25% for at least six distinct silhouettes, three visible peaks and an immediately recognizable world of the prospect.
 
-Compare at least one cover, one diagnostic page, one text-only page, one proof page, one concept page, one production/reference page, the thank-you page, and the final lockup against the measured brand grammar and the relevant blueprint.
+Compare at least one cover, one diagnostic page, one text-only page, one proof page, one concept page, the Production page, the separate References page when included, the thank-you page, and the final lockup against the measured brand grammar and the relevant blueprint.
+
+For Production, Merci and the final lockup, also run the Chromium geometry checks from `references/black-flower-finishing.md`. A visually plausible page that misses those master contracts is not finished.
 
 Run every hard gate in `references/quality-gates.md`. Fix failures and render again.
 

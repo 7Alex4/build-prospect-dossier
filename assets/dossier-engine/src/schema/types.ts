@@ -1,7 +1,8 @@
-import type { BrandTheme, ImageAsset, SlideTone } from "./theme-types.js";
+import type { BrandTheme, ImageAsset } from "./theme-types.js";
 import type { AssetRecord } from "./asset-types.js";
-import type { CompositionFamily, VisualIntent } from "./profile-types.js";
 import type { DossierMeta } from "./meta-types.js";
+import type { BaseSlide, ClaimKind } from "./slide-base-types.js";
+import type { LockupSlide, ProductionSlide, ReferencesSlide, ThankYouSlide } from "./finishing-types.js";
 
 export type {
   BrandTheme,
@@ -13,20 +14,15 @@ export type {
   MediaNature,
   MediaProductionStatus,
   MediaRole,
+  PixelDimensions,
   SlideTone,
+  SubjectSafeBox,
 } from "./theme-types.js";
 export type { CompositionFamily, FrameworkProfile, StudioIdentity, VisualIntent } from "./profile-types.js";
 export type { DossierMeta, GenerativeAssetAuthorization } from "./meta-types.js";
+export type { BaseSlide, ClaimKind, ClaimRef } from "./slide-base-types.js";
+export type * from "./finishing-types.js";
 export type * from "./asset-types.js";
-
-export type ClaimKind = "fact" | "quote" | "observation" | "interpretation" | "proposal";
-
-export interface ClaimRef {
-  text: string;
-  kind: ClaimKind;
-  contentPath: string;
-  evidenceIds?: readonly string[];
-}
 
 export type EvidenceStatus =
   | "verified"
@@ -41,22 +37,6 @@ export interface EvidenceRecord {
   status: EvidenceStatus;
   claim: string;
   sourceUrl?: string;
-}
-
-interface BaseSlide {
-  id: string;
-  visualIntent?: VisualIntent;
-  visualIntentRationale?: string;
-  compositionFamily?: CompositionFamily;
-  visualPeak?: boolean;
-  eyebrow?: string;
-  tone?: SlideTone;
-  footer?: string;
-  evidenceIds?: readonly string[];
-  claims?: readonly ClaimRef[];
-  relationshipLabel?: string;
-  motifState?: "default" | "full" | "quiet" | "hidden";
-  chapterMark?: ImageAsset;
 }
 
 export interface CoverSlide extends BaseSlide {
@@ -211,57 +191,6 @@ export interface StoryboardFrame {
   audio?: string;
   timecode?: string;
   image?: ImageAsset;
-}
-
-export interface ProductionSlide extends BaseSlide {
-  type: "production";
-  title: string;
-  lead: string;
-  workstreams: ReadonlyArray<{ name: string; detail: string; owner?: string }>;
-  deliverables: readonly string[];
-  constraints?: readonly string[];
-  image?: ImageAsset;
-}
-
-export interface ReferencesSlide extends BaseSlide {
-  type: "references";
-  title: string;
-  references: readonly ReferenceItem[];
-  note?: string;
-}
-
-export interface ReferenceItem {
-  title: string;
-  reason: string;
-  source: string;
-  url?: string;
-  image?: ImageAsset;
-}
-
-export interface ThankYouSlide extends BaseSlide {
-  type: "thank-you";
-  title: string;
-  message: string;
-  contact?: {
-    name: string;
-    role: string;
-    email: string;
-    phone?: string;
-    website?: string;
-  };
-  nextStep?: string;
-  image?: ImageAsset;
-}
-
-export interface LockupSlide extends BaseSlide {
-  type: "lockup";
-  title?: string;
-  statement?: string;
-  client: string;
-  studio?: string;
-  mark?: ImageAsset;
-  textMark?: string;
-  legal?: string;
 }
 
 export type DossierSlide =

@@ -163,19 +163,33 @@ function validateSlide(slide: UnknownRecord, path: string, issues: ValidationIss
       break;
     case "production":
       requireString(slide, "lead", path, issues);
-      requireArray(slide, "workstreams", path, issues, [2, 6]);
-      requireArray(slide, "deliverables", path, issues, [2, 10]);
+      if (slide.variant === "black-flower-portrait") {
+        ["role", "strength", "portraitCaption"].forEach((key) => requireString(slide, key, path, issues));
+        requireArray(slide, "approach", path, issues, [3, 5]);
+        requireRecord(slide.image, `${path}.image`, issues);
+      } else {
+        requireArray(slide, "workstreams", path, issues, [2, 6]);
+        requireArray(slide, "deliverables", path, issues, [2, 10]);
+      }
       break;
     case "references":
       requireArray(slide, "references", path, issues, [2, 8]);
       break;
     case "thank-you":
-      requireString(slide, "message", path, issues);
-      if (slide.contact !== undefined) requireRecord(slide.contact, `${path}.contact`, issues);
+      if (slide.variant === "black-flower-letter") {
+        requireArray(slide, "paragraphs", path, issues, [3, 4]);
+        ["closing", "signature", "platform"].forEach((key) => requireString(slide, key, path, issues));
+      } else {
+        requireString(slide, "message", path, issues);
+        if (slide.contact !== undefined) requireRecord(slide.contact, `${path}.contact`, issues);
+      }
       break;
     case "lockup":
       requireString(slide, "client", path, issues);
-      if (slide.studio !== undefined) requireString(slide, "studio", path, issues);
+      if (slide.variant === "black-flower-co-mark") {
+        requireRecord(slide.clientMark, `${path}.clientMark`, issues);
+        requireRecord(slide.studioMark, `${path}.studioMark`, issues);
+      } else if (slide.studio !== undefined) requireString(slide, "studio", path, issues);
       break;
   }
 }

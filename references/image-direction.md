@@ -152,7 +152,7 @@ Use rarely. A cultural image may clarify a risk, boredom, predictability or fami
 - State what was delivered and why it matters here.
 - Use only projects the studio can substantiate.
 - Prefer one clear thumbnail or direct proof over a wall of logos.
-- A production page requires a real approved Black Flower portrait or verifiable production proof. A generic biography block does not replace it.
+- A Production page requires a real approved isolated Black Flower portrait. A production still, reference thumbnail, generic studio image or biography block does not replace it; place such proof on its own proof or References page.
 
 ### Storyboards
 

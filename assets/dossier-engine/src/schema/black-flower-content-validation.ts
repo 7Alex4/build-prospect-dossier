@@ -14,9 +14,9 @@ const diagnosticOrigins = new Set(["provided", "official-site", "press-kit", "ed
 const diagnosticNatures = new Set(["photograph", "product-cutout", "screenshot", "document", "archive", "portrait"]);
 export const blackFlowerCompositionBindings = {
   "silent-cover": ["cover"],
-  "editorial-split": ["proof", "risk", "opportunity"],
+  "editorial-split": ["proof", "risk", "opportunity", "film-concept"],
   "editorial-columns": ["three-columns"],
-  "image-dominant": ["proof", "risk", "opportunity", "activation"],
+  "image-dominant": ["proof", "risk", "opportunity", "activation", "film-concept"],
   "object-overlap": ["film-concept"],
   "evidence-field": ["proof"],
   "typographic-manifesto": ["manifesto"],

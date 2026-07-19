@@ -41,6 +41,16 @@
   grid-template-columns: minmax(0, 1fr) minmax(560px, 1fr);
 }
 
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-split .film-layout {
+  gap: 72px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-editorial-split .film-visual {
+  align-self: center;
+  height: 840px;
+}
+
 .deck[data-framework-profile="black-flower"] .slide--composition-editorial-columns .columns-grid {
   grid-template-columns: 1.12fr .86fr 1.02fr;
 }
@@ -80,6 +90,15 @@
   grid-template-columns: 1.22fr .78fr;
 }
 
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .film-layout {
+  gap: 64px;
+  grid-template-columns: 1.3fr .7fr;
+}
+
+.deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .film-visual {
+  height: 1040px;
+}
+
 .deck[data-framework-profile="black-flower"] .slide--composition-image-dominant .activation-layout--image {
   grid-template-columns: .96fr 1.04fr;
 }
@@ -88,8 +107,8 @@
   height: 900px;
 }
 
-.deck[data-framework-profile="black-flower"] .slide--composition-portrait-profile .production-image {
-  height: 650px;
+.deck[data-framework-profile="black-flower"] .slide--composition-portrait-profile .production-portrait-body {
+  column-gap: 90px;
 }
 
 .deck[data-framework-profile="black-flower"] .slide--composition-diagrammatic-system .architecture-map {
@@ -105,14 +124,12 @@
   grid-template-columns: .85fr 1.05fr 1.05fr .85fr;
 }
 
-.deck[data-framework-profile="black-flower"] .slide--composition-closing-letter .thankyou-layout {
-  grid-template-columns: 1.42fr .58fr;
+.deck[data-framework-profile="black-flower"] .slide--composition-closing-letter .thankyou-letter-copy {
+  margin-top: 78px;
 }
 
-.deck[data-framework-profile="black-flower"] .slide--composition-lockup .lockup-layout {
-  align-items: flex-start;
-  padding-left: 8%;
-  text-align: left;
+.deck[data-framework-profile="black-flower"] .slide--composition-lockup .lockup-co-mark__group {
+  gap: 28px;
 }
 
 .deck[data-framework-profile="black-flower"] .slide--visual-peak .asset img {

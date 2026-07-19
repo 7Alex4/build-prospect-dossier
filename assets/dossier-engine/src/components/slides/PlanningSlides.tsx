@@ -54,6 +54,38 @@ export function Activation({ slide }: { slide: ActivationSlide }) {
 }
 
 export function Production({ slide }: { slide: ProductionSlide }) {
+  if (slide.variant === "black-flower-portrait") {
+    return (
+      <div className="production-portrait-master">
+        <header className="production-portrait-heading">
+          <h1 data-fit>{slide.title}</h1>
+          <p data-fit>{slide.lead}</p>
+        </header>
+        <div className="production-portrait-body">
+          <div className="production-portrait-copy">
+            <section>
+              <h2 data-fit>Notre rôle</h2>
+              <p data-fit>{slide.role}</p>
+            </section>
+            <section>
+              <h2 data-fit>Notre approche</h2>
+              <ul>
+                {slide.approach.map((item) => <li data-fit key={item}>{item}</li>)}
+              </ul>
+            </section>
+            <section>
+              <h2 data-fit>Notre force</h2>
+              <p data-fit>{slide.strength}</p>
+            </section>
+          </div>
+          <div className="production-portrait-media">
+            <AssetImage asset={slide.image} className="production-portrait-image" />
+            <p className="production-portrait-caption" data-fit>{slide.portraitCaption}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={`production-layout ${slide.image ? "production-layout--image" : ""}`}>
       <SectionHeading eyebrow={slide.eyebrow} title={slide.title} intro={slide.lead} compact />

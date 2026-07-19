@@ -194,7 +194,7 @@ function validateRelationship(meta: UnknownRecord, slides: unknown, issues: Vali
   if (meta.relationshipStatus !== "independent-proposal") return;
   const client = nonEmpty(meta.client) ? meta.client : "";
   const studio = nonEmpty(meta.studio) ? meta.studio : undefined;
-  ["cover", "lockup"].forEach((type) => {
+  ["cover"].forEach((type) => {
     const matches = slides.flatMap((slide, index) => isRecord(slide) && slide.type === type ? [{ slide, index }] : []);
     if (matches.length === 0) {
       error(issues, "relationship-slide", "slides", `Une slide ${type} est requise pour une proposition indépendante.`);

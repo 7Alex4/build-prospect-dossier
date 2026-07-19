@@ -21,6 +21,7 @@ export interface DossierMeta {
   generativeAssets: "forbidden" | "authorized";
   generativeAssetsAuthorization?: GenerativeAssetAuthorization;
   campaignMode?: "focused-opportunity" | "campaign-platform";
+  backgroundRhythm?: "stable" | "binary-chapter";
   creativeRouteCount?: number;
   stage: "draft" | "final";
   forbiddenClientTerms?: readonly string[];

@@ -85,6 +85,9 @@ function commonSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
   if (slide.tone !== undefined) {
     allowed(slide.tone, ["paper", "ink", "accent", "surface", "signal"], `${path}.tone`, issues);
   }
+  if (slide.backgroundField !== undefined) {
+    allowed(slide.backgroundField, ["cover", "body"], `${path}.backgroundField`, issues);
+  }
   stringList(slide.evidenceIds, `${path}.evidenceIds`, issues);
   if (slide.motifState !== undefined) {
     allowed(slide.motifState, ["default", "full", "quiet", "hidden"], `${path}.motifState`, issues);
@@ -163,9 +166,13 @@ function nestedSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
       });
       break;
     case "production":
-      objectList(slide.workstreams, ["name", "detail"], `${path}.workstreams`, issues);
-      stringList(slide.deliverables, `${path}.deliverables`, issues);
-      stringList(slide.constraints, `${path}.constraints`, issues);
+      if (slide.variant === "black-flower-portrait") {
+        stringList(slide.approach, `${path}.approach`, issues);
+      } else {
+        objectList(slide.workstreams, ["name", "detail"], `${path}.workstreams`, issues);
+        stringList(slide.deliverables, `${path}.deliverables`, issues);
+        stringList(slide.constraints, `${path}.constraints`, issues);
+      }
       break;
     case "references":
       objectList(slide.references, ["title", "reason", "source"], `${path}.references`, issues).forEach((reference, index) =>
@@ -173,13 +180,23 @@ function nestedSlide(slide: UnknownRecord, path: string, issues: ValidationIssue
       );
       break;
     case "thank-you":
-      validateContact(slide.contact, `${path}.contact`, issues);
+      if (slide.variant === "black-flower-letter") {
+        stringList(slide.paragraphs, `${path}.paragraphs`, issues);
+      } else validateContact(slide.contact, `${path}.contact`, issues);
       break;
     case "lockup":
-      if (slide.title !== undefined) strings(slide, ["title"], path, issues);
-      if (slide.statement !== undefined) strings(slide, ["statement"], path, issues);
-      if (slide.textMark !== undefined) strings(slide, ["textMark"], path, issues);
-      image(slide.mark, `${path}.mark`, issues);
+      if (slide.variant === "black-flower-co-mark") {
+        image(slide.clientMark, `${path}.clientMark`, issues);
+        image(slide.studioMark, `${path}.studioMark`, issues);
+        if (slide.separator !== undefined) {
+          allowed(slide.separator, ["gap", "dot", "times"], `${path}.separator`, issues);
+        }
+      } else {
+        if (slide.title !== undefined) strings(slide, ["title"], path, issues);
+        if (slide.statement !== undefined) strings(slide, ["statement"], path, issues);
+        if (slide.textMark !== undefined) strings(slide, ["textMark"], path, issues);
+        image(slide.mark, `${path}.mark`, issues);
+      }
       break;
   }
 }

@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.0, 2026-07-19
+
+### Recurring Black Flower finishing masters
+
+- Locks Production to the measured `PRODUCTION BLACKFLOWER` portrait master with exactly `Notre rôle`, `Notre approche` and `Notre force`.
+- Requires an isolated portrait source, `contain` rendering, recorded source dimensions and a subject safe box so a flattened slide can never be used as a portrait again.
+- Replaces the generic closing component with a three-to-four-paragraph `MERCI` letter, a returning prospect object or motif, and the fixed Black Flower signature block.
+- Makes the final page a silent horizontal prospect-mark `×` Black Flower flower lockup with no header, pagination, legal copy or typed-logo fallback.
+- Adds Chromium geometry tests for Production, Merci and the final lockup.
+
+### Space and background discipline
+
+- Adds explicit `stable` and `binary-chapter` background rhythms.
+- Requires every Black Flower page to declare a `cover` or `body` field, keeps each field on one background token and closes on the exact cover token.
+- Documents measured rails, occupancy bands, quiet-space rules and rejection criteria for interface-like residue.
+- Keeps Production, optional References, Merci and the final lockup as separate pages.
+
+### Asset preparation
+
+- Adds source dimensions and subject-safe-box metadata to image assets.
+- Extends `prepare-logo` with an explicit `--matte-color '#RRGGBB'` workflow for monochrome marks on a uniform colored background.
+- Records the color-matte inference method and requires edge inspection on light and dark fields.
+
 ## 0.2.0, 2026-07-18
 
 ### Black Flower profile

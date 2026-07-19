@@ -119,7 +119,7 @@ Run text searches across source files before rendering.
 
 | Check | Points |
 |---|---:|
-| Background regime is documented and stable | 2 |
+| Background rhythm is declared as `stable` or `binary-chapter` and follows its mapped sequence | 2 |
 | Palette is measured from the current prospect and accents have roles | 2 |
 | Type roles and substitutions are documented | 2 |
 | One source-derived motif behaves consistently | 3 |
@@ -131,6 +131,8 @@ Hard failures:
 
 - exemplar-specific palette, motif, metaphor or asset residue;
 - random background changes;
+- more than four major field transitions in declared stable mode;
+- a binary-chapter rhythm with more than two fields or an unmapped switch;
 - essential text under an intrusive motif;
 - clipping, collision or protected-zone violation;
 - generic decorative gradients, blobs, particles, confetti or glass cards;
@@ -141,6 +143,9 @@ Hard failures:
 - repeated equal cards, decorative flowcharts, severity meters, progress bars, pills, fake dashboards or dark central platform cards;
 - fewer than six composition silhouettes or fewer than three visible contact-sheet peaks.
 - one composition family repeated on adjacent pages or used more than three times;
+- Production that is not the fixed portrait master, or that contains workstreams, deliverables or constraints;
+- Merci with a kicker, CTA, contact details, URL, booking instruction, fewer than three paragraphs or no returning prospect object;
+- final-lockup foreground with anything beyond the approved prospect logo, `×` and Black Flower flower; the documented cover-field motif may remain behind them;
 
 ## 6. Image and provenance gate, 13 points
 
@@ -163,6 +168,8 @@ Hard failures:
 - generated image presented as evidence;
 - generated or illustrative media used as brand truth, current-baseline proof, document or archive;
 - wrong product variant or person;
+- whole-slide raster registered or rendered as a portrait;
+- production portrait without source dimensions, safe box or full head-and-shoulders visibility;
 - broken image;
 - unreadable storyboard or moodboard;
 - `Watch`, `View`, `Read` or QR CTA pointing somewhere else;
@@ -220,7 +227,7 @@ For every page check:
 - motif contrast;
 - image crop, edge and resolution;
 - accent meaning;
-- page number and chapter marker;
+- page number and chapter marker on eligible interior pages only;
 - evidence/caption accuracy;
 - no clipping, collision or accidental near-touch;
 - coherent negative space.
@@ -235,7 +242,7 @@ Check:
 - proof, text, diagram and image roles vary;
 - motif is stable without becoming repetitive;
 - accent colors create a code;
-- production and reference pages arrive late;
+- Production and the separate References page, when included, arrive late;
 - thank-you slows the sequence;
 - final lockup feels inevitable.
 - at least 45% of thumbnails are image-led and the ratio remains at or below 65%;
@@ -252,7 +259,8 @@ Required representative comparisons:
 - one proof page;
 - one platform or system page;
 - one route or activation page;
-- production or references;
+- Production;
+- the separate References page when included;
 - thank-you;
 - final lockup.
 
@@ -263,6 +271,7 @@ Hard failures:
 - dense or sparse page that breaks the deck's rhythm;
 - small text, image or frame that cannot be read at 100%;
 - inconsistent motif or background state without narrative reason.
+- Production, Merci or final lockup outside the geometry bands in `black-flower-finishing.md`.
 - image-led ratio outside 45–65%;
 - fewer than 60% real or documentary visual pages, or generated share above 40%;
 - more than two primarily diagrammatic pages or more than two consecutive text/system pages after the introduction;
@@ -303,6 +312,11 @@ every slide ID == unique ASCII kebab-case with no normalized output collision
 technical slide ID == never visible footer fallback
 no unsupported slide family
 no overflow marker
+Production == black-flower-portrait master with isolated safe portrait
+Merci == black-flower-letter master with 3–4 paragraphs and prospect object
+final-lockup foreground == exactly two approved marks plus one multiplication sign and zero chrome
+stable background rhythm == no more than four cover/body transitions
+binary-chapter background rhythm == exactly two documented fields and mapped switches only
 no browser console error
 no forbidden placeholder token
 alt, frame number, index, timecode and rendered theme strings == scanned for placeholders and forbidden terms without ClaimRef coverage

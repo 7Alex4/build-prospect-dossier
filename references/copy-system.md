@@ -93,7 +93,7 @@ These budgets prevent overflow and force clarity.
 | Quote or signature | 6–18 words | 28 words |
 | Route description | 80–120 words total | 140 words |
 | Reference entry | 30–55 words | 70 words |
-| Thank-you letter | 110–180 words | 230 words |
+| Thank-you letter | 75–135 words | 135 words |
 | Image caption | 3–14 words | 24 words |
 
 Crossing a threshold does not automatically fail. It requires either a deliberate smaller type treatment, a split page, or a rewrite. Do not silently shrink body copy below the visual-system range.
@@ -249,6 +249,7 @@ Use three blocks:
 - `Notre force`.
 
 Lead with what the studio will make clearer or more useful for the prospect. Keep credentials concise.
+The approved isolated Black Flower portrait is mandatory. Do not replace it with a production still, reference proof or generic biography image.
 
 ### References
 
@@ -267,14 +268,15 @@ Write a short letter:
 1. frame the dossier as an initial strategic and creative reading;
 2. restate the opportunity in the prospect's language;
 3. state what the retained platform is designed to make clearer, more visible or more memorable;
-4. express a specific reason the collaboration is compelling;
-5. invite a concrete but quiet next step.
+4. express why this platform matters from Black Flower's perspective, without implying an existing relationship;
+5. close with `Merci encore et à bientôt !` or a faithful language equivalent.
 
 Do not introduce new strategy on this page.
+Do not add a CTA, contact details, URL, booking instruction or sales next step.
 
 ### Final lockup
 
-Use marks and silence, but keep the relationship truthful. In the Black Flower profile, studio identity is fixed: use `Proposition indépendante pour [prospect], par Black Flower Creative House` or the agreed approved/commissioned attribution. Use `BlackFlower` as the compact visible signature. Studio identity is optional only in a neutral profile. Do not imply that the prospect commissioned, approved or partnered on the work.
+Use only the real prospect mark, `×` and the Black Flower flower in the foreground. The documented prospect-derived cover motif may remain in the background. Keep the relationship truthful through the cover disclosure and metadata: `Proposition indépendante pour [prospect], par Black Flower Creative House` for independent prospecting, or the agreed approved or commissioned wording. The silent `×` is valid only because that disclosure is already explicit. Studio identity is optional only in a neutral profile. Do not imply that the prospect commissioned, approved or partnered on the work.
 
 Do not add a CTA, paragraph, URL wall or new tagline.
 
